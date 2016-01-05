@@ -70,9 +70,9 @@
     self.title = @"填写信息";
     self.view.backgroundColor = BackColor;
     
-        //设置数据
+    //设置数据
     [self setData];
-
+    
     
     [self setCompanyData];
     
@@ -80,9 +80,9 @@
     
     //toolbar的样式
     [self setKeyBoard];
-
-
-
+    
+    
+    
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -114,7 +114,7 @@
 }
 - (void)setData
 {
-
+    
     
     self.deletCar.layer.borderColor=NavColor.CGColor;
     self.deletCar.layer.borderWidth = 1;
@@ -148,7 +148,7 @@
 #pragma mark - 查询公司名
 -(void)setCompanyData
 {
-
+    
     //投保公司
     NSMutableDictionary *bean1 = [[NSMutableDictionary alloc] init];
     [bean1 setValue:[Globle getInstance].loadDataName forKey:@"username"];
@@ -159,7 +159,7 @@
         
     } ];
     
-   
+    
 }
 
 
@@ -196,13 +196,13 @@
     
     
     [self JudgmentInformation];
-
+    
 }
 
 #pragma mark - 添加或者删除第三者车
 - (IBAction)delegateCar:(id)sender {
     
-
+    
     NSString *str = [self.deletCar titleLabel].text;
     
     if ([str isEqualToString:@"添加第三者车"])
@@ -302,7 +302,7 @@
     self.thirdCarBackViewLine.image = backLine;
     self.thirdPartyPhoneNumber.background = backLine;
     self.thirdPartyDriverNumber.background = backLine;
-
+    
     
     NSDictionary *userinfo = [[Globle getInstance].loginInfoDic objectForKey:@"userinfo"];
     self.phoneNumber.text = userinfo[@"mobilephone"];
@@ -316,7 +316,7 @@
     [carSelectCities addArray:self.carCitiesData forKey:@"cities"];
     
     if (self.reciveCarNumber) {
-       [carSelectCities setSelectIndex:carCitiesSelectIndex];
+        [carSelectCities setSelectIndex:carCitiesSelectIndex];
     }
     
     carSelectCities.backgroundColor = [UIColor whiteColor];
@@ -376,7 +376,7 @@
     [thirdSelectCompany setDropWidth:50];
     [self.thirdPartyCompanyView addSubview:thirdSelectCompany];
     
-
+    
     
 }
 
@@ -441,9 +441,9 @@
             
         }
     }
-   
-
-   
+    
+    
+    
     
 }
 
@@ -522,7 +522,7 @@
     else if (!self.otherPartyDriverNumber.text.length) {
         [self infomationNoticeShowAlertViewMessage:@"对方车主驾驶证号不能为空！！！！"];
     }
-  
+    
 }
 - (void)dataCountThirdJudgment
 {
@@ -542,7 +542,7 @@
     else if (!self.thirdPartyDriverNumber.text.length) {
         [self infomationNoticeShowAlertViewMessage:@"第三方车主驾驶证号不能为空！！！"];
     }
-   
+    
 }
 
 - (void)infomationNoticeShowAlertViewMessage:(NSString *)message
