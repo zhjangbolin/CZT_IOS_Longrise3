@@ -106,7 +106,7 @@
     [self.thirdAllResponsBtn setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
     [self.thirdUnResponsBtn setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
     [self.thirdSameResponsBtn setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
-
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -229,7 +229,7 @@
         [self unConversitionpassInfomation:sureResVC];
         [self.navigationController pushViewController:sureResVC animated:YES];
     }
-   
+    
     
 }
 - (void)upCaseInformation
@@ -268,8 +268,8 @@
         [fvalertView dismiss];
         NSLog(@"有争议  %@",result);
         NSLog(@"sheng  %@",result[@"redes"]);
-        if (![result[@"redes"]isEqualToString:@"成功"]) {
-        
+        if (![result[@"restate"]isEqualToString:@"0"]) {
+            
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"上传案件信息失败！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
@@ -283,7 +283,7 @@
             [self.navigationController pushViewController:DVC animated:YES];
             
             
-
+            
         }
     } ];
     
@@ -303,7 +303,7 @@
     [usCarListDict setValue:self.usUserName forKey:@"carownname"];
     [usCarListDict setValue:self.usPhoneNumber forKey:@"carownphone"];
     [usCarListDict setValue:self.usDriverNumber forKey:@"driverno"];
-
+    
     
     //对方
     NSMutableDictionary *otherCarListDict = [[NSMutableDictionary alloc]init];
@@ -313,7 +313,7 @@
     [otherCarListDict setValue:self.otherUserName forKey:@"carownname"];
     [otherCarListDict setValue:self.otherPhoneNumber forKey:@"carownphone"];
     [otherCarListDict setValue:self.otherDriverNumber forKey:@"driverno"];
-
+    
     
     //其他
     NSMutableDictionary *thirdCarListDict = [[NSMutableDictionary alloc]init];
@@ -355,7 +355,7 @@
     }
     else
     {
-       self.usRespons = @"全责";
+        self.usRespons = @"全责";
         [self.allRespons setImage:[UIImage imageNamed:@"cellSelect_fill"] forState:UIControlStateNormal];
         [self.unRespons setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
         [self.sameRespons setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
@@ -406,12 +406,12 @@
     }
     else
     {
-         self.usRespons = @"同责";
+        self.usRespons = @"同责";
         [self.allRespons setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
         [self.unRespons setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
         [self.sameRespons setImage:[UIImage imageNamed:@"cellSelect_fill"] forState:UIControlStateNormal];
     }
-   
+    
 }
 //对方责任认定
 - (IBAction)otherAllRespons:(id)sender {
@@ -426,12 +426,12 @@
 
 - (IBAction)otherUnRespons:(id)sender {
     if (self.dataSource.count == 3) {
-         self.otherRespons = @"无责";
+        self.otherRespons = @"无责";
         [self.otherUnResponsBtn setImage:[UIImage imageNamed:@"cellSelect_fill"] forState:UIControlStateNormal];
         [self.otherAllResponsBtn setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
         [self.otherSameResponsBtn setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
     }
-   
+    
 }
 
 - (IBAction)otherSameRespons:(id)sender {
@@ -441,18 +441,18 @@
         [self.otherAllResponsBtn setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
         [self.otherSameResponsBtn setImage:[UIImage imageNamed:@"cellSelect_fill"] forState:UIControlStateNormal];
     }
-   
+    
 }
 
 //其他责任认定
 - (IBAction)thirdAllRespons:(id)sender {
     if (self.dataSource.count == 3) {
-         self.thirdRespons = @"全责";
+        self.thirdRespons = @"全责";
         [self.thirdAllResponsBtn setImage:[UIImage imageNamed:@"cellSelect_fill"] forState:UIControlStateNormal];
         [self.thirdUnResponsBtn setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
         [self.thirdSameResponsBtn setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
     }
-   
+    
 }
 
 - (IBAction)thirdUnRespons:(id)sender {
@@ -462,7 +462,7 @@
         [self.thirdUnResponsBtn setImage:[UIImage imageNamed:@"cellSelect_fill"] forState:UIControlStateNormal];
         [self.thirdSameResponsBtn setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
     }
-   
+    
 }
 
 - (IBAction)thirdSameRespons:(id)sender {
