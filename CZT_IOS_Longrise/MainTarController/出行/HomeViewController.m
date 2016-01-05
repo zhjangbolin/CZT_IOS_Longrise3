@@ -37,7 +37,7 @@
     logoView.width = 34;
     logoView.height = logoView.width;
     logoView.top = [Util getStatusBarHeight] + ([Util getnavigationBarHeight:self.navigationController] - logoView.width)/2;
-    logoView.image = [UIImage imageNamed:@"sub_logo"];
+    logoView.image = [UIImage imageNamed:@"logo"];
     [customNavigationBar addSubview:logoView];
     
     //城市
