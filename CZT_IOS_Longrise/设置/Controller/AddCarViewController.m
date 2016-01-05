@@ -181,6 +181,7 @@
     NSMutableDictionary *bean = [NSMutableDictionary dictionary];
     [bean setValue:userflag forKey:@"userflag"];
     [bean setValue:token forKey:@"token"];
+    NSLog(@"-------------%@",token);
     [bean setValue:@"1100" forKey:@"areaid"];
     NSString *url = [NSString stringWithFormat:@"%@%@/",[Globle getInstance].wxSericeURL,baseapp];
     
@@ -220,7 +221,7 @@
         NSDictionary *bigDic = [Globle getInstance].loginInfoDic;
         NSDictionary *userdic = [bigDic objectForKey:@"userinfo"];
         NSString *token = [bigDic objectForKey:@"token"];
-      //  NSLog(@"%@",token);
+        NSLog(@"---------------%@",token);
         NSString *userflag = [userdic objectForKey:@"userflag"];
         NSString *carNo = [NSString stringWithFormat:@"%@%@",carNumber,_carNum.text];
         for (NSDictionary *dic in insCode) {

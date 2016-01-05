@@ -2244,7 +2244,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CZT_IOS_Longrise/CZT_IOS_Longrise.pch";
 				INFOPLIST_FILE = CZT_IOS_Longrise/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2285,7 +2285,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CZT_IOS_Longrise/CZT_IOS_Longrise.pch";
 				INFOPLIST_FILE = CZT_IOS_Longrise/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

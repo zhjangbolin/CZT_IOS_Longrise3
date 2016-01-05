@@ -2,8 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "nav01 @x2..png"
+      "filename" : "nav01 @x2..png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

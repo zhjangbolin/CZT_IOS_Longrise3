@@ -54,7 +54,10 @@
 #define UpdateURL [NSString stringWithFormat:@"%@",@"http://192.168.3.229:86/KCKP/restservices/"]
 
 //业务服务
-#define WXServiceURL [NSString stringWithFormat:@"%@",@"http://192.168.4.188:83/LCIP/restservices/"]
+//#define WXServiceURL [NSString stringWithFormat:@"%@",@"http://192.168.4.188:83/LCIP/restservices/"]
+
+//业务服务
+#define WXServiceURL [NSString stringWithFormat:@"%@",@"http://202.43.147.36:71/restservices/"]
 
 //基础服务
 #define WXBaseServiceURL [NSString stringWithFormat:@"%@",@"http://202.43.147.36:71/restservices/"]
@@ -95,7 +98,8 @@
 
 //维修业务
 #define lciprest @"lciprest"
-#define baseapp @"baseapp"
+//#define baseapp @"baseapp"
+#define baseapp @"appbase"
 #define businessapp @"businessapp"
 #define lcipministryrest @"lcipministryrest"
 #define businessapprests @"businessapprests"
