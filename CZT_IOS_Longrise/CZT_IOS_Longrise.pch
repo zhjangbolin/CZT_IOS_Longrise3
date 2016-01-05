@@ -59,6 +59,7 @@
 //基础服务
 #define WXBaseServiceURL [NSString stringWithFormat:@"%@",@"http://202.43.147.36:71/restservices/"]
 
+
 //事故类型的通知名称
 #define NotificationNameForCaseType @"caseTypeNotice"
 //加载菜单通知名称
@@ -95,7 +96,8 @@
 
 //维修业务
 #define lciprest @"lciprest"
-#define baseapp @"baseapp"
+//#define baseapp @"baseapp"
+#define baseapp @"appbase"
 #define businessapp @"businessapp"
 #define lcipministryrest @"lcipministryrest"
 #define businessapprests @"businessapprests"
