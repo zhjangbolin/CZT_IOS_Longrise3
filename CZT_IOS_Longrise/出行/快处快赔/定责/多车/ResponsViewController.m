@@ -17,7 +17,7 @@
 
 @interface ResponsViewController ()<CustomAlertViewDelegate>
 {
-    NSMutableString *descriType;
+    int descriType;
     
 }
 
@@ -89,13 +89,11 @@
     CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 61/255.0, 166/255.0, 265/255.0, 1 });
     [self.controversy.layer setBorderColor:colorref];
     
+    //责任类型的转换
+    descriType = [self accidenttype:self.describeData[0]];
+    
     self.ietms = [[NSBundle mainBundle]loadNibNamed:@"ResponsCell" owner:self options:nil];
-    descriType = [[NSMutableString alloc]init];
-    for (int i = 0; i < self.describeData.count; i++) {
-        [descriType appendString:self.describeData[i]];
-        [descriType appendString:@" "];
-        
-    }
+    
     [self.allRespons setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
     [self.otherUnResponsBtn setImage:[UIImage imageNamed:@"cellUnSelect_fill"] forState:UIControlStateNormal];
     
@@ -226,6 +224,7 @@
         SureResponsController *sureResVC = [[SureResponsController alloc] init];
         sureResVC.hidesBottomBarWhenPushed = YES;
         sureResVC.dataSource = self.dataSource;
+        sureResVC.checkType = @"0";
         [self unConversitionpassInfomation:sureResVC];
         [self.navigationController pushViewController:sureResVC animated:YES];
     }
@@ -242,7 +241,7 @@
     
     NSString *imagelon = [NSString stringWithFormat:@"%f",[Globle getInstance].imagelon];
     NSString *imagelat = [NSString stringWithFormat:@"%f",[Globle getInstance].imagelat];
-    
+    NSNumber *desDuty = [NSNumber numberWithInt:descriType];
     
     NSMutableDictionary *bean2 = [[NSMutableDictionary alloc] init];
     [bean2 setValue:self.appcaseno forKey:@"appcaseno"];
@@ -252,7 +251,7 @@
     [bean2 setValue:imagelat forKey:@"caselat"];
     [bean2 setValue:[Globle getInstance].imageaddress forKey:@"caseaddress"];
     [bean2 setValue:[self currentDate] forKey:@"casedate"];
-    [bean2 setValue:descriType forKey:@"accidenttype"];
+    [bean2 setValue:desDuty forKey:@"accidenttype"];
     [bean2 setValue:self.describeString forKey:@"accidentdes"];
     [bean2 setValue:[Globle getInstance].areaid forKey:@"areaid"];
     [bean2 setValue:[self carseData] forKey:@"casecarlist"];
@@ -547,6 +546,48 @@
     VC.thirdSureRespons = self.thirdRespons;
     VC.thirdCompanyCode = self.thirdCompanyCode;
 }
+
+- (int )accidenttype:(NSString *)respons
+{
+    int type;
+    if ([respons isEqualToString:@"追尾的"]) {
+        type =0;
+    }
+    else if ([respons isEqualToString:@"逆行的"])
+    {
+        type = 1;
+    }
+    else if ([respons isEqualToString:@"倒车的"])
+    {
+        type = 2;
+    }
+    else if ([respons isEqualToString:@"溜车的"])
+    {
+        type = 3;
+    }
+    else if ([respons isEqualToString:@"开车门的"])
+    {
+        type = 4;
+    }
+    else if ([respons isEqualToString:@"违反交通信号的"])
+    {
+        type = 5;
+    }
+    else if ([respons isEqualToString:@"未按规定让行的"])
+    {
+        type = 6;
+    }
+    else if ([respons isEqualToString:@"并线的"])
+    {
+        type = 7;
+    }
+    else if ([respons isEqualToString:@"全部责任的其他情形"])
+    {
+        type = 8;
+    }
+    return type;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     

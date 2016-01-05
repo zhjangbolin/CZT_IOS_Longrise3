@@ -49,6 +49,7 @@
 
 //http://192.168.4.188:83/LCIP/restservices/businessapp/方法名/quary  业务
 //http://202.43.147.36:71/restservices/appbase/方法名/quary 基础
+
 #define ServiceURL [NSString stringWithFormat:@"%@",@"http://192.168.3.148:86/KCKP/restservices/"]
 
 #define UpdateURL [NSString stringWithFormat:@"%@",@"http://192.168.3.229:86/KCKP/restservices/"]
