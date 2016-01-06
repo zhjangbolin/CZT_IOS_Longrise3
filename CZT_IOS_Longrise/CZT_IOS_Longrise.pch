@@ -51,6 +51,7 @@
 //http://202.43.147.36:71/restservices/appbase/方法名/quary 基础
 //#define ServiceURL [NSString stringWithFormat:@"%@",@"http://192.168.3.148:86/KCKP/restservices/"]
 
+
 #define ServiceURL [NSString stringWithFormat:@"%@",@"http://203.86.8.92:8046/restservices"]
 
 #define UpdateURL [NSString stringWithFormat:@"%@",@"http://192.168.3.229:86/KCKP/restservices/"]
