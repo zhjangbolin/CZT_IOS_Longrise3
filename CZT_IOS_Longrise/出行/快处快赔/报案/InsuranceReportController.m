@@ -75,15 +75,25 @@ extern NSNumber *caseDutyType;
         [fvalertView dismiss];
         NSLog(@"保险报案  %@",result);
         NSLog(@"resdes = %@",result[@"redes"]);
-        if ([result[@"restate"] isEqualToString:@"0"]) {
-            suessAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"已报案，请耐心等待" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [suessAlert show];
+        if (result != nil)
+        {
+            if ([result[@"restate"] isEqualToString:@"0"]) {
+                suessAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"已报案，请耐心等待" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [suessAlert show];
+            }
+            else
+            {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"报案失败，请检查您的网络！！！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"报案失败，请检查您的网络！！！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"报案失败，请检查您的网络！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
+       
+        
     } ];
 }
 

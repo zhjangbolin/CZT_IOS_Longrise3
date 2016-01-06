@@ -10,6 +10,7 @@
 #import "UISelectListView.h"
 #import "Globle.h"
 #import "VerifyINfimationController.h"
+extern NSMutableDictionary *onlyHistoryToResponsDict;
 
 @interface PartiesConcernedController ()<UIAlertViewDelegate>
 {
@@ -65,6 +66,11 @@
 #pragma mark 投保公司
 -(void)loadCompany
 {
+    
+    if (onlyHistoryToResponsDict)
+    {
+        
+    }
     NSDictionary *userinfo = [[Globle getInstance].loginInfoDic objectForKey:@"userinfo"];
     self.phoneNumber.text = userinfo[@"mobilephone"];
     

@@ -203,18 +203,28 @@ NSNumber *caseDutyType;
     [bean setValue:[Globle getInstance].loadDataPass forKey:@"password"];
     [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].serviceURL ServiceName:[NSString stringWithFormat:@"%@/kckpAppSendVercode",kckpzcslrest] params:bean httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
         [fvView dismiss];
-        if ([result[@"restate"]isEqualToString:@"1"]) {
-            
-            [self showAlertMessage:@"验证码发送失败，请重新发送"];
-            [otherCode stop];
-            [thirdCode stop];
+        if (result != nil)
+        {
+            if ([result[@"restate"]isEqualToString:@"1"]) {
+                
+                [self showAlertMessage:@"验证码发送失败，请重新发送"];
+                [otherCode stop];
+                [thirdCode stop];
+            }
+            else
+            {
+                sendCodeView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"验证码发送成功！" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+                [sendCodeView show];
+                [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerSendCode) userInfo:nil repeats:NO];
+            }
         }
         else
         {
-            sendCodeView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"验证码发送成功！" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-            [sendCodeView show];
-            [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerSendCode) userInfo:nil repeats:NO];
+            [self showAlertMessage:@"验证码发送失败，请检查您的网络,重新发送验证码！"];
+            [otherCode stop];
+            [thirdCode stop];
         }
+       
         
     } ];
     
@@ -294,18 +304,27 @@ NSNumber *caseDutyType;
     [bean setValue:[Globle getInstance].loadDataPass forKey:@"password"];
     [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].serviceURL ServiceName:[NSString stringWithFormat:@"%@/kckpAppUploadFile",kckpzcslrest] params:bean httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
         
-        if (typeCount == 0) {
-            self.usSignUrl = result[@"data"][@"fileurl"];
-        }
-        else if (typeCount == 1)
+        if (result != nil)
         {
-            self.otherSignUrl = result[@"data"][@"fileurl"];
+            if (typeCount == 0) {
+                self.usSignUrl = result[@"data"][@"fileurl"];
+            }
+            else if (typeCount == 1)
+            {
+                self.otherSignUrl = result[@"data"][@"fileurl"];
+            }
+            else if (typeCount == 2)
+            {
+                self.thirdSignUrl = result[@"data"][@"fileurl"];
+            }
+            [fvView dismiss];
         }
-        else if (typeCount == 2)
+        else
         {
-            self.thirdSignUrl = result[@"data"][@"fileurl"];
+            [self showAlertMessage:@"签名图片失败，请检查您的网络，重新签名！"];
         }
-        [fvView dismiss];
+         
+        
     } ];
 }
 
@@ -413,15 +432,23 @@ NSNumber *caseDutyType;
     [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].serviceURL ServiceName:[NSString stringWithFormat:@"%@/kckpAppValCode",kckpzcslrest] params:bean1 httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
         
         NSLog(@"验证码 == %@",result);
-        if ([result[@"restate"]isEqualToString:@"0"]) {
-            
-            
-            [self upCaseInformation];
+        if (result != nil)
+        {
+            if ([result[@"restate"]isEqualToString:@"0"]) {
+                
+                
+                [self upCaseInformation];
+            }
+            else
+            {
+                [self showAlertMessage:@"验证码验证失败，请重新发送！"];
+            }
         }
         else
         {
-            [self showAlertMessage:@"验证码验证失败，请重新发送"];
+            [self showAlertMessage:@"验证码验证失败，请检查您的网络，重新发送验证码！"];
         }
+       
         
     } ];
 }
@@ -477,19 +504,26 @@ NSNumber *caseDutyType;
         NSLog(@"sheng  %@",result[@"redes"]);
         
         [fvalertView dismiss];
-        
-        if (![result[@"restate"]isEqualToString:@"0"]) {
-            
-            [self showAlertMessage:@"生成事故协议书失败！"];
+        if (result != nil)
+        {
+            if (![result[@"restate"]isEqualToString:@"0"]) {
+                
+                [self showAlertMessage:@"生成事故协议书失败！"];
+            }
+            else
+            {
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ARAView" bundle:nil];
+                ARAViewController *araVC = [storyboard instantiateViewControllerWithIdentifier:@"AraRespons"];
+                araVC.hidesBottomBarWhenPushed = YES;
+                araVC.ARVWebString = result[@"data"][@"url"];
+                [self.navigationController pushViewController:araVC animated:YES];
+            }
         }
         else
         {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ARAView" bundle:nil];
-            ARAViewController *araVC = [storyboard instantiateViewControllerWithIdentifier:@"AraRespons"];
-            araVC.hidesBottomBarWhenPushed = YES;
-            araVC.ARVWebString = result[@"data"][@"url"];
-            [self.navigationController pushViewController:araVC animated:YES];
+            [self showAlertMessage:@"生成事故协议书失败，请检查您的网络！"];
         }
+        
     } ];
 }
 
