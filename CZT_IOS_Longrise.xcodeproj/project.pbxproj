@@ -181,6 +181,10 @@
 		58FC7F121C1D4B1B00E31CB7 /* FVCustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FC7F111C1D4B1B00E31CB7 /* FVCustomAlertView.m */; };
 		58FE1F4F1C0B445F00CF0C2F /* OneCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58FE1F4E1C0B445F00CF0C2F /* OneCarViewController.xib */; };
 		58FEF26E1C113A5B00B32D25 /* UISelectListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FEF26D1C113A5B00B32D25 /* UISelectListView.m */; };
+		6F0C14CB1C3CEA5400FEA2BC /* JudgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0C14C61C3CEA5400FEA2BC /* JudgeViewController.m */; };
+		6F0C14CC1C3CEA5400FEA2BC /* JudgeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F0C14C71C3CEA5400FEA2BC /* JudgeViewController.xib */; };
+		6F0C14CD1C3CEA5400FEA2BC /* WaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0C14C91C3CEA5400FEA2BC /* WaitPayViewController.m */; };
+		6F0C14CE1C3CEA5400FEA2BC /* WaitPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F0C14CA1C3CEA5400FEA2BC /* WaitPayViewController.xib */; };
 		6F1DA3801C3A5BD1005BCADF /* FirstGuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F1DA37E1C3A5BD1005BCADF /* FirstGuideViewController.xib */; };
 		6F1DA3811C3A5BD1005BCADF /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F1DA37F1C3A5BD1005BCADF /* SecondViewController.xib */; };
 		6F3E6CC41C326088004FD9CC /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3E6CC21C326088004FD9CC /* ForgotPasswordViewController.m */; };
@@ -601,6 +605,12 @@
 		58FE1F4E1C0B445F00CF0C2F /* OneCarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneCarViewController.xib; sourceTree = "<group>"; };
 		58FEF26C1C113A5B00B32D25 /* UISelectListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISelectListView.h; sourceTree = "<group>"; };
 		58FEF26D1C113A5B00B32D25 /* UISelectListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISelectListView.m; sourceTree = "<group>"; };
+		6F0C14C51C3CEA5400FEA2BC /* JudgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JudgeViewController.h; sourceTree = "<group>"; };
+		6F0C14C61C3CEA5400FEA2BC /* JudgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JudgeViewController.m; sourceTree = "<group>"; };
+		6F0C14C71C3CEA5400FEA2BC /* JudgeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JudgeViewController.xib; sourceTree = "<group>"; };
+		6F0C14C81C3CEA5400FEA2BC /* WaitPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitPayViewController.h; sourceTree = "<group>"; };
+		6F0C14C91C3CEA5400FEA2BC /* WaitPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitPayViewController.m; sourceTree = "<group>"; };
+		6F0C14CA1C3CEA5400FEA2BC /* WaitPayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitPayViewController.xib; sourceTree = "<group>"; };
 		6F1DA37E1C3A5BD1005BCADF /* FirstGuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstGuideViewController.xib; sourceTree = "<group>"; };
 		6F1DA37F1C3A5BD1005BCADF /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
 		6F3E6CC11C326088004FD9CC /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
@@ -1356,6 +1366,12 @@
 				6F4825A71C296C0300BCE7F6 /* HistoryCaseViewController.h */,
 				6F4825A81C296C0300BCE7F6 /* HistoryCaseViewController.m */,
 				6F4825A91C296C0300BCE7F6 /* HistoryCaseViewController.xib */,
+				6F0C14C51C3CEA5400FEA2BC /* JudgeViewController.h */,
+				6F0C14C61C3CEA5400FEA2BC /* JudgeViewController.m */,
+				6F0C14C71C3CEA5400FEA2BC /* JudgeViewController.xib */,
+				6F0C14C81C3CEA5400FEA2BC /* WaitPayViewController.h */,
+				6F0C14C91C3CEA5400FEA2BC /* WaitPayViewController.m */,
+				6F0C14CA1C3CEA5400FEA2BC /* WaitPayViewController.xib */,
 				6F4825711C296BD300BCE7F6 /* AccidentCar.storyboard */,
 				6F4825721C296BD300BCE7F6 /* AccidentCarViewController.h */,
 				6F4825731C296BD300BCE7F6 /* AccidentCarViewController.m */,
@@ -1808,6 +1824,7 @@
 				5807B4361C07DA7500E7A701 /* Main.storyboard in Resources */,
 				4CC9402C1C21468200878430 /* ChooseCarViewCell.xib in Resources */,
 				58039FD61C09A8470093079E /* PZQZViewController.xib in Resources */,
+				6F0C14CC1C3CEA5400FEA2BC /* JudgeViewController.xib in Resources */,
 				58DB21EF1C12E9D20070080C /* WXTSViewController.xib in Resources */,
 				5807B43B1C07DA7500E7A701 /* LaunchScreen.xib in Resources */,
 				85305F6C1C2A992C00964D5E /* SectionTwoHeaderView.xib in Resources */,
@@ -1849,6 +1866,7 @@
 				58046F341C2040AC00F59365 /* ARAView.storyboard in Resources */,
 				58046EF01C203FBE00F59365 /* HealthRecordCell.xib in Resources */,
 				58046FD31C2047BE00F59365 /* IQKeyboardManager.bundle in Resources */,
+				6F0C14CE1C3CEA5400FEA2BC /* WaitPayViewController.xib in Resources */,
 				58046EFE1C203FBE00F59365 /* SectionTwoViewCell.xib in Resources */,
 				6F4825981C296BD300BCE7F6 /* AccidentPhotoTableViewCell.xib in Resources */,
 				58046F3F1C2040AC00F59365 /* DutyViewController.xib in Resources */,
@@ -1950,6 +1968,7 @@
 				58046EF91C203FBE00F59365 /* QYTableViewCell.m in Sources */,
 				58046F5D1C2040CE00F59365 /* VerifyINfimationController.m in Sources */,
 				5807B4A81C08006900E7A701 /* QueryParameter.m in Sources */,
+				6F0C14CB1C3CEA5400FEA2BC /* JudgeViewController.m in Sources */,
 				6F4825701C29573B00BCE7F6 /* PersonInfoModel.m in Sources */,
 				58046FB21C20456A00F59365 /* SDWebImageDownloaderOperation.m in Sources */,
 				58046F351C2040AC00F59365 /* ARAViewController.m in Sources */,
@@ -2055,6 +2074,7 @@
 				6F4825501C29571300BCE7F6 /* DetailDataModel.m in Sources */,
 				58046EEC1C203FBE00F59365 /* CWStarRateView.m in Sources */,
 				6FFD0CF91C3121AF00A78CF1 /* InfoSectionOneCell.m in Sources */,
+				6F0C14CD1C3CEA5400FEA2BC /* WaitPayViewController.m in Sources */,
 				58046E9C1C203FA200F59365 /* HMSegmentedControl.m in Sources */,
 				5807B4601C07DEBD00E7A701 /* HomeViewController.m in Sources */,
 				6FFD0CF81C3121AF00A78CF1 /* CustomTextField.m in Sources */,

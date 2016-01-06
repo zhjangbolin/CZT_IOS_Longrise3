@@ -52,7 +52,7 @@
 //#define ServiceURL [NSString stringWithFormat:@"%@",@"http://192.168.3.148:86/KCKP/restservices/"]
 
 
-#define ServiceURL [NSString stringWithFormat:@"%@",@"http://203.86.8.92:8046/restservices"]
+#define ServiceURL [NSString stringWithFormat:@"%@",@"http://203.86.8.92:8046/restservices/"]
 
 #define UpdateURL [NSString stringWithFormat:@"%@",@"http://192.168.3.229:86/KCKP/restservices/"]
 
