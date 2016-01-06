@@ -10,7 +10,7 @@
 #import "UISelectListView.h"
 #import "Globle.h"
 #import "VerifyINfimationController.h"
-extern NSMutableDictionary *onlyHistoryToResponsDict;
+
 
 @interface PartiesConcernedController ()<UIAlertViewDelegate>
 {
@@ -67,7 +67,7 @@ extern NSMutableDictionary *onlyHistoryToResponsDict;
 -(void)loadCompany
 {
     
-    if (onlyHistoryToResponsDict)
+    if (self.onlyHistoryToResponsDict != nil)
     {
         
     }

@@ -17,7 +17,7 @@
 #import "IQKeyboardManager.h"
 #import "FVCustomAlertView.h"
 
-extern NSMutableDictionary *moreHistoryToResponsDict;
+
 
 @interface FillInformationController ()<UISelectListViewDelegate,UIAlertViewDelegate>
 {
@@ -399,7 +399,7 @@ extern NSMutableDictionary *moreHistoryToResponsDict;
     if (self.reciveCarNumber) {
         self.carNumber.text = numberStr;
     }
-    if (moreHistoryToResponsDict)
+    if (self.moreHistoryToResponsDict != nil)
     {
         
     }

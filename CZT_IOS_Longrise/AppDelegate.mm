@@ -44,8 +44,8 @@
     }
     
     //判断是非是第一次启动APP
-    BOOL isSecond = [UserDefaultsUtil getDataForKey:@"isSecond"];
-    if(!isSecond)
+    NSString *isSecond = (NSString *)[UserDefaultsUtil getDataForKey:@"isSecond"];
+    if(isSecond == nil || ![@"1" isEqualToString:isSecond])
     {
         //设置指示器的颜色
         UIPageControl *pageControl = [UIPageControl appearance];
@@ -53,7 +53,8 @@
         pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:51/255.0 green:151/255.0 blue:241/255.0 alpha:1];
         pageControl.backgroundColor = [UIColor whiteColor];
         
-        [UserDefaultsUtil saveNSUserDefaultsForBOOL:YES forKey:@"isSecond"];
+        //[UserDefaultsUtil saveNSUserDefaultsForBOOL:YES forKey:@"isSecond"];
+        [UserDefaultsUtil saveNSUserDefaultsForObject:@"1" forKey:@"isSecond"];
         
         UIStoryboard *loginStoryboard=[UIStoryboard storyboardWithName:@"FirstGuide" bundle:nil];
         self.window.rootViewController=[loginStoryboard instantiateInitialViewController];

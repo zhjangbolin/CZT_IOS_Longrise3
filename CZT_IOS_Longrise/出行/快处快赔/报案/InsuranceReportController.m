@@ -39,7 +39,7 @@ extern NSNumber *caseDutyType;
 #pragma mark -  保险报案
 - (IBAction)reportCase:(id)sender {
     
-    if (caseDict) {
+    if (caseDict != nil) {
         if ([caseDutyType isEqualToNumber:[NSNumber numberWithInt:1]]) {
             falseAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您是无责任方，暂不允许报案！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [falseAlert show];
@@ -50,11 +50,11 @@ extern NSNumber *caseDutyType;
         }
         
     }
-    else if (onlyCaseDict)
+    else if (onlyCaseDict != nil)
     {
         [self upCaseInormationCompany:onlyCaseDict];
     }
-    else if (self.historyCaseDict)
+    else if (self.historyCaseDict != nil)
     {
         [self upCaseInormationCompany:self.historyCaseDict];
     }
