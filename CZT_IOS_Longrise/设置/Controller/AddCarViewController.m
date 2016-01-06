@@ -221,6 +221,7 @@
         NSDictionary *bigDic = [Globle getInstance].loginInfoDic;
         NSDictionary *userdic = [bigDic objectForKey:@"userinfo"];
         NSString *token = [bigDic objectForKey:@"token"];
+      //  NSLog(@"---------------%@",token);
         NSString *userflag = [userdic objectForKey:@"userflag"];
         NSString *carNo = [NSString stringWithFormat:@"%@%@",carNumber,_carNum.text];
         for (NSDictionary *dic in insCode) {
