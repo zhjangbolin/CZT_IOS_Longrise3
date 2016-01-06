@@ -59,8 +59,6 @@ extern NSString * monitorIP;  //监听IP
     [self go];
     // Do any additional setup after loading the view from its nib.
 }
-
-#pragma mark -
 #pragma mark － 导航栏返回按钮点击事件
 -(void)backClicked:(id)sender{
     self.navigationController.navigationBar.alpha = 0.5;
@@ -73,7 +71,7 @@ extern NSString * monitorIP;  //监听IP
     _bacView.hidden = NO;
 }
 
-#pragma mark -
+
 #pragma mark - 初始化curl及监听事件
 -(void)initCurl
 {
