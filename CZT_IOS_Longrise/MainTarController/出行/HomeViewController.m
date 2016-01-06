@@ -429,7 +429,7 @@
     if(dataDic != nil)
     {
         //快处快赔路径
-        NSString *areaurl = [dataDic objectForKey:@"areaurl"];
+        NSString *areaurl = [dataDic objectForKey:@"kckpareaurl"];
         if(nil != areaurl && ![@"" isEqualToString:areaurl])
         {
             [Globle getInstance].serviceURL = areaurl;
