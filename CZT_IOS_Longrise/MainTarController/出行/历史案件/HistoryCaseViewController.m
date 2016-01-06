@@ -99,13 +99,6 @@
         NSDictionary *dic = result;
         if ([dic[@"restate"]isEqualToString:@"0"]) {
             if (nil != dic[@"data"]) {
-                
-                if ([dic[@"data"]isKindOfClass:[NSString class]]) {
-                    NSLog(@"%@",dic[@"redes"]);
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"历史记录为空！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-                    [alert show];
-                }
-            }else{
                 NSArray *array = dic[@"data"];
                 for (NSDictionary * dic in array) {
                     HistoryModel *htModel = [[HistoryModel alloc]initWithDictionary:dic];
@@ -115,6 +108,9 @@
                     // NSLog(@"dic=========%@",dic);
                 }
                 [_htTableView reloadData];
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"没有历史记录！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alert show];
             }
             
         }else{

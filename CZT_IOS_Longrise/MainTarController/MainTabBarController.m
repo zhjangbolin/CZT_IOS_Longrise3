@@ -26,8 +26,8 @@
 //    }
     
     NSArray *names = @[@"出行",@"设置"];
-    NSArray *imgAry = @[@"nav01",@"nav03"];
-    NSArray *selectedImgAry = @[@"nav01_on",@"nav03_on"];
+    NSArray *imgAry = @[@"nav01@x2",@"nav03@x2"];
+    NSArray *selectedImgAry = @[@"nav01on@x2",@"nav03on@x2"];
     for (int i=0; i<2; i++) {
         UINavigationController *nav = self.viewControllers[i];
         UIViewController *vc = nav.viewControllers[0];
