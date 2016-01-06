@@ -402,6 +402,14 @@
             {
                 [self judgmentPhoneNumberCount];
             }
+            else if ([self.phoneNumber.text isEqualToString:self.otherPartyPhoneNumber.text] && [self.phoneNumber.text isEqualToString:self.thirdPartyPhoneNumber.text])
+            {
+                [self infomationNoticeShowAlertViewMessage:@"手机号码不能相同，请您更改！！！"];
+            }
+            else if ([self.carNumber.text isEqualToString:self.otherCarNumber.text] && [self.carNumber.text isEqualToString:self.thirdCarNumber.text])
+            {
+                [self infomationNoticeShowAlertViewMessage:@"车牌号不能相同，请您更改！！！"];
+            }
             else
             {
                 self.nextStep.enabled = YES;
@@ -427,6 +435,14 @@
             if (self.phoneNumber.text.length != 11 || self.otherPartyPhoneNumber.text.length != 11)
             {
                 [self judgmentPhoneNumberCount];
+            }
+            else if ([self.phoneNumber.text isEqualToString:self.otherPartyPhoneNumber.text])
+            {
+                [self infomationNoticeShowAlertViewMessage:@"手机号码不能相同，请您更改！！！"];
+            }
+            else if ([self.carNumber.text isEqualToString:self.otherCarNumber.text])
+            {
+                [self infomationNoticeShowAlertViewMessage:@"车牌号不能相同，请您更改！！！"];
             }
             else
             {
@@ -565,6 +581,7 @@
         {
             [self infomationNoticeShowAlertViewMessage:@"您的电话号码不是11位，请仔细检查！！！"];
         }
+        
     }
     else
     {
@@ -580,6 +597,7 @@
         {
             [self infomationNoticeShowAlertViewMessage:@"第三方车主的电话号码不是11位，请仔细检查！！！"];
         }
+       
     }
     
     

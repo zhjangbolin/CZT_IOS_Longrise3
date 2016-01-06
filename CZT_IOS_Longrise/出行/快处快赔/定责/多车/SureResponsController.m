@@ -228,6 +228,7 @@ NSNumber *caseDutyType;
 #pragma mark 签名信息
 -(void)passSignImage:(UIImage *)signImage
 {
+    signImage = [self imageWithImage:signImage scaledToSize:CGSizeMake(160, 90)];
     if (choseCount == 0) {
         self.selfbtn.backgroundColor = [UIColor clearColor];
         [self.selfbtn setTitle:@"" forState:UIControlStateNormal];
@@ -255,8 +256,29 @@ NSNumber *caseDutyType;
     
     
 }
+//图片缩放
+-(UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize
+{
+    // Create a graphics image context
+    UIGraphicsBeginImageContext(newSize);
+    
+    // Tell the old image to draw in this new context, with the desired
+    // new size
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    
+    // Get the new image from the context
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // End the context
+    UIGraphicsEndImageContext();
+    
+    // Return the new image.
+    return newImage;
+}
 - (void)vificationSign:(UIImage *)usSignImage Type:(NSInteger)typeCount
 {
+    FVCustomAlertView *fvView = [[FVCustomAlertView alloc]init];
+    [fvView showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:false Duration:0];
     NSData *_data = UIImageJPEGRepresentation(usSignImage, 0.9);
     NSString * encodedImageStr = [_data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     encodedImageStr = [encodedImageStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
@@ -283,7 +305,7 @@ NSNumber *caseDutyType;
         {
             self.thirdSignUrl = result[@"data"][@"fileurl"];
         }
-        
+        [fvView dismiss];
     } ];
 }
 
@@ -412,22 +434,44 @@ NSNumber *caseDutyType;
     NSString *imagelat = [NSString stringWithFormat:@"%f",[Globle getInstance].imagelat];
     NSNumber *desDuty = [NSNumber numberWithInt:descriType];
     
-    NSMutableDictionary *bean2 = [[NSMutableDictionary alloc] init];
-    [bean2 setValue:self.appcaseno forKey:@"appcaseno"];
-    [bean2 setValue:self.CarNumber forKey:@"casecarno"];
-    [bean2 setValue:self.PhoneNumber forKey:@"casetelephoe"];
-    [bean2 setValue:imagelon forKey:@"caselon"];
-    [bean2 setValue:imagelat forKey:@"caselat"];
-    [bean2 setValue:[Globle getInstance].imageaddress forKey:@"caseaddress"];
-    [bean2 setValue:deviceID forKey:@"fastsingleno"];
-    [bean2 setValue:[self currentDate] forKey:@"sibmitdate"];
-    [bean2 setValue:desDuty forKey:@"accidenttype"];
-    [bean2 setValue:self.describeString forKey:@"accidentdes"];
-    [bean2 setValue:[Globle getInstance].areaid forKey:@"areaid"];
-    [bean2 setValue:[self carseData] forKey:@"casecarlist"];
-    [bean2 setValue:[Globle getInstance].loadDataName forKey:@"username"];
-    [bean2 setValue:[Globle getInstance].loadDataPass forKey:@"password"];
-    [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].serviceURL ServiceName:[NSString stringWithFormat:@"%@/zdsubmitcasefastsingle",kckpzcslrest] params:bean2 httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
+    
+    if ([self.checkType isEqualToString:@"0"])
+    {
+        NSMutableDictionary *bean2 = [[NSMutableDictionary alloc] init];
+        [bean2 setValue:self.appcaseno forKey:@"appcaseno"];
+        [bean2 setValue:self.CarNumber forKey:@"casecarno"];
+        [bean2 setValue:self.PhoneNumber forKey:@"casetelephoe"];
+        [bean2 setValue:imagelon forKey:@"caselon"];
+        [bean2 setValue:imagelat forKey:@"caselat"];
+        [bean2 setValue:[Globle getInstance].imageaddress forKey:@"caseaddress"];
+        [bean2 setValue:deviceID forKey:@"fastsingleno"];
+        [bean2 setValue:[self currentDate] forKey:@"sibmitdate"];
+        [bean2 setValue:desDuty forKey:@"accidenttype"];
+        [bean2 setValue:self.describeString forKey:@"accidentdes"];
+        [bean2 setValue:[Globle getInstance].areaid forKey:@"areaid"];
+        [bean2 setValue:[self carseData] forKey:@"casecarlist"];
+        [bean2 setValue:[Globle getInstance].loadDataName forKey:@"username"];
+        [bean2 setValue:[Globle getInstance].loadDataPass forKey:@"password"];
+        [self checkTypeCaseData:bean2 Interface:@"zdsubmitcasefastsingle"];
+    }
+    else
+    {
+        NSMutableDictionary *bean2 = [[NSMutableDictionary alloc] init];
+        [bean2 setValue:self.appcaseno forKey:@"appcaseno"];
+        [bean2 setValue:[self carseData] forKey:@"casecarlist"];
+        [bean2 setValue:[Globle getInstance].loadDataName forKey:@"username"];
+        [bean2 setValue:[Globle getInstance].loadDataPass forKey:@"password"];
+        [self checkTypeCaseData:bean2 Interface:@"zdsubmitcasefastsingleconfirm"];
+        
+    }
+    
+    
+    //保险报案数据
+    [self reprotCaseData];
+}
+- (void)checkTypeCaseData:(NSMutableDictionary *)bean2 Interface:(NSString *)interface
+{
+    [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].serviceURL ServiceName:[NSString stringWithFormat:@"%@/%@",kckpzcslrest,interface] params:bean2 httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
         
         NSLog(@"sheng  %@",result);
         NSLog(@"sheng  %@",result[@"redes"]);
@@ -447,9 +491,6 @@ NSNumber *caseDutyType;
             [self.navigationController pushViewController:araVC animated:YES];
         }
     } ];
-    
-    //保险报案数据
-    [self reprotCaseData];
 }
 
 #pragma mark 保险报案数据

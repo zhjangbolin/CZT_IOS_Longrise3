@@ -90,7 +90,7 @@
         <scene sceneID="qN6-1s-VZI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3WI-Eh-z7v" customClass="NavViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="设置" id="kD1-6w-hkc"/>
+                    <tabBarItem key="tabBarItem" title="设置" selectedImage="nav03" id="kD1-6w-hkc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="O9e-ur-tqx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -147,4 +147,7 @@
             <point key="canvasLocation" x="2119" y="1135"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="nav03" width="30" height="30"/>
+    </resources>
 </document>
