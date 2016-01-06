@@ -120,7 +120,7 @@
     [bean setValue:token forKey:@"token"];
     [bean setValue:@"appcartype" forKey:@"codetype"];
     
-    NSString *url = [NSString stringWithFormat:@"%@%@/",[Globle getInstance].wxSericeURL,baseapp];
+    NSString *url = [NSString stringWithFormat:@"%@%@/",[Globle getInstance].wxBaseServiceURL,baseapp];
 
     [[Globle getInstance].service requestWithServiceIP:url  ServiceName:@"appgetcodevalue" params:bean httpMethod:@"POST"resultIsDictionary:YES completeBlock:^(id result) {
 
@@ -183,7 +183,7 @@
     [bean setValue:token forKey:@"token"];
     NSLog(@"-------------%@",token);
     [bean setValue:@"1100" forKey:@"areaid"];
-    NSString *url = [NSString stringWithFormat:@"%@%@/",[Globle getInstance].wxSericeURL,baseapp];
+    NSString *url = [NSString stringWithFormat:@"%@%@/",[Globle getInstance].wxBaseServiceURL,baseapp];
     
     [[Globle getInstance].service requestWithServiceIP:url  ServiceName:@"appsearchincompanylist" params:bean httpMethod:@"POST"resultIsDictionary:YES completeBlock:^(id result) {
         
@@ -221,7 +221,7 @@
         NSDictionary *bigDic = [Globle getInstance].loginInfoDic;
         NSDictionary *userdic = [bigDic objectForKey:@"userinfo"];
         NSString *token = [bigDic objectForKey:@"token"];
-        NSLog(@"---------------%@",token);
+      //  NSLog(@"---------------%@",token);
         NSString *userflag = [userdic objectForKey:@"userflag"];
         NSString *carNo = [NSString stringWithFormat:@"%@%@",carNumber,_carNum.text];
         for (NSDictionary *dic in insCode) {
