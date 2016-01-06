@@ -60,9 +60,7 @@
     [backView addSubview:header];
     
     self.dataSource = @[@"车辆管理",@"修改密码",@"系统设置",@"退出登录"];
-
     self.hometabView = [[UITableView alloc]initWithFrame:CGRectMake(0, 100, ScreenWidth, ScreenHeight-100) style:UITableViewStylePlain];
-
     self.hometabView.backgroundColor = BackColor;
     self.hometabView.delegate = self;
     self.hometabView.dataSource = self;
