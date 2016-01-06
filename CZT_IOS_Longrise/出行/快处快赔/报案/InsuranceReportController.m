@@ -39,7 +39,7 @@ extern NSNumber *caseDutyType;
 #pragma mark -  保险报案
 - (IBAction)reportCase:(id)sender {
     
-    if (caseDict) {
+    if (caseDict != nil) {
         if ([caseDutyType isEqualToNumber:[NSNumber numberWithInt:1]]) {
             falseAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您是无责任方，暂不允许报案！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [falseAlert show];
@@ -50,11 +50,11 @@ extern NSNumber *caseDutyType;
         }
         
     }
-    else if (onlyCaseDict)
+    else if (onlyCaseDict != nil)
     {
         [self upCaseInormationCompany:onlyCaseDict];
     }
-    else if (self.historyCaseDict)
+    else if (self.historyCaseDict != nil)
     {
         [self upCaseInormationCompany:self.historyCaseDict];
     }
@@ -75,15 +75,25 @@ extern NSNumber *caseDutyType;
         [fvalertView dismiss];
         NSLog(@"保险报案  %@",result);
         NSLog(@"resdes = %@",result[@"redes"]);
-        if ([result[@"restate"] isEqualToString:@"0"]) {
-            suessAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"已报案，请耐心等待" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [suessAlert show];
+        if (result != nil)
+        {
+            if ([result[@"restate"] isEqualToString:@"0"]) {
+                suessAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"已报案，请耐心等待" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [suessAlert show];
+            }
+            else
+            {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"报案失败，请检查您的网络！！！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"报案失败，请检查您的网络！！！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"报案失败，请检查您的网络！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
+       
+        
     } ];
 }
 
