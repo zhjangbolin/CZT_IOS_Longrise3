@@ -64,10 +64,12 @@ extern NSString * monitorIP;  //监听IP
 }
 
 
+
 -(void)viewWillDisappear:(BOOL)animated{
     
      self.navigationItem.hidesBackButton = NO;
 }
+
 
 
 #pragma mark － 导航栏返回按钮点击事件
