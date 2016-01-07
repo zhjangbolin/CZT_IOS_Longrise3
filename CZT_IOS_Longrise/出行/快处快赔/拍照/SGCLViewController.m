@@ -50,7 +50,7 @@
     if(nil != dic)
     {
         self.appcaseno = [dic objectForKey:@"appcaseno"];
-
+        
         NSString *str = [dic objectForKey:@"type"];
         if ([str isEqualToString:@"1"])
         {
@@ -60,7 +60,7 @@
         {
             self.type = 2;
         }
-
+        
     }
 }
 
@@ -138,12 +138,20 @@
     self.reportCaseLabel.layer.cornerRadius = 15;
     self.reportCaseLabel.text = @"3";
     self.reportCaseLabel.textAlignment = NSTextAlignmentCenter;
-
+    
+    //历史案件中进来
+    if(self.currentMark == 1)
+    {   //设置第一步拍照为选中状态
+        [self setOneStep:1 selected:YES];
+    }
+    
+    
 }
 
 -(void)setCurrentMark:(int)currentMark
 {
     step = 1;
+    _currentMark = currentMark;
     [self setOneStep:1 selected:YES];
 }
 
@@ -158,7 +166,7 @@
             if(nil == alert1)
             {
                 alert1 = [[UIAlertView  alloc] initWithTitle:@"温馨提示" message:@"您是否要处理新案件" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        
+                
             }
             [alert1 show];
         }
@@ -193,7 +201,7 @@
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ChooseAS" bundle:nil];
                 ChooseASController *casController = [storyboard instantiateViewControllerWithIdentifier:@"ChooseASID"];
                 casController.appcaseno = self.appcaseno;
-                //            casController.appcaseno = @"1234234";
+                casController.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
                 [self.navigationController pushViewController:casController animated:YES];
             }
             else
@@ -202,9 +210,10 @@
                 PartiesConcernedController *parties = [storyboard instantiateViewControllerWithIdentifier:@"PartiesID"];
                 parties.hidesBottomBarWhenPushed = YES;
                 parties.appcaseno = self.appcaseno;
+                parties.onlyHistoryToResponsArray = self.onlyHistoryToResponsArray;
                 [self.navigationController pushViewController:parties animated:YES];
             }
-
+            
         }
         
     }
@@ -216,7 +225,7 @@
             [myAlert show];
             return;
         }
-
+        
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Insurance" bundle:nil];
         InsuranceReportController *InReVC = [storyboard instantiateViewControllerWithIdentifier:@"InsuranceReport"];

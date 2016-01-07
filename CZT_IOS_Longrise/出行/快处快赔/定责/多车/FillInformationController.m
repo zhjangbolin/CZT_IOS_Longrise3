@@ -22,10 +22,16 @@
 @interface FillInformationController ()<UISelectListViewDelegate,UIAlertViewDelegate>
 {
     UILabel *titlelabel;
-    NSString *cities;
-    NSString *companies;
-    int carCitiesSelectIndex;
-    int companySelectIndex;
+    NSString *cities; //选中后的车牌省市
+    NSString *companies; //选中后的公司名
+    
+    int usCarCitiesSelectIndex; //本方的车牌省市下标
+    int otherCarCitiesSelectIndex; //对方的车牌省市下标
+    int thirdCarCitiesSelectIndex; //第三方的车牌省市下标
+    
+    int usCompanySelectIndex; //本方的公司名下标
+    int otherCompanySelectIndex; //对方的公司名下标
+    int thirdCompanySelectIndex; //第三方的公司名下标
     
 }
 
@@ -280,9 +286,9 @@
     [self setShowView];
     
     //车辆的省市
-    [self loadUIInfomations];
+    [self loadUIInfomationsCompanyData:array];
     
-   
+    
     
     CGFloat top = 8;
     CGFloat left = 5;
@@ -307,7 +313,7 @@
     self.thirdPartyDriverNumber.background = backLine;
     
     
-   
+    
     
     //本方 车牌号
     self.carView.userInteractionEnabled = YES;
@@ -317,8 +323,8 @@
     
     [carSelectCities addArray:self.carCitiesData forKey:@"cities"];
     
-    if (self.reciveCarNumber) {
-        [carSelectCities setSelectIndex:carCitiesSelectIndex];
+    if (self.reciveCarNumber || self.moreHistoryToResponsArray != nil) {
+        [carSelectCities setSelectIndex:usCarCitiesSelectIndex];
     }
     
     carSelectCities.backgroundColor = [UIColor whiteColor];
@@ -331,6 +337,9 @@
     usSelectCompany.delegate = self;
     usSelectCompany.titleLabel.font = [UIFont systemFontOfSize:13];
     [usSelectCompany addArray:array forKey:@"inscomname"];
+    if (self.moreHistoryToResponsArray != nil) {
+        [usSelectCompany setSelectIndex:usCompanySelectIndex];
+    }
     usSelectCompany.backgroundColor = [UIColor whiteColor];
     [usSelectCompany setBackgroundImage:backLine forState:UIControlStateNormal];
     [usSelectCompany setIcon:[UIImage imageNamed:@"select_input"]];
@@ -343,6 +352,9 @@
     otherCarSelectCities.currentView = self.view;
     otherCarSelectCities.delegate = self;
     [otherCarSelectCities addArray:self.carCitiesData forKey:@"cities"];
+    if (self.moreHistoryToResponsArray != nil) {
+        [otherCarSelectCities setSelectIndex:otherCarCitiesSelectIndex];
+    }
     otherCarSelectCities.backgroundColor = [UIColor whiteColor];
     [otherCarSelectCities setIcon:[UIImage imageNamed:@"select_input"]];
     [otherCarSelectCities setDropWidth:50];
@@ -352,6 +364,9 @@
     otherSelectCompany.currentView = self.view;
     otherSelectCompany.delegate = self;
     [otherSelectCompany addArray:array forKey:@"inscomname"];
+    if (self.moreHistoryToResponsArray != nil) {
+        [otherSelectCompany setSelectIndex:otherCompanySelectIndex];
+    }
     otherSelectCompany.backgroundColor = [UIColor whiteColor];
     [otherSelectCompany setBackgroundImage:backLine forState:UIControlStateNormal];
     [otherSelectCompany setIcon:[UIImage imageNamed:@"select_input"]];
@@ -363,6 +378,9 @@
     thirdCarSelectCities.currentView = self.view;
     thirdCarSelectCities.delegate = self;
     [thirdCarSelectCities addArray:self.carCitiesData forKey:@"cities"];
+    if (self.moreHistoryToResponsArray != nil) {
+        [thirdCarSelectCities setSelectIndex:thirdCarCitiesSelectIndex];
+    }
     thirdCarSelectCities.backgroundColor = [UIColor whiteColor];
     [thirdCarSelectCities setIcon:[UIImage imageNamed:@"select_input"]];
     [thirdCarSelectCities setDropWidth:50];
@@ -372,6 +390,9 @@
     thirdSelectCompany.currentView = self.view;
     thirdSelectCompany.delegate = self;
     [thirdSelectCompany addArray:array forKey:@"inscomname"];
+    if (self.moreHistoryToResponsArray != nil) {
+        [thirdSelectCompany setSelectIndex:thirdCompanySelectIndex];
+    }
     thirdSelectCompany.backgroundColor = [UIColor whiteColor];
     [thirdSelectCompany setBackgroundImage:backLine forState:UIControlStateNormal];
     [thirdSelectCompany setIcon:[UIImage imageNamed:@"select_input"]];
@@ -383,30 +404,121 @@
 }
 
 
-- (void)loadUIInfomations
+- (void)loadUIInfomationsCompanyData:(NSArray *)array
 {
-    NSString *cityStr = [self.reciveCarNumber substringToIndex:1];
-    NSString *numberStr = [self.reciveCarNumber substringFromIndex:1];
-    NSDictionary *dict = [[NSDictionary alloc]init];
-    for (int  i = 0; i < self.carCitiesData.count; i++) {
-        dict = self.carCitiesData[i];
-        NSLog(@"dict = %@",dict);
-        if ([cityStr isEqualToString:dict[@"cities"]]) {
-            carCitiesSelectIndex = i;
-        }
-    }
     
     if (self.reciveCarNumber) {
-        self.carNumber.text = numberStr;
+        self.carNumber.text = [self.reciveCarNumber substringFromIndex:1];
+        NSString *str = [self.reciveCarNumber substringToIndex:1];
+        usCarCitiesSelectIndex = [self judeCarCities:str CarCiteiesDataArray:self.carCitiesData];
     }
-    if (self.moreHistoryToResponsDict != nil)
+    
+    if (self.moreHistoryToResponsArray != nil)
     {
+        NSString *carString = [self.moreHistoryToResponsArray lastObject];
+        
+        NSDictionary *usInfoDict = [NSDictionary dictionary];
+        NSDictionary *otherDict = [NSDictionary dictionary];
+        NSDictionary *thirdDict = [NSDictionary dictionary];
+        
+        if (self.moreHistoryToResponsArray.count == 2)
+        {
+            NSDictionary *dict = self.moreHistoryToResponsArray[0];
+            if ([carString isEqualToString:dict[@"casecarno"]]) {
+                usInfoDict = self.moreHistoryToResponsArray[0];
+                otherDict = self.moreHistoryToResponsArray[1];
+            }
+            else
+            {
+                usInfoDict = self.moreHistoryToResponsArray[1];
+                otherDict = self.moreHistoryToResponsArray[0];
+            }
+            
+        }
+        else
+        {
+            int number = 0;
+            for (int i = 0; i < self.moreHistoryToResponsArray.count; i++)
+            {
+                NSDictionary *dict = self.moreHistoryToResponsArray[i];
+                if ([carString isEqualToString:dict[@"casecarno"]]) {
+                    usInfoDict = self.moreHistoryToResponsArray[i];
+                    number = i;
+                }
+            }
+            if (number == 0)
+            {
+                otherDict = self.moreHistoryToResponsArray[1];
+                thirdDict = self.moreHistoryToResponsArray[2];
+            }
+            else if (number == 1)
+            {
+                otherDict = self.moreHistoryToResponsArray[0];
+                thirdDict = self.moreHistoryToResponsArray[2];
+            }
+            else
+            {
+                otherDict = self.moreHistoryToResponsArray[0];
+                thirdDict = self.moreHistoryToResponsArray[1];
+            }
+        }
+        
+        // NSLog(@"-----------------------%@",usInfoDict);
+        
+        self.name.text = usInfoDict[@"carownname"];
+        self.carNumber.text = [usInfoDict[@"casecarno"] substringFromIndex:1];
+        usCompanySelectIndex = [self judeCompanyName:usInfoDict[@"inscomname"] CompanyDataArray:array];
+        self.phoneNumber.text = usInfoDict[@"carownphone"];
+        self.driverNumber.text = usInfoDict[@"driverno"];
+        
+        self.otherPartyName.text = otherDict[@"carownname"];
+        self.otherCarNumber.text = [otherDict[@"casecarno"] substringFromIndex:1];
+        otherCompanySelectIndex = [self judeCompanyName:otherDict[@"inscomname"] CompanyDataArray:array];
+        self.otherPartyPhoneNumber.text = otherDict[@"carownphone"];
+        self.otherPartyDriverNumber.text = otherDict[@"driverno"];
+        
+        self.thirdPartyName.text = thirdDict[@"carownname"];
+        self.thirdCarNumber.text = [thirdDict[@"casecarno"] substringFromIndex:1];
+        thirdCompanySelectIndex = [self judeCompanyName:thirdDict[@"inscomname"] CompanyDataArray:array];
+        self.thirdPartyPhoneNumber.text = thirdDict[@"carownphone"];
+        self.thirdPartyDriverNumber.text = thirdDict[@"driverno"];
         
     }
     NSDictionary *userinfo = [[Globle getInstance].loginInfoDic objectForKey:@"userinfo"];
     self.phoneNumber.text = userinfo[@"mobilephone"];
 }
 
+#pragma mark - 判断车主信息的保险公司名下标
+- (int)judeCompanyName:(NSString *)companyName CompanyDataArray:(NSArray *)array
+{
+    int number = 0;
+    for (int i = 0; i < array.count ; i++)
+    {
+        if ([companyName isEqualToString:array[i][@"inscomname"]])
+        {
+            number = i;
+        }
+    }
+    
+    return number;
+    
+}
+
+#pragma mark - 判断车主车牌号的下标
+- (int)judeCarCities:(NSString *)carName CarCiteiesDataArray:(NSArray *)array
+{
+    int number = 0;
+    for (int i = 0; i < array.count ; i++)
+    {
+        if ([carName isEqualToString:array[i][@"cities"]])
+        {
+            number = i;
+        }
+    }
+    
+    return number;
+    
+}
 
 #pragma mark - 跳转下一步
 - (void)JudgmentInformation
@@ -529,38 +641,38 @@
 {
     //本方
     if (!self.name.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"车主姓名不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"车主姓名不能为空！"];
     }
     else if (!self.carNumber.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"车主车辆车牌号不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"车主车辆车牌号不能为空！"];
     }
     else if (!companies) {
-        [self infomationNoticeShowAlertViewMessage:@"车主车辆投保公司不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"车主车辆投保公司不能为空！"];
     }
     else if (!self.phoneNumber.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"车主电话号码不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"车主电话号码不能为空！"];
         
     }
     else if (!self.driverNumber.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"车主驾驶证号不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"车主驾驶证号不能为空！"];
     }
     
     //对方
     else if (!self.otherPartyName.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"对方车主姓名不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"对方车主姓名不能为空！"];
     }
     else if (!self.otherCarNumber.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"对方车主车辆车牌号不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"对方车主车辆车牌号不能为空！"];
     }
     else if (!companies) {
-        [self infomationNoticeShowAlertViewMessage:@"对方车主车辆投保公司不能为空！！"];
+        [self infomationNoticeShowAlertViewMessage:@"对方车主车辆投保公司不能为空！"];
     }
     else if (!self.otherPartyPhoneNumber.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"对方车主电话号码不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"对方车主电话号码不能为空！"];
         
     }
     else if (!self.otherPartyDriverNumber.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"对方车主驾驶证号不能为空！！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"对方车主驾驶证号不能为空！！"];
     }
     
 }
@@ -568,19 +680,19 @@
 {
     //第三方
     if (!self.thirdPartyName.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"第三方车主姓名不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"第三方车主姓名不能为空！"];
     }
     else if (!self.thirdCarNumber.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"第三方车主车辆车牌号不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"第三方车主车辆车牌号不能为空！"];
     }
     else if (!companies) {
-        [self infomationNoticeShowAlertViewMessage:@"第三方车主电话号码不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"第三方车主电话号码不能为空！"];
     }
     else if (!self.thirdPartyPhoneNumber.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"第三方车主电话号码不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"第三方车主电话号码不能为空！"];
     }
     else if (!self.thirdPartyDriverNumber.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"第三方车主驾驶证号不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"第三方车主驾驶证号不能为空！"];
     }
     
 }
@@ -599,11 +711,11 @@
     {
         if (self.otherPartyPhoneNumber.text.length != 11)
         {
-            [self infomationNoticeShowAlertViewMessage:@"对方车主的电话号码不是11位，请仔细检查！！！"];
+            [self infomationNoticeShowAlertViewMessage:@"对方车主的电话号码不是11位，请仔细检查！"];
         }
         else if (self.phoneNumber.text.length != 11)
         {
-            [self infomationNoticeShowAlertViewMessage:@"您的电话号码不是11位，请仔细检查！！！"];
+            [self infomationNoticeShowAlertViewMessage:@"您的电话号码不是11位，请仔细检查！"];
         }
         
     }
@@ -611,17 +723,17 @@
     {
         if (self.otherPartyPhoneNumber.text.length != 11)
         {
-            [self infomationNoticeShowAlertViewMessage:@"对方车主的电话号码不是11位，请仔细检查！！！"];
+            [self infomationNoticeShowAlertViewMessage:@"对方车主的电话号码不是11位，请仔细检查！"];
         }
         else if (self.phoneNumber.text.length != 11)
         {
-            [self infomationNoticeShowAlertViewMessage:@"您的电话号码不是11位，请仔细检查！！！"];
+            [self infomationNoticeShowAlertViewMessage:@"您的电话号码不是11位，请仔细检查！"];
         }
         else if (self.thirdPartyPhoneNumber.text.length != 11)
         {
-            [self infomationNoticeShowAlertViewMessage:@"第三方车主的电话号码不是11位，请仔细检查！！！"];
+            [self infomationNoticeShowAlertViewMessage:@"第三方车主的电话号码不是11位，请仔细检查！"];
         }
-       
+        
     }
     
     

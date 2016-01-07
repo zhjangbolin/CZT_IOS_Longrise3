@@ -151,7 +151,7 @@
                                 <constraint firstAttribute="height" constant="40" id="7uG-vb-3Hf"/>
                                 <constraint firstAttribute="width" constant="260" id="y5H-XU-91l"/>
                             </constraints>
-                            <state key="normal" title="有以上情况，请拨打112" backgroundImage="item_bg">
+                            <state key="normal" title="有以上情况，请拨打122" backgroundImage="item_bg">
                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
