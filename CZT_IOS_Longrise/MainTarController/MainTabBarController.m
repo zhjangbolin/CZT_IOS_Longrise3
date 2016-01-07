@@ -25,7 +25,7 @@
 //        vc.tabBarItem = [[UITabBarItem alloc]initWithTitle:names[i] image:image selectedImage:selectedImage];
 //    }
     
-    NSArray *names = @[@"出行",@"设置"];
+    NSArray *names = @[@"事故处理",@"设置"];
     NSArray *imgAry = @[@"nav01@x2",@"nav03@x2"];
     NSArray *selectedImgAry = @[@"nav01on@x2",@"nav03on@x2"];
     for (int i=0; i<2; i++) {

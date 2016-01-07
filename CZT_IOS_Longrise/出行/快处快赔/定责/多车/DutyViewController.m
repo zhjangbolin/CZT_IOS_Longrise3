@@ -11,9 +11,12 @@
 #import "Globle.h"
 #import "AFNetWorkService.h"
 #import "ControversialController.h"
+#import "FVCustomAlertView.h"
 
 
-@interface DutyViewController ()
+@interface DutyViewController (){
+    FVCustomAlertView *alertView;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *giveUpGuideButton;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
@@ -58,6 +61,11 @@ extern NSString * monitorIP;  //监听IP
     [self initCurl];
     [self go];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    
+     self.navigationItem.hidesBackButton = NO;
 }
 
 #pragma mark -
@@ -209,6 +217,10 @@ size_t icomet_callback1(char *ptr, size_t size, size_t nmemb, void *userdata)
     fmt.dateFormat = @"YYYY-MM-DD HH:MM:SS";
     NSString *time = [fmt stringFromDate:date];
     
+    alertView = [[FVCustomAlertView alloc] init];
+    [alertView showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:false Duration:-1];
+    [self.view addSubview:alertView];
+    
     
      NSMutableDictionary *bean = [[NSMutableDictionary alloc] init];
     [bean setValue:_appcaseno forKey:@"appcaseno"];
@@ -228,6 +240,7 @@ size_t icomet_callback1(char *ptr, size_t size, size_t nmemb, void *userdata)
         else{
             NSLog(@"%@",dic[@"redes"]);
         }
+        [alertView dismiss];
     }];
   
 }
