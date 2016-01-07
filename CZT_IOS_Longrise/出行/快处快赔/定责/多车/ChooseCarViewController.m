@@ -126,7 +126,7 @@
     [self.backScrollView addSubview:sureButton];
     [sureButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(50);
-        make.left.equalTo(self.backScrollView).with.offset(10);
+        make.left.equalTo(self.backScrollView).with.offset(0);
         make.top.equalTo(otherButton.mas_bottom).with.offset(20);
         make.width.mas_equalTo(self.backScrollView.mas_width);
     }];
@@ -142,27 +142,27 @@
         viewstatus.tag = 0;
         ((UIView *)viewstatus.subviews[1]).hidden = YES;
     }
-
+    
     UIView *checkView = recognizer.view;
     checkView.tag = 1;
     
     if (checkView.tag == 1)
     {
         ((UIView *)checkView.subviews[1]).hidden = NO;
-     
+        
     }
     else
     {
         ((UIView *)checkView.subviews[1]).hidden = YES;
     }
-   
+    
 }
 - (void)setCarData
 {
     for (NSDictionary *str in self.CarDict) {
         [self.dataSource addObject:str[@"carno"]];
     }
-     NSLog(@"car = %@",self.dataSource[0]);
+    NSLog(@"car = %@",self.dataSource[0]);
 }
 
 
@@ -177,7 +177,8 @@
     filleVC.reciveCarNumber = carNumber;
     filleVC.describeData = self.describeData;
     filleVC.describeString = self.describeString;
-//    filleVC.reciveCarNumber = dic[@"carno"];
+    //    filleVC.reciveCarNumber = dic[@"carno"];
+    filleVC.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
     [self.navigationController pushViewController:filleVC animated:YES];
 }
 
@@ -190,6 +191,7 @@
     filleVC.appcaseno = self.appcaseno;
     filleVC.describeData = self.describeData;
     filleVC.describeString = self.describeString;
+    filleVC.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
     [self.navigationController pushViewController:filleVC animated:YES];
 }
 
@@ -202,13 +204,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

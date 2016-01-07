@@ -48,7 +48,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     
     self.backScrollView.delegate = self;
     
@@ -57,7 +57,11 @@
     
 }
 
-
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.sureButton.userInteractionEnabled = YES;
+}
 
 #pragma mark  - 下一步
 
@@ -70,63 +74,67 @@
         }
         else
         {
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                fvalertView = [[FVCustomAlertView alloc]init];
-                [fvalertView showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:false Duration:0];
-                [self startLoadData];
-//            });
+            //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            [self startLoadData];
+            //            });
             
         }
     });
-   
+    
     self.sureButton.userInteractionEnabled =  NO;
 }
 
 #pragma mark  - 加载数据
 -(void)startLoadData
 {
-   
+    fvalertView = [[FVCustomAlertView alloc]init];
+    [fvalertView showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:false Duration:0];
+    [self.view addSubview:fvalertView];
     NSMutableDictionary *bean = [[NSMutableDictionary alloc] init];
     NSDictionary *userinfo = [[Globle getInstance].loginInfoDic objectForKey:@"userinfo"];
     [bean setValue:userinfo[@"userflag"] forKey:@"userflag"];
     [bean setValue:[Globle getInstance].loginInfoDic[@"token"] forKey:@"token"];
     [bean setValue:@"1" forKey:@"pagenum"];
     [bean setValue:@"100" forKey:@"pagesize"];
-   
-    [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].wxBaseServiceURL ServiceName:[NSString stringWithFormat:@"%@/appsearchcarlist",businessapp] params:bean httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
-       
-        NSLog(@"result = %@",result[@"result"]);
-       
-            if(result[@"result"] == nil)
-            {
-                [fvalertView dismiss];
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
-                FillInformationController *fillController = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
-                fillController.hidesBottomBarWhenPushed = YES;
-                fillController.appcaseno = self.appcaseno;
-                fillController.describeData = self.describeData;
-                fillController.describeString = destextView.text;
-                [self.navigationController pushViewController:fillController animated:YES];
-            }
-            else
-            {
-                
-                [fvalertView dismiss];
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ChooseCar" bundle:nil];
-                ChooseCarViewController *araVC = [storyboard instantiateViewControllerWithIdentifier:@"ChooseCarStoryboard"];
-                araVC.hidesBottomBarWhenPushed = YES;
-                araVC.CarDict = result[@"result"];
-                araVC.appcaseno = self.appcaseno;
-                araVC.describeData = self.describeData;
-                araVC.describeString = destextView.text;
-                [self.navigationController pushViewController:araVC animated:YES];
-                
-                
-            }
-
+    
+    [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].wxBaseServiceURL ServiceName:[NSString stringWithFormat:@"%@/appsearchcarlist",baseapp] params:bean httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
+        
+        NSLog(@"result = %@",result[@"data"]);
+        NSLog(@"data = %@",result[@"data"][0][@"carno"]);
+        [fvalertView dismiss];
+        if([result[@"data"]isEqual:@""])
+        {
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
+            FillInformationController *fillController = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
+            fillController.hidesBottomBarWhenPushed = YES;
+            fillController.appcaseno = self.appcaseno;
+            fillController.describeData = self.describeData;
+            fillController.describeString = destextView.text;
+            fillController.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
+            [self.navigationController pushViewController:fillController animated:YES];
+        }
+        else
+        {
+            
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ChooseCar" bundle:nil];
+            ChooseCarViewController *araVC = [storyboard instantiateViewControllerWithIdentifier:@"ChooseCarStoryboard"];
+            araVC.hidesBottomBarWhenPushed = YES;
+            araVC.CarDict = result[@"data"];
+            araVC.appcaseno = self.appcaseno;
+            araVC.describeData = self.describeData;
+            araVC.describeString = destextView.text;
+            araVC.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
+            [self.navigationController pushViewController:araVC animated:YES];
+            
+            
+        }
+        
     }];
-
-
+    
+    
     
 }
 #pragma mark - 设置tabView
@@ -231,7 +239,7 @@
         self.checkImage1.hidden = NO;
         [self.describeData removeAllObjects];
         [self.describeData addObject:self.dataSource[0]];
-    
+        
     }else
     {
         self.checkImage1.hidden = YES;
@@ -300,7 +308,7 @@
     {
         self.checkImage9.hidden = YES;
     }
- 
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -308,13 +316,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
