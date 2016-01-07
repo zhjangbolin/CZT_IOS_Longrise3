@@ -97,32 +97,33 @@
        
         NSLog(@"result = %@",result[@"result"]);
        
-        if(result[@"result"] == nil)
-        {
-            [fvalertView dismiss];
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
-            FillInformationController *fillController = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
-            fillController.hidesBottomBarWhenPushed = YES;
-            fillController.appcaseno = self.appcaseno;
-            fillController.describeData = self.describeData;
-            fillController.describeString = destextView.text;
-            [self.navigationController pushViewController:fillController animated:YES];
-        }
-        else
-        {
-            
-            [fvalertView dismiss];
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ChooseCar" bundle:nil];
-            ChooseCarViewController *araVC = [storyboard instantiateViewControllerWithIdentifier:@"ChooseCarStoryboard"];
-            araVC.hidesBottomBarWhenPushed = YES;
-            araVC.CarDict = result[@"result"];
-            araVC.appcaseno = self.appcaseno;
-            araVC.describeData = self.describeData;
-            araVC.describeString = destextView.text;
-            [self.navigationController pushViewController:araVC animated:YES];
-        
-        
-        }
+            if(result[@"result"] == nil)
+            {
+                [fvalertView dismiss];
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
+                FillInformationController *fillController = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
+                fillController.hidesBottomBarWhenPushed = YES;
+                fillController.appcaseno = self.appcaseno;
+                fillController.describeData = self.describeData;
+                fillController.describeString = destextView.text;
+                [self.navigationController pushViewController:fillController animated:YES];
+            }
+            else
+            {
+                
+                [fvalertView dismiss];
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ChooseCar" bundle:nil];
+                ChooseCarViewController *araVC = [storyboard instantiateViewControllerWithIdentifier:@"ChooseCarStoryboard"];
+                araVC.hidesBottomBarWhenPushed = YES;
+                araVC.CarDict = result[@"result"];
+                araVC.appcaseno = self.appcaseno;
+                araVC.describeData = self.describeData;
+                araVC.describeString = destextView.text;
+                [self.navigationController pushViewController:araVC animated:YES];
+                
+                
+            }
+
     }];
 
 

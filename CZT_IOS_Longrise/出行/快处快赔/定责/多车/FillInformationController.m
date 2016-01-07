@@ -15,6 +15,8 @@
 #import "UISelectListView.h"
 #import "Globle.h"
 #import "IQKeyboardManager.h"
+#import "FVCustomAlertView.h"
+
 
 
 @interface FillInformationController ()<UISelectListViewDelegate,UIAlertViewDelegate>
@@ -93,6 +95,8 @@
 
 - (void)setShowView
 {
+    FVCustomAlertView *fvalertView = [[FVCustomAlertView alloc]init];
+    [fvalertView showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:false Duration:0];
     self.thirdView.frame = CGRectMake(0, 0, 300, 345);
     self.backScrollView.contentSize = CGSizeMake(0, self.dataSource.count * 370);
     CGFloat pading = 20;
@@ -110,7 +114,7 @@
             make.width.mas_equalTo(self.backScrollView.mas_width);
         }];
     }
-    
+    [fvalertView dismiss];
 }
 - (void)setData
 {
@@ -155,7 +159,16 @@
     [bean1 setValue:[Globle getInstance].loadDataPass forKey:@"password"];
     [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].serviceURL ServiceName:[NSString stringWithFormat:@"%@/zdsearchallinscompanylist",kckpzcslrest] params:bean1 httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
         
-        [self setSeletViewCompanyData:result[@"data"]];
+        
+        if (result != nil)
+        {
+            [self setSeletViewCompanyData:result[@"data"]];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"查询投保公司失败，请检查您的网络！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
         
     } ];
     
@@ -266,20 +279,10 @@
     //加载显示的View
     [self setShowView];
     
-    NSString *cityStr = [self.reciveCarNumber substringToIndex:1];
-    NSString *numberStr = [self.reciveCarNumber substringFromIndex:1];
-    NSDictionary *dict = [[NSDictionary alloc]init];
-    for (int  i = 0; i < self.carCitiesData.count; i++) {
-        dict = self.carCitiesData[i];
-        NSLog(@"dict = %@",dict);
-        if ([cityStr isEqualToString:dict[@"cities"]]) {
-            carCitiesSelectIndex = i;
-        }
-    }
+    //车辆的省市
+    [self loadUIInfomations];
     
-    if (self.reciveCarNumber) {
-        self.carNumber.text = numberStr;
-    }
+   
     
     CGFloat top = 8;
     CGFloat left = 5;
@@ -304,8 +307,7 @@
     self.thirdPartyDriverNumber.background = backLine;
     
     
-    NSDictionary *userinfo = [[Globle getInstance].loginInfoDic objectForKey:@"userinfo"];
-    self.phoneNumber.text = userinfo[@"mobilephone"];
+   
     
     //本方 车牌号
     self.carView.userInteractionEnabled = YES;
@@ -381,7 +383,29 @@
 }
 
 
-
+- (void)loadUIInfomations
+{
+    NSString *cityStr = [self.reciveCarNumber substringToIndex:1];
+    NSString *numberStr = [self.reciveCarNumber substringFromIndex:1];
+    NSDictionary *dict = [[NSDictionary alloc]init];
+    for (int  i = 0; i < self.carCitiesData.count; i++) {
+        dict = self.carCitiesData[i];
+        NSLog(@"dict = %@",dict);
+        if ([cityStr isEqualToString:dict[@"cities"]]) {
+            carCitiesSelectIndex = i;
+        }
+    }
+    
+    if (self.reciveCarNumber) {
+        self.carNumber.text = numberStr;
+    }
+    if (self.moreHistoryToResponsDict != nil)
+    {
+        
+    }
+    NSDictionary *userinfo = [[Globle getInstance].loginInfoDic objectForKey:@"userinfo"];
+    self.phoneNumber.text = userinfo[@"mobilephone"];
+}
 
 
 #pragma mark - 跳转下一步
