@@ -16,6 +16,8 @@
 {
     NSString *cities;
     NSString *companies;
+    int companySeletIndex;
+    int carSelectIndex;
 }
 @property (strong, nonatomic) NSArray *carCitiesData;
 
@@ -35,10 +37,9 @@
     [super viewDidLoad];
     self.title = @"当事人信息";
     
+    [self loadCarCities];
     
     [self loadCompany];
-    
-    [self loadCarCities];
 }
 #pragma mark 车牌省市
 - (void)loadCarCities
@@ -60,19 +61,12 @@
     self.infoView.layer.masksToBounds = YES;
     self.infoView.layer.cornerRadius = 2;
     
-   
+    
     
 }
 #pragma mark 投保公司
 -(void)loadCompany
 {
-    
-    if (self.onlyHistoryToResponsDict != nil)
-    {
-        
-    }
-    NSDictionary *userinfo = [[Globle getInstance].loginInfoDic objectForKey:@"userinfo"];
-    self.phoneNumber.text = userinfo[@"mobilephone"];
     
     NSMutableDictionary *bean1 = [[NSMutableDictionary alloc] init];
     [bean1 setValue:[Globle getInstance].loadDataName forKey:@"username"];
@@ -96,25 +90,26 @@
         self.usCompanyCode = dic[@"inscomcode"];
         
     }
-   
+    
     
 }
 -(void)setSeletViewCompanyData:(NSArray *)array
 {
-    //    if (self.reciveCarNumber.length) {
     
-    //显示对应的投保公司
-//    for (int i = 0; i < array.count; i++) {
-//        if ([self.usCompanyName isEqualToString:array[i]]) {
-//            companySelectIndex = i;
-//        }
-//    }
-    //    }
-    //    else
-    //    {
-    //        carCitiesSelectIndex = 0;
-    //        companySelectIndex = 0;
-    //    }
+    if (self.onlyHistoryToResponsArray != nil)
+    {
+        NSDictionary *usInfoDict = [NSDictionary dictionary];
+        
+        self.driverName.text = usInfoDict[@"carownname"];
+        self.crNumber.text = [usInfoDict[@"casecarno"] substringFromIndex:1];
+        carSelectIndex = [self judeCarCities:[usInfoDict[@"casecarno"] substringToIndex:1] CarCiteiesDataArray:self.carCitiesData];
+        companySeletIndex = [self judeCompanyName:usInfoDict[@"inscomname"] CompanyDataArray:array];
+        self.phoneNumber.text = usInfoDict[@"carownphone"];
+        self.driverNumber.text = usInfoDict[@"driverno"];
+        
+    }
+    NSDictionary *userinfo = [[Globle getInstance].loginInfoDic objectForKey:@"userinfo"];
+    self.phoneNumber.text = userinfo[@"mobilephone"];
     
     CGFloat top = 8;
     CGFloat left = 5;
@@ -136,6 +131,10 @@
     carSelectCities.delegate = self;
     
     [carSelectCities addArray:self.carCitiesData forKey:@"cities"];
+    if (self.onlyHistoryToResponsArray != nil)
+    {
+        [carSelectCities setSelectIndex:carSelectIndex];
+    }
     carSelectCities.backgroundColor = [UIColor whiteColor];
     [carSelectCities setIcon:[UIImage imageNamed:@"select_input"]];
     [carSelectCities setDropWidth:50];
@@ -153,7 +152,7 @@
     [self.companyView addSubview:usSelectCompany];
     
     
-   
+    
     
     
 }
@@ -192,26 +191,26 @@
 {
     //本方
     if (!self.driverName.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"车主姓名不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"车主姓名不能为空！"];
     }
     else if (!self.crNumber.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"车主车辆车牌号不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"车主车辆车牌号不能为空！"];
     }
     else if (!companies) {
-        [self infomationNoticeShowAlertViewMessage:@"车主车辆投保公司不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"车主车辆投保公司不能为空！"];
     }
     else if (!self.phoneNumber.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"车主电话号码不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"车主电话号码不能为空！"];
         
     }
     else if (!self.driverNumber.text.length) {
-        [self infomationNoticeShowAlertViewMessage:@"车主驾驶证号不能为空！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"车主驾驶证号不能为空！"];
     }
     
     //电话号码位数检测
     else if (self.phoneNumber.text.length != 11) {
         
-        [self infomationNoticeShowAlertViewMessage:@"您的电话号码不是11位，请仔细检查！！！"];
+        [self infomationNoticeShowAlertViewMessage:@"您的电话号码不是11位，请仔细检查！"];
     }
     
 }
@@ -222,19 +221,51 @@
     [alert show];
     
 }
+
+#pragma mark - 判断车主信息的保险公司名下标
+- (int)judeCompanyName:(NSString *)companyName CompanyDataArray:(NSArray *)array
+{
+    int number = 0;
+    for (int i = 0; i < array.count ; i++)
+    {
+        if ([companyName isEqualToString:array[i][@"inscomname"]])
+        {
+            number = i;
+        }
+    }
+    
+    return number;
+    
+}
+
+#pragma mark - 判断车主车牌号的下标
+- (int)judeCarCities:(NSString *)carName CarCiteiesDataArray:(NSArray *)array
+{
+    int number = 0;
+    for (int i = 0; i < array.count ; i++)
+    {
+        if ([carName isEqualToString:array[i][@"cities"]])
+        {
+            number = i;
+        }
+    }
+    
+    return number;
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

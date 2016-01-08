@@ -13,7 +13,8 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *backScrollView;
 
-
+//历史案件进来 接收已有的车主信息
+@property (strong, nonatomic) NSMutableArray *moreHistoryToResponsArray;
 
 @property (strong, nonatomic)NSArray *CarDict;
 

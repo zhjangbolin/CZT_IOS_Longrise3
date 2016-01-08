@@ -64,7 +64,14 @@ extern NSNumber *caseDutyType;
 #pragma mark -  暂不报案
 - (IBAction)unReportCase:(id)sender {
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if (self.historyType == 1)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+    {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 -(void)upCaseInormationCompany:(NSMutableDictionary *)dict
@@ -92,7 +99,7 @@ extern NSNumber *caseDutyType;
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"报案失败，请检查您的网络！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
-       
+        
         
     } ];
 }
@@ -101,7 +108,15 @@ extern NSNumber *caseDutyType;
 {
     if (alertView == suessAlert)
     {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+        if (self.historyType == 1)
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
     }
     else if (alertView == falseAlert)
     {
@@ -113,13 +128,13 @@ extern NSNumber *caseDutyType;
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
