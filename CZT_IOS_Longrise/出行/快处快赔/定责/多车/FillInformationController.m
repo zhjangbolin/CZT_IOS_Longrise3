@@ -25,6 +25,7 @@
     NSString *cities; //选中后的车牌省市
     NSString *companies; //选中后的公司名
     
+    int historyCompanyCodeIndex; //投保公司编码下标
     int usCarCitiesSelectIndex; //本方的车牌省市下标
     int otherCarCitiesSelectIndex; //对方的车牌省市下标
     int thirdCarCitiesSelectIndex; //第三方的车牌省市下标
@@ -33,6 +34,17 @@
     int otherCompanySelectIndex; //对方的公司名下标
     int thirdCompanySelectIndex; //第三方的公司名下标
     
+    NSString *usHistoryCompanyName; //历史案件跳转进来  本方车主投保公司的名字
+    NSString *otherHistoryCompanyName; //历史案件跳转进来  对方车主投保公司的名字
+    NSString *thirdHistoryCompanyName; //历史案件跳转进来  第三方车主投保公司的名字
+    
+    NSString *usHistoryCompanyCode; //历史案件跳转进来  本方车主投保公司的编码
+    NSString *otherHistoryCompanyCode; //历史案件跳转进来  本对方车主投保公司的编码
+    NSString *thirdHistoryCompanyCode; //历史案件跳转进来  第三方车主投保公司的编码
+    
+    NSString *usHistoryCarName; //历史案件跳转进来  本方车主车牌的名字
+    NSString *otherHistoryCarName; //历史案件跳转进来  对方车主车牌的名字
+    NSString *thirdHistoryCarName; //历史案件跳转进来  第三方车主车牌的名字
 }
 
 @property (strong, nonatomic) NSMutableArray *dataSource;
@@ -40,6 +52,7 @@
 @property (strong, nonatomic) NSArray *carCitiesData;
 @property (strong, nonatomic) NSArray *titleName;
 @property (strong, nonatomic) NSArray *ietms;
+@property (strong, nonatomic) NSMutableArray *historyCount;
 @end
 
 @implementation FillInformationController
@@ -49,6 +62,13 @@
         _dataSource = [NSMutableArray array];
     }
     return _dataSource;
+}
+- (NSMutableArray *)historyCount
+{
+    if (_historyCount == nil) {
+        _historyCount = [NSMutableArray array];
+    }
+    return _historyCount;
 }
 - (NSArray *)carCitiesData
 {
@@ -81,6 +101,7 @@
     //设置数据
     [self setData];
     
+//    [self setShowView];
     
     [self setCompanyData];
     
@@ -103,8 +124,16 @@
 {
     FVCustomAlertView *fvalertView = [[FVCustomAlertView alloc]init];
     [fvalertView showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:false Duration:0];
+    [self.view addSubview:fvalertView];
     self.thirdView.frame = CGRectMake(0, 0, 300, 345);
-    self.backScrollView.contentSize = CGSizeMake(0, self.dataSource.count * 370);
+    if (self.moreHistoryToResponsArray.count)
+    {
+        self.backScrollView.contentSize = CGSizeMake(0, (self.moreHistoryToResponsArray.count - 1) * 370);
+    }
+    else
+    {
+        self.backScrollView.contentSize = CGSizeMake(0, self.dataSource.count * 370);
+    }
     CGFloat pading = 20;
     NSArray *ietms = [[NSBundle mainBundle]loadNibNamed:@"Filecell" owner:self options:nil];
     for (int i = 0; i < 3; i++)
@@ -119,6 +148,14 @@
             make.top.mas_equalTo((views.frame.origin.y + views.frame.size.height + pading)* i + pading);
             make.width.mas_equalTo(self.backScrollView.mas_width);
         }];
+    }
+    if ((self.moreHistoryToResponsArray.count - 1) == 3)
+    {
+        self.hiddenThirdView.hidden = YES;
+    }
+    else if ((self.moreHistoryToResponsArray.count - 1) == 2)
+    {
+        self.hiddenThirdView.hidden = NO;
     }
     [fvalertView dismiss];
 }
@@ -213,8 +250,20 @@
 #pragma mark - 下一步
 - (IBAction)nextstep:(id)sender {
     
+    if (self.moreHistoryToResponsArray.count)
+    {
+        self.nextStep.enabled = YES;
+        ResponsViewController *responsVC = [[ResponsViewController alloc]init];
+        responsVC.hidesBottomBarWhenPushed = YES;
+        [self passInfomation:responsVC];
+        [self.navigationController pushViewController:responsVC animated:YES];
+    }
+    else
+    {
+        [self JudgmentInformation];
+    }
+
     
-    [self JudgmentInformation];
     
 }
 
@@ -323,7 +372,7 @@
     
     [carSelectCities addArray:self.carCitiesData forKey:@"cities"];
     
-    if (self.reciveCarNumber || self.moreHistoryToResponsArray != nil) {
+    if (self.reciveCarNumber || self.moreHistoryToResponsArray.count) {
         [carSelectCities setSelectIndex:usCarCitiesSelectIndex];
     }
     
@@ -337,7 +386,7 @@
     usSelectCompany.delegate = self;
     usSelectCompany.titleLabel.font = [UIFont systemFontOfSize:13];
     [usSelectCompany addArray:array forKey:@"inscomname"];
-    if (self.moreHistoryToResponsArray != nil) {
+    if (self.moreHistoryToResponsArray.count) {
         [usSelectCompany setSelectIndex:usCompanySelectIndex];
     }
     usSelectCompany.backgroundColor = [UIColor whiteColor];
@@ -352,7 +401,7 @@
     otherCarSelectCities.currentView = self.view;
     otherCarSelectCities.delegate = self;
     [otherCarSelectCities addArray:self.carCitiesData forKey:@"cities"];
-    if (self.moreHistoryToResponsArray != nil) {
+    if (self.moreHistoryToResponsArray.count) {
         [otherCarSelectCities setSelectIndex:otherCarCitiesSelectIndex];
     }
     otherCarSelectCities.backgroundColor = [UIColor whiteColor];
@@ -364,7 +413,7 @@
     otherSelectCompany.currentView = self.view;
     otherSelectCompany.delegate = self;
     [otherSelectCompany addArray:array forKey:@"inscomname"];
-    if (self.moreHistoryToResponsArray != nil) {
+    if (self.moreHistoryToResponsArray.count) {
         [otherSelectCompany setSelectIndex:otherCompanySelectIndex];
     }
     otherSelectCompany.backgroundColor = [UIColor whiteColor];
@@ -378,7 +427,7 @@
     thirdCarSelectCities.currentView = self.view;
     thirdCarSelectCities.delegate = self;
     [thirdCarSelectCities addArray:self.carCitiesData forKey:@"cities"];
-    if (self.moreHistoryToResponsArray != nil) {
+    if (self.moreHistoryToResponsArray.count) {
         [thirdCarSelectCities setSelectIndex:thirdCarCitiesSelectIndex];
     }
     thirdCarSelectCities.backgroundColor = [UIColor whiteColor];
@@ -390,7 +439,7 @@
     thirdSelectCompany.currentView = self.view;
     thirdSelectCompany.delegate = self;
     [thirdSelectCompany addArray:array forKey:@"inscomname"];
-    if (self.moreHistoryToResponsArray != nil) {
+    if (self.moreHistoryToResponsArray.count) {
         [thirdSelectCompany setSelectIndex:thirdCompanySelectIndex];
     }
     thirdSelectCompany.backgroundColor = [UIColor whiteColor];
@@ -421,7 +470,7 @@
         NSDictionary *otherDict = [NSDictionary dictionary];
         NSDictionary *thirdDict = [NSDictionary dictionary];
         
-        if (self.moreHistoryToResponsArray.count == 2)
+        if (self.moreHistoryToResponsArray.count == 3)
         {
             NSDictionary *dict = self.moreHistoryToResponsArray[0];
             if ([carString isEqualToString:dict[@"casecarno"]]) {
@@ -435,10 +484,10 @@
             }
             
         }
-        else
+        else 
         {
             int number = 0;
-            for (int i = 0; i < self.moreHistoryToResponsArray.count; i++)
+            for (int i = 0; i < self.moreHistoryToResponsArray.count - 1; i++)
             {
                 NSDictionary *dict = self.moreHistoryToResponsArray[i];
                 if ([carString isEqualToString:dict[@"casecarno"]]) {
@@ -467,25 +516,41 @@
         
         self.name.text = usInfoDict[@"carownname"];
         self.carNumber.text = [usInfoDict[@"casecarno"] substringFromIndex:1];
+        usHistoryCarName = usInfoDict[@"casecarno"];
+        usCarCitiesSelectIndex = [self judeCarCities:[usInfoDict[@"casecarno"] substringToIndex:1] CarCiteiesDataArray:self.carCitiesData];
         usCompanySelectIndex = [self judeCompanyName:usInfoDict[@"inscomname"] CompanyDataArray:array];
+        
+        usHistoryCompanyCode = array[usCompanySelectIndex][@"inscomcode"];
+        usHistoryCompanyName = usInfoDict[@"inscomname"];
         self.phoneNumber.text = usInfoDict[@"carownphone"];
         self.driverNumber.text = usInfoDict[@"driverno"];
         
         self.otherPartyName.text = otherDict[@"carownname"];
+        otherHistoryCarName = otherDict[@"casecarno"];
         self.otherCarNumber.text = [otherDict[@"casecarno"] substringFromIndex:1];
+        otherCarCitiesSelectIndex = [self judeCarCities:[otherDict[@"casecarno"] substringToIndex:1] CarCiteiesDataArray:self.carCitiesData];
         otherCompanySelectIndex = [self judeCompanyName:otherDict[@"inscomname"] CompanyDataArray:array];
+        otherHistoryCompanyCode = array[otherCompanySelectIndex][@"inscomcode"];
+        otherHistoryCompanyName = otherDict[@"inscomname"];
         self.otherPartyPhoneNumber.text = otherDict[@"carownphone"];
         self.otherPartyDriverNumber.text = otherDict[@"driverno"];
         
         self.thirdPartyName.text = thirdDict[@"carownname"];
+        thirdHistoryCarName = thirdDict[@"casecarno"];
         self.thirdCarNumber.text = [thirdDict[@"casecarno"] substringFromIndex:1];
+        thirdCarCitiesSelectIndex = [self judeCarCities:[thirdDict[@"casecarno"] substringToIndex:1] CarCiteiesDataArray:self.carCitiesData];
         thirdCompanySelectIndex = [self judeCompanyName:thirdDict[@"inscomname"] CompanyDataArray:array];
+        thirdHistoryCompanyCode = array[thirdCompanySelectIndex][@"inscomcode"];
+        thirdHistoryCompanyName = thirdDict[@"inscomname"];
         self.thirdPartyPhoneNumber.text = thirdDict[@"carownphone"];
         self.thirdPartyDriverNumber.text = thirdDict[@"driverno"];
         
     }
     NSDictionary *userinfo = [[Globle getInstance].loginInfoDic objectForKey:@"userinfo"];
     self.phoneNumber.text = userinfo[@"mobilephone"];
+    
+    [self.historyCount addObjectsFromArray:self.moreHistoryToResponsArray];
+    [self.historyCount removeLastObject];
 }
 
 #pragma mark - 判断车主信息的保险公司名下标
@@ -497,6 +562,7 @@
         if ([companyName isEqualToString:array[i][@"inscomname"]])
         {
             number = i;
+            historyCompanyCodeIndex = i;
         }
     }
     
@@ -601,7 +667,15 @@
 
 -(void)passInfomation:(ResponsViewController *)VC
 {
-    VC.dataSource = self.dataSource;
+    if (self.moreHistoryToResponsArray.count)
+    {
+        VC.dataSource = self.historyCount;
+    }
+    else
+    {
+        VC.dataSource = self.dataSource;
+    }
+    
     VC.describeData = self.describeData;
     VC.appcaseno = self.appcaseno;
     VC.describeString = self.describeString;
@@ -610,8 +684,17 @@
     //本方
     
     VC.usUserName = self.name.text;
-    VC.usCarNumber = [NSString stringWithFormat:@"%@%@",cities,self.carNumber.text];
-    VC.usCompanyName = companies;
+    if (self.moreHistoryToResponsArray.count)
+    {
+        VC.usCarNumber = usHistoryCarName;
+        VC.usCompanyName = usHistoryCompanyName;
+    }
+    else
+    {
+        VC.usCarNumber = [NSString stringWithFormat:@"%@%@",cities,self.carNumber.text];
+        VC.usCompanyName = companies;
+    }
+    
     VC.usCompanyCode = self.usCompanyCode;
     VC.usPhoneNumber = self.phoneNumber.text;
     VC.usDriverNumber = self.driverNumber.text;
@@ -619,8 +702,17 @@
     //对方
     
     VC.otherUserName = self.otherPartyName.text;
-    VC.otherCarNumber = [NSString stringWithFormat:@"%@%@",cities,self.otherCarNumber.text];
-    VC.otherCompName = companies;
+    if (self.moreHistoryToResponsArray.count)
+    {
+        VC.otherCarNumber = otherHistoryCarName;
+        VC.otherCompName = otherHistoryCompanyName;
+    }
+    else
+    {
+        VC.otherCarNumber = [NSString stringWithFormat:@"%@%@",cities,self.otherCarNumber.text];
+        VC.otherCompName = companies;
+    }
+    
     VC.otherCompanyCode = self.otherCompanyCode;
     VC.otherPhoneNumber = self.otherPartyPhoneNumber.text;
     VC.otherDriverNumber = self.otherPartyDriverNumber.text;
@@ -628,8 +720,16 @@
     //其他
     
     VC.thirdUserName = self.thirdPartyName.text;
-    VC.thirdCarNumber = [NSString stringWithFormat:@"%@%@",cities,self.thirdCarNumber.text];
-    VC.thirdCompName = companies;
+    if (self.moreHistoryToResponsArray.count)
+    {
+        VC.thirdCarNumber = thirdHistoryCarName;
+        VC.thirdCompName = thirdHistoryCompanyName;
+    }
+    else
+    {
+        VC.thirdCarNumber = [NSString stringWithFormat:@"%@%@",cities,self.thirdCarNumber.text];
+        VC.thirdCompName = companies;
+    }
     VC.thirdCompanyCode = self.thirdCompanyCode;
     VC.thirdPhoneNum = self.thirdPartyPhoneNumber.text;
     VC.thirdDriverNum = self.thirdPartyDriverNumber.text;

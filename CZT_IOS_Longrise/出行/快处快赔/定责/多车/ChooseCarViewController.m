@@ -169,17 +169,25 @@
 #pragma mark 确定
 -(void)chooseSureButtonClick
 {
+    if (carNumber)
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
+        FillInformationController *filleVC = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
+        filleVC.hidesBottomBarWhenPushed = YES;
+        filleVC.appcaseno = self.appcaseno;
+        filleVC.reciveCarNumber = carNumber;
+        filleVC.describeData = self.describeData;
+        filleVC.describeString = self.describeString;
+        //    filleVC.reciveCarNumber = dic[@"carno"];
+        filleVC.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
+        [self.navigationController pushViewController:filleVC animated:YES];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"请选择事故车辆车牌号！" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+    }
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
-    FillInformationController *filleVC = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
-    filleVC.hidesBottomBarWhenPushed = YES;
-    filleVC.appcaseno = self.appcaseno;
-    filleVC.reciveCarNumber = carNumber;
-    filleVC.describeData = self.describeData;
-    filleVC.describeString = self.describeString;
-    //    filleVC.reciveCarNumber = dic[@"carno"];
-    filleVC.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
-    [self.navigationController pushViewController:filleVC animated:YES];
 }
 
 #pragma mark 其他
