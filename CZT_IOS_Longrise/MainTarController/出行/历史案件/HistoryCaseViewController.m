@@ -263,16 +263,6 @@
         alertView = [[FVCustomAlertView alloc] init];
         [alertView showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:false Duration:-1];
         [self.view addSubview:alertView];
-        SGCLViewController *SGL = [[SGCLViewController alloc]init];
-        SGL.currentMark = 1;
-        SGL.appcaseno = appcaseno;
-        if (casetype == 0) {
-            SGL.type = 1;
-            
-        }else{
-            
-            SGL.type = 2;
-        }
         
         NSMutableArray *casecarlistArray = [NSMutableArray array];
         NSMutableDictionary *bean = [NSMutableDictionary dictionary];
@@ -289,7 +279,8 @@
                 if (bigDic[@"data"]) {
                     //     NSLog(@"%@",dic[@"data"]);
                     NSDictionary *dataDic = bigDic[@"data"];
-                    for (NSDictionary *dic in dataDic) {
+                    NSArray *dataArray = dataDic[@"casecarlist"];
+                    for (NSDictionary *dic in dataArray) {
                         [casecarlistArray addObject:dic];
                     }
                     [casecarlistArray addObject:casecarno];
@@ -304,8 +295,26 @@
                 NSLog(@"请求数据失败");
                 NSLog(@"%@",bigDic[@"redes"]);
             }
+            
             [alertView dismiss];
         }];
+        
+        SGCLViewController *SGL = [[SGCLViewController alloc]init];
+        SGL.currentMark = 1;
+        SGL.appcaseno = appcaseno;
+        if (casetype == 0) {
+            SGL.type = 1;
+            SGL.onlyHistoryToResponsArray = [NSMutableArray array];
+            SGL.onlyHistoryToResponsArray = casecarlistArray;
+            
+        }else{
+            
+            SGL.type = 2;
+            SGL.moreHistoryToResponsArray = [NSMutableArray array];
+            SGL.moreHistoryToResponsArray = casecarlistArray;
+        }
+        
+        
         SGL.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:SGL animated:YES];
         
