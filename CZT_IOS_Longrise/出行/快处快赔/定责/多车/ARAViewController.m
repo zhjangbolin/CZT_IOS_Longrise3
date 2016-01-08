@@ -14,6 +14,7 @@
 @interface ARAViewController ()<UIWebViewDelegate,UIAlertViewDelegate>
 {
     FVCustomAlertView *fvAlert;
+    UIAlertView *sendUnloadView;
 }
 @end
 
@@ -80,6 +81,15 @@
     NSMutableArray *navigationArray = [[NSMutableArray alloc] initWithArray: self.navigationController.viewControllers];
     [self.navigationController popToViewController:[navigationArray objectAtIndex:1] animated:YES];
 }
+
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    return YES; 
+}
+-(void)webViewDidStartLoad:(UIWebView *)webView
+{
+    
+}
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [fvAlert dismiss];
@@ -88,6 +98,15 @@
 {
     [fvAlert dismiss];
     
+    sendUnloadView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"加载网页失败，请检查您的网络，重新加载！" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    [sendUnloadView show];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerUnloadWebView) userInfo:nil repeats:NO];
+    
+}
+
+- (void)timerUnloadWebView
+{
+    [sendUnloadView dismissWithClickedButtonIndex:0 animated:NO];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
