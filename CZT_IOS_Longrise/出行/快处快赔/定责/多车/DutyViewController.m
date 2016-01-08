@@ -238,6 +238,7 @@ size_t icomet_callback1(char *ptr, size_t size, size_t nmemb, void *userdata)
         NSString *restate = dic[@"restate"];
       //  NSLog(@"%@",dic);
         if ([restate isEqualToString:@"0"]) {
+            self.navigationItem.hidesBackButton = NO;
             [self.navigationController popViewControllerAnimated:YES];
         }
         else{

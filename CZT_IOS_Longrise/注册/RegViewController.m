@@ -77,7 +77,7 @@
             [alert show];
             return;
         }
-        self.getCodeBtn.enabled = NO;
+        self.getCodeBtn.userInteractionEnabled = NO;
         //请求验证码
         [self appgetvalidcode];
     }
@@ -205,7 +205,6 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:str delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles: nil];
             [alert show];
         }
-        self.getCodeBtn.enabled = YES;
     }];
 }
 
@@ -216,6 +215,7 @@
     {
         [timer invalidate];
         self.leftTimeLabel.hidden = YES;
+        self.getCodeBtn.userInteractionEnabled = YES;
         [self.getCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
     }
     else
@@ -223,6 +223,7 @@
         count--;
         NSString *title = [NSString stringWithFormat:@"剩余%d秒",count];
         self.leftTimeLabel.hidden = NO;
+        self.getCodeBtn.userInteractionEnabled = NO;
         self.leftTimeLabel.text = title;
     }
 }
