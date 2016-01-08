@@ -1982,8 +1982,11 @@
 				58046F6C1C20420B00F59365 /* MessageFrame.m in Sources */,
 				58046EF91C203FBE00F59365 /* QYTableViewCell.m in Sources */,
 
+
 				6F5D88301C3F86FE0060D758 /* LocationFrame.m in Sources */,
 				58046F5D1C2040CE00F59365 /* VerifyINfimationController.m in Sources */,
+
+
 
 				5807B4A81C08006900E7A701 /* QueryParameter.m in Sources */,
 				6F0C14CB1C3CEA5400FEA2BC /* JudgeViewController.m in Sources */,
