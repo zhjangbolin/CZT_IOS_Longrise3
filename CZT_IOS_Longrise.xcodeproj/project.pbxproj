@@ -299,9 +299,12 @@
 
 /* Begin PBXFileReference section */
 		4521150277ADDBA946E772F6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		4C7371361C3FAF5C009ADF5F /* FirstGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstGuideViewController.h; sourceTree = "<group>"; };
 		4C7371371C3FAF5C009ADF5F /* FirstGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstGuideViewController.m; sourceTree = "<group>"; };
 		4C7371381C3FAF5C009ADF5F /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+=======
+>>>>>>> chengsan/master
 		4C7371371C3FAF5C009ADF5F /* FirstGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstGuideViewController.m; sourceTree = "<group>"; };
 		4C7371391C3FAF5C009ADF5F /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		4C73713A1C3FAF5C009ADF5F /* FirstGuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstGuideViewController.xib; sourceTree = "<group>"; };
@@ -1355,11 +1358,14 @@
 		585730381C315FA40017A6AE /* FirstGuide */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 
 				585730391C315FC80017A6AE /* FirstGuideViewController.h */,
 				5857303A1C315FC80017A6AE /* FirstGuideViewController.m */,
 				5829CFC81C321BA4007FE898 /* SecondViewController.h */,
 				5829CFC91C321BA4007FE898 /* SecondViewController.m */,
+=======
+>>>>>>> chengsan/master
 				4C7371631C3FB5AB009ADF5F /* FirstGuideViewController.h */,
 				4C7371641C3FB5AB009ADF5F /* FirstGuideViewController.m */,
 				4C7371651C3FB5AB009ADF5F /* FirstGuideViewController.xib */,
@@ -1835,7 +1841,10 @@
 				585730411C316B290017A6AE /* FirstGuide.storyboard in Resources */,
 				58046EEE1C203FBE00F59365 /* HeaderView.xib in Resources */,
 				58046F511C2040AC00F59365 /* SureResponsCell.xib in Resources */,
+<<<<<<< HEAD
 				58A87ECD1C12F7B300366379 /* FinishViewController.xib in Resources */,
+=======
+>>>>>>> chengsan/master
 				58046F401C2040AC00F59365 /* Filecell.xib in Resources */,
 				58046EFF1C203FBE00F59365 /* star_gray@2x.png in Resources */,
 				58046F481C2040AC00F59365 /* IMViewController.xib in Resources */,
@@ -2000,6 +2009,7 @@
 				58046EF71C203FBE00F59365 /* HRDetailSectionZeroCell.m in Sources */,
 				58046F6C1C20420B00F59365 /* MessageFrame.m in Sources */,
 				58046EF91C203FBE00F59365 /* QYTableViewCell.m in Sources */,
+<<<<<<< HEAD
 
 
 				6F5D88301C3F86FE0060D758 /* LocationFrame.m in Sources */,
@@ -2007,6 +2017,8 @@
 
 
 
+=======
+>>>>>>> chengsan/master
 				5807B4A81C08006900E7A701 /* QueryParameter.m in Sources */,
 				6F0C14CB1C3CEA5400FEA2BC /* JudgeViewController.m in Sources */,
 				6F4825701C29573B00BCE7F6 /* PersonInfoModel.m in Sources */,
