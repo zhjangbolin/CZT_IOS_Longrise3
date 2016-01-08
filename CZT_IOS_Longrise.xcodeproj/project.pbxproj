@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		27E5A7A3FD6EF30AFA16C157 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B05BC011BC21E753840F6EB4 /* libPods.a */; };
 		4C26CBD71C3FC3EE0047850C /* (null) in Sources */ = {isa = PBXBuildFile; };
-		4C26CBD81C3FC3EE0047850C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		4C26CBD91C3FC3EE0047850C /* (null) in Sources */ = {isa = PBXBuildFile; };
-		4C26CBDA1C3FC3EE0047850C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		4C26CBF11C3FD6B00047850C /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C26CBF01C3FD6B00047850C /* SecondViewController.xib */; };
+		4C26CBF31C3FD75A0047850C /* FirstGuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C26CBF21C3FD75A0047850C /* FirstGuideViewController.xib */; };
 		4C7371461C3FAFE1009ADF5F /* Parties.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7371401C3FAFE1009ADF5F /* Parties.storyboard */; };
 		4C7371471C3FAFE1009ADF5F /* PartiesConcernedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7371421C3FAFE1009ADF5F /* PartiesConcernedController.m */; };
 		4C7371481C3FAFE1009ADF5F /* Verify.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7371431C3FAFE1009ADF5F /* Verify.storyboard */; };
@@ -169,9 +169,7 @@
 		584E34EC1C201C4D004B4EBF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 584E34EB1C201C4D004B4EBF /* libsqlite3.dylib */; };
 		585730411C316B290017A6AE /* FirstGuide.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 585730401C316B290017A6AE /* FirstGuide.storyboard */; };
 		58ABC9011C3FD4AB00D9DB79 /* FirstGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58ABC8FC1C3FD4AB00D9DB79 /* FirstGuideViewController.m */; };
-		58ABC9021C3FD4AB00D9DB79 /* FirstGuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58ABC8FD1C3FD4AB00D9DB79 /* FirstGuideViewController.xib */; };
 		58ABC9031C3FD4AB00D9DB79 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58ABC8FF1C3FD4AB00D9DB79 /* SecondViewController.m */; };
-		58ABC9041C3FD4AB00D9DB79 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58ABC9001C3FD4AB00D9DB79 /* SecondViewController.xib */; };
 		58DC346D1C15456600644E3C /* UserGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DC346B1C15456600644E3C /* UserGuideViewController.m */; };
 		58DC346E1C15456600644E3C /* UserGuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58DC346C1C15456600644E3C /* UserGuideViewController.xib */; };
 		58DC347B1C15464300644E3C /* TrafficSituationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DC34791C15464300644E3C /* TrafficSituationViewController.m */; };
@@ -299,6 +297,8 @@
 
 /* Begin PBXFileReference section */
 		4521150277ADDBA946E772F6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		4C26CBF01C3FD6B00047850C /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
+		4C26CBF21C3FD75A0047850C /* FirstGuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstGuideViewController.xib; sourceTree = "<group>"; };
 		4C7371401C3FAFE1009ADF5F /* Parties.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Parties.storyboard; sourceTree = "<group>"; };
 		4C7371411C3FAFE1009ADF5F /* PartiesConcernedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartiesConcernedController.h; sourceTree = "<group>"; };
 		4C7371421C3FAFE1009ADF5F /* PartiesConcernedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartiesConcernedController.m; sourceTree = "<group>"; };
@@ -582,10 +582,8 @@
 		58A87EC91C12F7B300366379 /* FinishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishViewController.h; sourceTree = "<group>"; };
 		58ABC8FB1C3FD4AB00D9DB79 /* FirstGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstGuideViewController.h; sourceTree = "<group>"; };
 		58ABC8FC1C3FD4AB00D9DB79 /* FirstGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstGuideViewController.m; sourceTree = "<group>"; };
-		58ABC8FD1C3FD4AB00D9DB79 /* FirstGuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstGuideViewController.xib; sourceTree = "<group>"; };
 		58ABC8FE1C3FD4AB00D9DB79 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		58ABC8FF1C3FD4AB00D9DB79 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		58ABC9001C3FD4AB00D9DB79 /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
 		58DB21E81C12E9D20070080C /* WXTSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTSViewController.h; sourceTree = "<group>"; };
 		58DB21EB1C12E9D20070080C /* WXTSViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTSViewController2.h; sourceTree = "<group>"; };
 		58DC346A1C15456600644E3C /* UserGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGuideViewController.h; sourceTree = "<group>"; };
@@ -851,10 +849,10 @@
 			children = (
 				58ABC8FB1C3FD4AB00D9DB79 /* FirstGuideViewController.h */,
 				58ABC8FC1C3FD4AB00D9DB79 /* FirstGuideViewController.m */,
-				58ABC8FD1C3FD4AB00D9DB79 /* FirstGuideViewController.xib */,
+				4C26CBF21C3FD75A0047850C /* FirstGuideViewController.xib */,
 				58ABC8FE1C3FD4AB00D9DB79 /* SecondViewController.h */,
 				58ABC8FF1C3FD4AB00D9DB79 /* SecondViewController.m */,
-				58ABC9001C3FD4AB00D9DB79 /* SecondViewController.xib */,
+				4C26CBF01C3FD6B00047850C /* SecondViewController.xib */,
 			);
 			path = FirstGuide;
 			sourceTree = "<group>";
@@ -1817,8 +1815,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C26CBDA1C3FC3EE0047850C /* (null) in Resources */,
-				4C26CBD81C3FC3EE0047850C /* (null) in Resources */,
 				58DC346E1C15456600644E3C /* UserGuideViewController.xib in Resources */,
 				58046EF21C203FBE00F59365 /* HRDetailHeaderView.xib in Resources */,
 				6FFD0CF71C3121AF00A78CF1 /* CarDetailCell.xib in Resources */,
@@ -1845,13 +1841,13 @@
 				58046F4C1C2040AC00F59365 /* ResponsCell.xib in Resources */,
 				4C7371621C3FB0C7009ADF5F /* FinishViewController.xib in Resources */,
 				6F4825A61C296BD300BCE7F6 /* insuranceViewController.xib in Resources */,
+				4C26CBF31C3FD75A0047850C /* FirstGuideViewController.xib in Resources */,
 				6F3E6CC51C326088004FD9CC /* ForgotPasswordViewController.xib in Resources */,
 				58046F4E1C2040AC00F59365 /* ResponsViewController.xib in Resources */,
 				58046F001C203FBE00F59365 /* star_yellow@2x.png in Resources */,
 				58DC34811C15466D00644E3C /* TrafficNoticeViewController.xib in Resources */,
 				58046F3B1C2040AC00F59365 /* Controversial.storyboard in Resources */,
 				58046EF81C203FBE00F59365 /* HRDetailSectionZeroCell.xib in Resources */,
-				58ABC9021C3FD4AB00D9DB79 /* FirstGuideViewController.xib in Resources */,
 				4C73715E1C3FB0C7009ADF5F /* PZQZViewController.xib in Resources */,
 				4C73715C1C3FB0C7009ADF5F /* WXTSViewController2.xib in Resources */,
 				5807B4381C07DA7500E7A701 /* Images.xcassets in Resources */,
@@ -1876,7 +1872,6 @@
 				4C7371481C3FAFE1009ADF5F /* Verify.storyboard in Resources */,
 				5819AF931C193C6800BAE34F /* HomeTableViewCell.xib in Resources */,
 				4CFB25451C22AC9100058216 /* ChooseAS.storyboard in Resources */,
-				58ABC9041C3FD4AB00D9DB79 /* SecondViewController.xib in Resources */,
 				6F4825141C2953EA00BCE7F6 /* TakePhotoViewController.xib in Resources */,
 				580205271C24F0A900497F47 /* RegViewController.xib in Resources */,
 				6FFD0CFA1C3121AF00A78CF1 /* InfoSectionOneCell.xib in Resources */,
@@ -1897,6 +1892,7 @@
 				58046F501C2040AC00F59365 /* SignViewController.xib in Resources */,
 				4CFB25471C22B50F00058216 /* ChooseAS.xib in Resources */,
 				58046E9A1C203FA200F59365 /* EvaluateViewController.xib in Resources */,
+				4C26CBF11C3FD6B00047850C /* SecondViewController.xib in Resources */,
 				58046E821C203EB000F59365 /* Insurance.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
