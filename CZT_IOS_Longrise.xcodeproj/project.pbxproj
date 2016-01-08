@@ -1334,7 +1334,6 @@
 				5857303A1C315FC80017A6AE /* FirstGuideViewController.m */,
 				5829CFC81C321BA4007FE898 /* SecondViewController.h */,
 				5829CFC91C321BA4007FE898 /* SecondViewController.m */,
-
 			);
 			path = FirstGuide;
 			sourceTree = "<group>";
