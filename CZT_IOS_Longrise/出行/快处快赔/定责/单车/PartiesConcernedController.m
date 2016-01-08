@@ -37,6 +37,8 @@
     [super viewDidLoad];
     self.title = @"当事人信息";
     
+    
+    
     [self loadCarCities];
     
     [self loadCompany];
@@ -58,10 +60,11 @@
     }
     self.carCitiesData = citydata;
     
-    self.infoView.layer.masksToBounds = YES;
-    self.infoView.layer.cornerRadius = 2;
+    self.backView.layer.masksToBounds = YES;
+    self.backView.layer.cornerRadius = 2;
     
-    
+    self.sureButton.layer.cornerRadius = 3;
+    self.sureButton.layer.masksToBounds = YES;
     
 }
 #pragma mark 投保公司
@@ -96,18 +99,7 @@
 -(void)setSeletViewCompanyData:(NSArray *)array
 {
     
-    if (self.onlyHistoryToResponsArray != nil)
-    {
-        NSDictionary *usInfoDict = [NSDictionary dictionary];
-        
-        self.driverName.text = usInfoDict[@"carownname"];
-        self.crNumber.text = [usInfoDict[@"casecarno"] substringFromIndex:1];
-        carSelectIndex = [self judeCarCities:[usInfoDict[@"casecarno"] substringToIndex:1] CarCiteiesDataArray:self.carCitiesData];
-        companySeletIndex = [self judeCompanyName:usInfoDict[@"inscomname"] CompanyDataArray:array];
-        self.phoneNumber.text = usInfoDict[@"carownphone"];
-        self.driverNumber.text = usInfoDict[@"driverno"];
-        
-    }
+   
     NSDictionary *userinfo = [[Globle getInstance].loginInfoDic objectForKey:@"userinfo"];
     self.phoneNumber.text = userinfo[@"mobilephone"];
     
@@ -131,10 +123,6 @@
     carSelectCities.delegate = self;
     
     [carSelectCities addArray:self.carCitiesData forKey:@"cities"];
-    if (self.onlyHistoryToResponsArray != nil)
-    {
-        [carSelectCities setSelectIndex:carSelectIndex];
-    }
     carSelectCities.backgroundColor = [UIColor whiteColor];
     [carSelectCities setIcon:[UIImage imageNamed:@"select_input"]];
     [carSelectCities setDropWidth:50];
@@ -222,37 +210,7 @@
     
 }
 
-#pragma mark - 判断车主信息的保险公司名下标
-- (int)judeCompanyName:(NSString *)companyName CompanyDataArray:(NSArray *)array
-{
-    int number = 0;
-    for (int i = 0; i < array.count ; i++)
-    {
-        if ([companyName isEqualToString:array[i][@"inscomname"]])
-        {
-            number = i;
-        }
-    }
-    
-    return number;
-    
-}
 
-#pragma mark - 判断车主车牌号的下标
-- (int)judeCarCities:(NSString *)carName CarCiteiesDataArray:(NSArray *)array
-{
-    int number = 0;
-    for (int i = 0; i < array.count ; i++)
-    {
-        if ([carName isEqualToString:array[i][@"cities"]])
-        {
-            number = i;
-        }
-    }
-    
-    return number;
-    
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
