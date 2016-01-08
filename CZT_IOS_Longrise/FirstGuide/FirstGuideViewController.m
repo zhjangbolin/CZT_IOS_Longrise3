@@ -7,6 +7,7 @@
 //
 
 #import "FirstGuideViewController.h"
+#import "UIViewExt.h"
 
 @interface FirstGuideViewController ()
 
@@ -14,24 +15,28 @@
 
 @implementation FirstGuideViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    UIImageView *titleImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"guide_title1"]];
+    titleImage.width =(int)([Util getUIScreenWidth] * 0.8);
+    titleImage.top = 40;
+    titleImage.left = ([Util getUIScreenWidth] - titleImage.width)/2;
+    titleImage.height =titleImage.width * 150 / 600;
+    [self.view addSubview:titleImage];
+    
+    UIImageView *guideImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"guide_img1"]];
+    guideImage.width =(int)([Util getUIScreenWidth] * 0.7);
+    guideImage.top = 20 + titleImage.bottom;
+    guideImage.left = ([Util getUIScreenWidth] - guideImage.width)/2;
+    guideImage.height =guideImage.width;
+    [self.view addSubview:guideImage];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

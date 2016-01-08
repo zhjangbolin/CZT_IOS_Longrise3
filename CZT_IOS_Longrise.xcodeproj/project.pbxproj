@@ -185,8 +185,6 @@
 		6F0C14CC1C3CEA5400FEA2BC /* JudgeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F0C14C71C3CEA5400FEA2BC /* JudgeViewController.xib */; };
 		6F0C14CD1C3CEA5400FEA2BC /* WaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0C14C91C3CEA5400FEA2BC /* WaitPayViewController.m */; };
 		6F0C14CE1C3CEA5400FEA2BC /* WaitPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F0C14CA1C3CEA5400FEA2BC /* WaitPayViewController.xib */; };
-		6F1DA3801C3A5BD1005BCADF /* FirstGuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F1DA37E1C3A5BD1005BCADF /* FirstGuideViewController.xib */; };
-		6F1DA3811C3A5BD1005BCADF /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F1DA37F1C3A5BD1005BCADF /* SecondViewController.xib */; };
 		6F3E6CC41C326088004FD9CC /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3E6CC21C326088004FD9CC /* ForgotPasswordViewController.m */; };
 		6F3E6CC51C326088004FD9CC /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F3E6CC31C326088004FD9CC /* ForgotPasswordViewController.xib */; };
 		6F4825131C2953EA00BCE7F6 /* TakePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4825111C2953EA00BCE7F6 /* TakePhotoViewController.m */; };
@@ -611,8 +609,6 @@
 		6F0C14C81C3CEA5400FEA2BC /* WaitPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitPayViewController.h; sourceTree = "<group>"; };
 		6F0C14C91C3CEA5400FEA2BC /* WaitPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitPayViewController.m; sourceTree = "<group>"; };
 		6F0C14CA1C3CEA5400FEA2BC /* WaitPayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitPayViewController.xib; sourceTree = "<group>"; };
-		6F1DA37E1C3A5BD1005BCADF /* FirstGuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstGuideViewController.xib; sourceTree = "<group>"; };
-		6F1DA37F1C3A5BD1005BCADF /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
 		6F3E6CC11C326088004FD9CC /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		6F3E6CC21C326088004FD9CC /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		6F3E6CC31C326088004FD9CC /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
@@ -1333,8 +1329,6 @@
 				5857303A1C315FC80017A6AE /* FirstGuideViewController.m */,
 				5829CFC81C321BA4007FE898 /* SecondViewController.h */,
 				5829CFC91C321BA4007FE898 /* SecondViewController.m */,
-				6F1DA37E1C3A5BD1005BCADF /* FirstGuideViewController.xib */,
-				6F1DA37F1C3A5BD1005BCADF /* SecondViewController.xib */,
 			);
 			path = FirstGuide;
 			sourceTree = "<group>";
@@ -1804,9 +1798,7 @@
 				585730411C316B290017A6AE /* FirstGuide.storyboard in Resources */,
 				58FE1F4F1C0B445F00CF0C2F /* OneCarViewController.xib in Resources */,
 				58046EEE1C203FBE00F59365 /* HeaderView.xib in Resources */,
-				6F1DA3801C3A5BD1005BCADF /* FirstGuideViewController.xib in Resources */,
 				58046F511C2040AC00F59365 /* SureResponsCell.xib in Resources */,
-				6F1DA3811C3A5BD1005BCADF /* SecondViewController.xib in Resources */,
 				58A87ECD1C12F7B300366379 /* FinishViewController.xib in Resources */,
 				58046F401C2040AC00F59365 /* Filecell.xib in Resources */,
 				58DB21E01C12E1800070080C /* MoreCarViewController.xib in Resources */,
