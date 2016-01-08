@@ -2256,13 +2256,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Longrise Science& Technology Co., Ltd";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CZT_IOS_Longrise/CZT_IOS_Longrise.pch";
 				INFOPLIST_FILE = CZT_IOS_Longrise/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -2288,7 +2284,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.longrise.CZTIOSLongrise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cea56d12-bf1c-4c96-a39c-e518c0a2a3fb";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2298,12 +2294,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Longrise Science& Technology Co., Ltd";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CZT_IOS_Longrise/CZT_IOS_Longrise.pch";
 				INFOPLIST_FILE = CZT_IOS_Longrise/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -2329,7 +2322,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.longrise.CZTIOSLongrise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cea56d12-bf1c-4c96-a39c-e518c0a2a3fb";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
