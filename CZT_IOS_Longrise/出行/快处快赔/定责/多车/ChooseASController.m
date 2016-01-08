@@ -109,7 +109,8 @@
         [bean setValue:[Globle getInstance].loginInfoDic[@"token"] forKey:@"token"];
         [bean setValue:@"1" forKey:@"pagenum"];
         [bean setValue:@"100" forKey:@"pagesize"];
-    
+
+        
         [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].wxBaseServiceURL ServiceName:[NSString stringWithFormat:@"%@/appsearchcarlist",baseapp] params:bean httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
 
             
