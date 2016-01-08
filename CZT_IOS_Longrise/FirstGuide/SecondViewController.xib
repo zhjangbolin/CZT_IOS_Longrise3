@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A2301" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SecondViewController">
@@ -16,40 +16,27 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9i-6t-amJ">
-                    <rect key="frame" x="80" y="367" width="160" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="2T2-2t-n7V"/>
-                        <constraint firstAttribute="width" constant="160" id="9GB-6i-vPN"/>
-                    </constraints>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide_img2" id="a4S-k4-rlV">
+                    <rect key="frame" x="46" y="190" width="229" height="215"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide_title2" id="Ivu-nN-tFt">
+                    <rect key="frame" x="46" y="101" width="229" height="53"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b9i-6t-amJ">
+                    <rect key="frame" x="54" y="436" width="212" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
                     <state key="normal" title="立即体验">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide_img2" translatesAutoresizingMaskIntoConstraints="NO" id="a4S-k4-rlV">
-                    <rect key="frame" x="60" y="118" width="200" height="200"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="200" id="dmx-WZ-dQM"/>
-                        <constraint firstAttribute="width" constant="200" id="xIH-Pg-MBy"/>
-                    </constraints>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide_title2" translatesAutoresizingMaskIntoConstraints="NO" id="Ivu-nN-tFt">
-                    <rect key="frame" x="60" y="60" width="200" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="XzT-t0-fKZ"/>
-                        <constraint firstAttribute="width" constant="200" id="rDN-Fh-UAE"/>
-                    </constraints>
-                </imageView>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="a4S-k4-rlV" firstAttribute="top" secondItem="Ivu-nN-tFt" secondAttribute="bottom" constant="8" id="1zl-q1-YyN"/>
-                <constraint firstItem="b9i-6t-amJ" firstAttribute="top" secondItem="a4S-k4-rlV" secondAttribute="bottom" constant="49" id="Fgc-yH-eUD"/>
-                <constraint firstAttribute="centerX" secondItem="a4S-k4-rlV" secondAttribute="centerX" id="HoA-EW-rAd"/>
-                <constraint firstAttribute="centerX" secondItem="b9i-6t-amJ" secondAttribute="centerX" id="Y6A-RW-zPC"/>
-                <constraint firstItem="Ivu-nN-tFt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="bnp-Dt-LFg"/>
-                <constraint firstAttribute="centerX" secondItem="Ivu-nN-tFt" secondAttribute="centerX" id="sCK-p9-i7S"/>
-            </constraints>
             <point key="canvasLocation" x="323" y="373"/>
         </view>
     </objects>
@@ -57,9 +44,4 @@
         <image name="guide_img2" width="700" height="700"/>
         <image name="guide_title2" width="600" height="150"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

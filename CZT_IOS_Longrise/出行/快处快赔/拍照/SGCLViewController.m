@@ -10,6 +10,7 @@
 #import "UIViewExt.h"
 #import "Util.h"
 #import "WXTSViewController.h"
+#import "AppDelegate.h"
 
 @interface SGCLViewController ()
 
@@ -41,6 +42,8 @@
     //添加取证完成通知
     NSString *name1 = NotificationNameForOneStepFinish;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishOneStep:) name:name1 object:nil];
+    
+    [AppDelegate storyBoradAutoLay:self.view];
 }
 
 #pragma mark 接受通知的内容
@@ -210,7 +213,6 @@
                 PartiesConcernedController *parties = [storyboard instantiateViewControllerWithIdentifier:@"PartiesID"];
                 parties.hidesBottomBarWhenPushed = YES;
                 parties.appcaseno = self.appcaseno;
-                parties.onlyHistoryToResponsArray = self.onlyHistoryToResponsArray;
                 [self.navigationController pushViewController:parties animated:YES];
             }
             
