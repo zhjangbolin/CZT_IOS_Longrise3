@@ -8,7 +8,10 @@
 
 #import "SecondViewController.h"
 #import "AppDelegate.h"
+
 #import "UIViewExt.h"
+
+
 
 @interface SecondViewController ()
 
@@ -48,9 +51,10 @@
     [self.guideFinishBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
 
 
+    [self.view addSubview:self.guideFinishBtn];
+
     [AppDelegate storyBoradAutoLay:self.view];
 
-    [self.view addSubview:self.guideFinishBtn];
 }
 
 #pragma mark 点击回调
