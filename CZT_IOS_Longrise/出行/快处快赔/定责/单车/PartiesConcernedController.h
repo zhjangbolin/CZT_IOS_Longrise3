@@ -45,6 +45,7 @@
 //案件号
 @property (copy, nonatomic) NSString *appcaseno;
 
-@property (strong, nonatomic) NSMutableDictionary *onlyHistoryToResponsDict;
+//历史案件进来 接收已有的车主信息
+@property (strong, nonatomic) NSMutableArray *onlyHistoryToResponsArray;
 
 @end

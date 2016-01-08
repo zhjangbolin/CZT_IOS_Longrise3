@@ -11,7 +11,7 @@
 #import "CZT_IOS_Longrise.pch"
 #import "FVCustomAlertView.h"
 #import "SureResponsController.h"
-@interface ARAViewController ()<UIWebViewDelegate>
+@interface ARAViewController ()<UIWebViewDelegate,UIAlertViewDelegate>
 {
     FVCustomAlertView *fvAlert;
 }
@@ -26,7 +26,7 @@
     self.title = @"事故责任协议书";
     
     [self setWebViewStatus];
-
+    
     [self setPromptBackViewStatus];
     
 }
@@ -35,7 +35,9 @@
 -(void)setPromptBackViewStatus
 {
     fvAlert = [[FVCustomAlertView alloc]init];
-    [fvAlert showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:false Duration:-1];
+    [fvAlert showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:true Duration:-1];
+    [self.view addSubview:fvAlert];
+    
     self.promptImageView.userInteractionEnabled = YES;
     self.responsWebView.backgroundColor = [UIColor clearColor];
     self.responsWebView.scalesPageToFit =YES;
@@ -43,7 +45,7 @@
     NSURL *url =[[NSURL alloc] initWithString:self.ARVWebString];
     NSURLRequest *request =  [[NSURLRequest alloc] initWithURL:url];
     [self.responsWebView loadRequest:request];
-    [fvAlert dismiss];
+    
 }
 
 -(void)setWebViewStatus
@@ -74,14 +76,22 @@
 
 - (IBAction)sureButton:(id)sender {
     
-  
+    
     NSMutableArray *navigationArray = [[NSMutableArray alloc] initWithArray: self.navigationController.viewControllers];
     [self.navigationController popToViewController:[navigationArray objectAtIndex:1] animated:YES];
 }
-
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [fvAlert dismiss];
+}
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [fvAlert dismiss];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-   
+    
 }
 
 

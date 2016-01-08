@@ -57,7 +57,7 @@
     }
     else if(btn == self.repCaseBtn)
     {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://112"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://122"]];
     }
 }
 
