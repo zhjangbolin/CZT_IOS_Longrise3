@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		27E5A7A3FD6EF30AFA16C157 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B05BC011BC21E753840F6EB4 /* libPods.a */; };
-		4C26CBE31C3FCE9A0047850C /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C26CBDF1C3FCE9A0047850C /* SecondViewController.xib */; };
-		4C26CBE41C3FCE9A0047850C /* FirstGuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C26CBE01C3FCE9A0047850C /* FirstGuideViewController.xib */; };
-		4C26CBE51C3FCE9A0047850C /* FirstGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26CBE11C3FCE9A0047850C /* FirstGuideViewController.m */; };
-		4C26CBE61C3FCE9A0047850C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26CBE21C3FCE9A0047850C /* SecondViewController.m */; };
+		4C26CBD71C3FC3EE0047850C /* FirstGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26CBD21C3FC3EE0047850C /* FirstGuideViewController.m */; };
+		4C26CBD81C3FC3EE0047850C /* FirstGuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C26CBD31C3FC3EE0047850C /* FirstGuideViewController.xib */; };
+		4C26CBD91C3FC3EE0047850C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26CBD51C3FC3EE0047850C /* SecondViewController.m */; };
+		4C26CBDA1C3FC3EE0047850C /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C26CBD61C3FC3EE0047850C /* SecondViewController.xib */; };
 		4C7371461C3FAFE1009ADF5F /* Parties.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7371401C3FAFE1009ADF5F /* Parties.storyboard */; };
 		4C7371471C3FAFE1009ADF5F /* PartiesConcernedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7371421C3FAFE1009ADF5F /* PartiesConcernedController.m */; };
 		4C7371481C3FAFE1009ADF5F /* Verify.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7371431C3FAFE1009ADF5F /* Verify.storyboard */; };
