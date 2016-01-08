@@ -45,7 +45,8 @@
     
     //判断是非是第一次启动APP
     NSString *isSecond = (NSString *)[UserDefaultsUtil getDataForKey:@"isSecond"];
-    if(isSecond == nil || ![@"1" isEqualToString:isSecond])
+    isSecond = nil;
+    if(isSecond == nil || [@"" isEqualToString:isSecond])
     {
         //设置指示器的颜色
         UIPageControl *pageControl = [UIPageControl appearance];
