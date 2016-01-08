@@ -1329,12 +1329,12 @@
 		585730381C315FA40017A6AE /* FirstGuide */ = {
 			isa = PBXGroup;
 			children = (
-				4C7371361C3FAF5C009ADF5F /* FirstGuideViewController.h */,
-				4C7371371C3FAF5C009ADF5F /* FirstGuideViewController.m */,
-				4C7371381C3FAF5C009ADF5F /* SecondViewController.h */,
-				4C7371391C3FAF5C009ADF5F /* SecondViewController.m */,
-				4C73713A1C3FAF5C009ADF5F /* FirstGuideViewController.xib */,
-				4C73713B1C3FAF5C009ADF5F /* SecondViewController.xib */,
+
+				585730391C315FC80017A6AE /* FirstGuideViewController.h */,
+				5857303A1C315FC80017A6AE /* FirstGuideViewController.m */,
+				5829CFC81C321BA4007FE898 /* SecondViewController.h */,
+				5829CFC91C321BA4007FE898 /* SecondViewController.m */,
+
 			);
 			path = FirstGuide;
 			sourceTree = "<group>";
@@ -1804,6 +1804,7 @@
 				585730411C316B290017A6AE /* FirstGuide.storyboard in Resources */,
 				58046EEE1C203FBE00F59365 /* HeaderView.xib in Resources */,
 				58046F511C2040AC00F59365 /* SureResponsCell.xib in Resources */,
+				58A87ECD1C12F7B300366379 /* FinishViewController.xib in Resources */,
 				58046F401C2040AC00F59365 /* Filecell.xib in Resources */,
 				58046EFF1C203FBE00F59365 /* star_gray@2x.png in Resources */,
 				58046F481C2040AC00F59365 /* IMViewController.xib in Resources */,
