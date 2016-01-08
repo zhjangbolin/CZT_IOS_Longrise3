@@ -7,8 +7,11 @@
 //
 
 #import "TrafficNoticeViewController.h"
+#import "FVCustomAlertView.h"
 
-@interface TrafficNoticeViewController ()<UIWebViewDelegate>
+@interface TrafficNoticeViewController ()<UIWebViewDelegate>{
+    FVCustomAlertView *alertView;
+}
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
@@ -33,6 +36,10 @@
 }
 
 -(void)createWebView{
+    
+    alertView = [[FVCustomAlertView alloc] init];
+    [alertView showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:false Duration:-1];
+    [self.view addSubview:alertView];
     
     self.title = @"交通通告";
     NSURL *url = [NSURL URLWithString:@"http://203.86.8.92:8042/bjkckp_webmap/bjkckp_trafficnotice"];
@@ -75,7 +82,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    
+    [alertView dismiss];
     
 }
 
