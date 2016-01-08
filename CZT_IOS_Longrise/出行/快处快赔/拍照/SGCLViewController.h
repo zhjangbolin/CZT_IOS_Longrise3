@@ -35,6 +35,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *reportCaseLabel;
 
 //历史案件进来 接收已有的车主信息
-@property (strong, nonatomic) NSMutableArray *onlyHistoryToResponsArray; //单车
 @property (strong, nonatomic) NSMutableArray *moreHistoryToResponsArray; //多车
 @end

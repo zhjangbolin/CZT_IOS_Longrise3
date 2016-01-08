@@ -16,6 +16,10 @@
     UISelectListView *usSelectCompany;
 }
 
+
+@property (strong, nonatomic) IBOutlet UIView *backView;
+
+
 @property (weak, nonatomic) IBOutlet UIView *infoView;
 
 //姓名
@@ -45,7 +49,7 @@
 //案件号
 @property (copy, nonatomic) NSString *appcaseno;
 
-//历史案件进来 接收已有的车主信息
-@property (strong, nonatomic) NSMutableArray *onlyHistoryToResponsArray;
+@property (weak, nonatomic) IBOutlet UIButton *sureButton;
+
 
 @end

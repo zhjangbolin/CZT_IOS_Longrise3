@@ -7,7 +7,9 @@
 //
 
 #import "SecondViewController.h"
+#import "AppDelegate.h"
 #import "UIViewExt.h"
+
 @interface SecondViewController ()
 
 @end
@@ -44,6 +46,10 @@
     self.guideFinishBtn.layer.borderWidth = 1;
     self.guideFinishBtn.layer.borderColor = [UIColor colorWithRed:51/255.0 green:151/255.0 blue:241/255.0 alpha:1].CGColor;
     [self.guideFinishBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+
+
+    [AppDelegate storyBoradAutoLay:self.view];
+
     [self.view addSubview:self.guideFinishBtn];
 }
 

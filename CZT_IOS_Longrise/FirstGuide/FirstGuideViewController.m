@@ -7,6 +7,7 @@
 //
 
 #import "FirstGuideViewController.h"
+#import "AppDelegate.h"
 #import "UIViewExt.h"
 
 @interface FirstGuideViewController ()
@@ -18,7 +19,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+
+    [AppDelegate storyBoradAutoLay:self.view];
+
     UIImageView *titleImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"guide_title1"]];
     titleImage.width =(int)([Util getUIScreenWidth] * 0.8);
     titleImage.top = 40;
@@ -33,6 +37,7 @@
     guideImage.height =guideImage.width;
     [self.view addSubview:guideImage];
     
+
 }
 
 - (void)didReceiveMemoryWarning {

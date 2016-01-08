@@ -31,9 +31,12 @@ extern NSNumber *caseDutyType;
     
     self.title = @"保险报案";
     
-    NSLog(@"case = %ld",caseDict.count);
-    NSLog(@"only = %ld",onlyCaseDict.count);
-    NSLog(@"hest = %ld",self.historyCaseDict.count);
+    
+    self.reportCaseBtn.layer.cornerRadius = 3;
+    self.reportCaseBtn.layer.masksToBounds = YES;
+    
+    self.unReportCase.layer.cornerRadius = 3;
+    self.unReportCase.layer.masksToBounds = YES;
 }
 
 #pragma mark -  保险报案
