@@ -14,6 +14,8 @@
 
 //历史案件进来 接收已有的车主信息
 @property (strong, nonatomic) NSMutableArray *moreHistoryToResponsArray;
+//历史案件 事故情形判断显示
+@property (strong, nonatomic) NSMutableArray *historyDescribArray;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *backScrollView;
 //案件号

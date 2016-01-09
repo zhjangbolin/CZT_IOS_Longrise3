@@ -80,7 +80,7 @@
                 fillController.hidesBottomBarWhenPushed = YES;
                 fillController.appcaseno = self.appcaseno;
                 fillController.describeData = self.describeData;
-                fillController.describeString = destextView.text;
+                fillController.describeString = [self.historyDescribArray lastObject];
                 fillController.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
                 [self.navigationController pushViewController:fillController animated:YES];
             }
@@ -185,6 +185,9 @@
         make.width.mas_equalTo(self.backScrollView.mas_width);
         
     }];
+    
+    //历史案件进来 显示已选择的数据
+    [self judgeDescribShow];
     
     [self.sureButton.layer setCornerRadius:4];
     
@@ -328,6 +331,70 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     self.sureButton.userInteractionEnabled = YES;
+}
+
+#pragma mark - 历史案件进来判断显示的状态
+- (void)judgeDescribShow
+{
+    if (self.historyDescribArray.count)
+    {
+        
+        if ([[self.historyDescribArray firstObject] isEqualToString:@"0"])
+        {
+            [self.showView1.subviews lastObject].hidden = NO;
+            [self.describeData removeAllObjects];
+            [self.describeData addObject:self.dataSource[0]];
+        }
+        else if ([[self.historyDescribArray firstObject] isEqualToString:@"1"])
+        {
+            [self.showView2.subviews lastObject].hidden = NO;
+            [self.describeData removeAllObjects];
+            [self.describeData addObject:self.dataSource[1]];
+        }
+        else if ([[self.historyDescribArray firstObject] isEqualToString:@"2"])
+        {
+            [self.showView3.subviews lastObject].hidden = NO;
+            [self.describeData removeAllObjects];
+            [self.describeData addObject:self.dataSource[2]];
+        }
+        else if ([[self.historyDescribArray firstObject] isEqualToString:@"3"])
+        {
+            [self.showView4.subviews lastObject].hidden = NO;
+            [self.describeData removeAllObjects];
+            [self.describeData addObject:self.dataSource[3]];
+        }
+        else if ([[self.historyDescribArray firstObject] isEqualToString:@"4"])
+        {
+            [self.showView5.subviews lastObject].hidden = NO;
+            [self.describeData removeAllObjects];
+            [self.describeData addObject:self.dataSource[4]];
+        }
+        else if ([[self.historyDescribArray firstObject] isEqualToString:@"5"])
+        {
+            [self.showView6.subviews lastObject].hidden = NO;
+            [self.describeData removeAllObjects];
+            [self.describeData addObject:self.dataSource[5]];
+        }
+        else if ([[self.historyDescribArray firstObject] isEqualToString:@"6"])
+        {
+            [self.showView7.subviews lastObject].hidden = NO;
+            [self.describeData removeAllObjects];
+            [self.describeData addObject:self.dataSource[6]];
+        }
+        else if ([[self.historyDescribArray firstObject] isEqualToString:@"7"])
+        {
+            [self.showView8.subviews lastObject].hidden = NO;
+            [self.describeData removeAllObjects];
+            [self.describeData addObject:self.dataSource[7]];
+        }
+        else
+        {
+            [self.showView9.subviews lastObject].hidden = NO;
+            [self.describeData removeAllObjects];
+            [self.describeData addObject:self.dataSource[8]];
+            destextView.text = [self.historyDescribArray lastObject];
+        }
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
