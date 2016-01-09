@@ -156,6 +156,11 @@
 #pragma mark 下一步
 - (IBAction)nextStep:(id)sender {
     
+    if (self.reciveCarNumber)
+    {
+        cities = [self.reciveCarNumber substringToIndex:1];
+    }
+    
     if (!self.driverName.text.length || !self.crNumber.text.length || !cities || !companies || !self.phoneNumber.text.length || !self.driverNumber.text.length )
     {
         [self dataCountTwoJudgment];
