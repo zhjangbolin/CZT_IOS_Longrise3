@@ -277,7 +277,7 @@
         [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].serviceURL ServiceName:[NSString stringWithFormat:@"%@/zdsearchcasedetailinfo",kckpzcslrest] params:bean httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
             NSDictionary *bigDic = result;
             if ([bigDic[@"restate"]isEqualToString:@"0"]) {
-                if (bigDic[@"data"]) {
+                if (![bigDic[@"data"]isEqual:@""]) {
                     //     NSLog(@"%@",dic[@"data"]);
                     NSDictionary *dataDic = bigDic[@"data"];
                     NSArray *dataArray = dataDic[@"casecarlist"];
@@ -289,7 +289,8 @@
                     [historyDescribArray addObject:dataDic[@"accidentdes"]];
                     
                 }else{
-                    NSLog(@"%@",bigDic[@"redes"]);
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"加载失败，请确认网络是否开启！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                    [alert show];
                 }
                 
             }else{
