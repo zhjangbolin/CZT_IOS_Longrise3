@@ -43,6 +43,7 @@ extern NSNumber *caseDutyType;
 - (IBAction)reportCase:(id)sender {
     
     if (caseDict != nil) {
+        
         if ([caseDutyType isEqualToNumber:[NSNumber numberWithInt:1]]) {
             falseAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您是无责任方，暂不允许报案！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [falseAlert show];

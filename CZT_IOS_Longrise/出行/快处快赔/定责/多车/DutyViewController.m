@@ -74,6 +74,7 @@ extern NSString * monitorIP;  //监听IP
 
 #pragma mark － 导航栏返回按钮点击事件
 -(void)backClicked:(id)sender{
+    self.navigationItem.hidesBackButton = NO; 
     self.navigationController.navigationBar.alpha = 0.5;
     _imageView.hidden = YES;
     _giveUpGuideButton.hidden = YES;

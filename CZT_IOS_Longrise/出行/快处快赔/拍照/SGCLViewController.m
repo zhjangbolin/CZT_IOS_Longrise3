@@ -14,6 +14,7 @@
 #import "ChooseCarViewController.h"
 #import "FVCustomAlertView.h"
 
+extern NSNumber *responsType;
 @interface SGCLViewController ()
 
 @end
@@ -263,12 +264,20 @@
             [myAlert show];
             return;
         }
-        
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Insurance" bundle:nil];
-        InsuranceReportController *InReVC = [storyboard instantiateViewControllerWithIdentifier:@"InsuranceReport"];
-        InReVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:InReVC animated:YES];
+        //责任方判断 0：全责 1：无责 2： 同责
+        if ([responsType isEqualToNumber:[NSNumber numberWithInt:1]] && self.type == 2)
+        {
+            UIAlertView *myAlert = [[UIAlertView  alloc] initWithTitle:@"温馨提示" message:@"您是无责方，暂不允许报案！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [myAlert show];
+        }
+        else
+        {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Insurance" bundle:nil];
+            InsuranceReportController *InReVC = [storyboard instantiateViewControllerWithIdentifier:@"InsuranceReport"];
+            InReVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:InReVC animated:YES];
+        }
+   
     }
 }
 
