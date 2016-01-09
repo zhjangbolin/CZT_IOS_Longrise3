@@ -12,6 +12,7 @@
 #import "Util.h"
 #import <Masonry.h>
 #import "ChooseCarViewCell.h"
+#import "PartiesConcernedController.h"
 
 @interface ChooseCarViewController ()
 {
@@ -171,16 +172,30 @@
 {
     if (carNumber)
     {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
-        FillInformationController *filleVC = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
-        filleVC.hidesBottomBarWhenPushed = YES;
-        filleVC.appcaseno = self.appcaseno;
-        filleVC.reciveCarNumber = carNumber;
-        filleVC.describeData = self.describeData;
-        filleVC.describeString = self.describeString;
-        //    filleVC.reciveCarNumber = dic[@"carno"];
-        filleVC.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
-        [self.navigationController pushViewController:filleVC animated:YES];
+        if (self.carsType == 0)
+        {
+            //单车
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Parties" bundle:nil];
+            PartiesConcernedController *parties = [storyboard instantiateViewControllerWithIdentifier:@"PartiesID"];
+            parties.hidesBottomBarWhenPushed = YES;
+            parties.appcaseno = self.appcaseno;
+            parties.reciveCarNumber = carNumber;
+            [self.navigationController pushViewController:parties animated:YES];
+        }
+        else if(self.carsType == 1)
+        {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
+            FillInformationController *filleVC = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
+            filleVC.hidesBottomBarWhenPushed = YES;
+            filleVC.appcaseno = self.appcaseno;
+            filleVC.reciveCarNumber = carNumber;
+            filleVC.describeData = self.describeData;
+            filleVC.describeString = self.describeString;
+            //    filleVC.reciveCarNumber = dic[@"carno"];
+            filleVC.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
+            [self.navigationController pushViewController:filleVC animated:YES];
+        }
+        
     }
     else
     {
@@ -193,14 +208,27 @@
 #pragma mark 其他
 - (void)otherChooseClick {
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
-    FillInformationController *filleVC = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
-    filleVC.hidesBottomBarWhenPushed = YES;
-    filleVC.appcaseno = self.appcaseno;
-    filleVC.describeData = self.describeData;
-    filleVC.describeString = self.describeString;
-    filleVC.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
-    [self.navigationController pushViewController:filleVC animated:YES];
+    if (self.carsType == 0)
+    {
+        //单车
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Parties" bundle:nil];
+        PartiesConcernedController *parties = [storyboard instantiateViewControllerWithIdentifier:@"PartiesID"];
+        parties.hidesBottomBarWhenPushed = YES;
+        parties.appcaseno = self.appcaseno;
+        [self.navigationController pushViewController:parties animated:YES];
+    }
+    else
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
+        FillInformationController *filleVC = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
+        filleVC.hidesBottomBarWhenPushed = YES;
+        filleVC.appcaseno = self.appcaseno;
+        filleVC.describeData = self.describeData;
+        filleVC.describeString = self.describeString;
+        filleVC.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
+        [self.navigationController pushViewController:filleVC animated:YES];
+    }
+   
 }
 
 

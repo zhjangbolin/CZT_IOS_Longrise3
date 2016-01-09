@@ -11,6 +11,8 @@
 #import "Util.h"
 #import "WXTSViewController.h"
 #import "AppDelegate.h"
+#import "ChooseCarViewController.h"
+#import "FVCustomAlertView.h"
 
 @interface SGCLViewController ()
 
@@ -204,16 +206,49 @@
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ChooseAS" bundle:nil];
                 ChooseASController *casController = [storyboard instantiateViewControllerWithIdentifier:@"ChooseASID"];
                 casController.appcaseno = self.appcaseno;
+                casController.carsType = 1;
                 casController.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
                 [self.navigationController pushViewController:casController animated:YES];
             }
             else
-            {   //单车
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Parties" bundle:nil];
-                PartiesConcernedController *parties = [storyboard instantiateViewControllerWithIdentifier:@"PartiesID"];
-                parties.hidesBottomBarWhenPushed = YES;
-                parties.appcaseno = self.appcaseno;
-                [self.navigationController pushViewController:parties animated:YES];
+            {
+               FVCustomAlertView *fvalertView = [[FVCustomAlertView alloc]init];
+                [fvalertView showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:false Duration:0];
+                [self.view addSubview:fvalertView];
+                NSMutableDictionary *bean = [[NSMutableDictionary alloc] init];
+                NSDictionary *userinfo = [[Globle getInstance].loginInfoDic objectForKey:@"userinfo"];
+                [bean setValue:userinfo[@"userflag"] forKey:@"userflag"];
+                [bean setValue:[Globle getInstance].loginInfoDic[@"token"] forKey:@"token"];
+                [bean setValue:@"1" forKey:@"pagenum"];
+                [bean setValue:@"100" forKey:@"pagesize"];
+                
+                
+                [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].wxBaseServiceURL ServiceName:[NSString stringWithFormat:@"%@/appsearchcarlist",baseapp] params:bean httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
+                    
+                    
+                    NSLog(@"result = %@",result[@"data"]);
+                    [fvalertView dismiss];
+                    
+                    if([result[@"data"]isEqual:@""])
+                    {
+                        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Parties" bundle:nil];
+                        PartiesConcernedController *parties = [storyboard instantiateViewControllerWithIdentifier:@"PartiesID"];
+                        parties.hidesBottomBarWhenPushed = YES;
+                        parties.appcaseno = self.appcaseno;
+                        [self.navigationController pushViewController:parties animated:YES];
+                    }
+                    else
+                    {
+                        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ChooseCar" bundle:nil];
+                        ChooseCarViewController *araVC = [storyboard instantiateViewControllerWithIdentifier:@"ChooseCarStoryboard"];
+                        araVC.hidesBottomBarWhenPushed = YES;
+                        araVC.CarDict = result[@"data"];
+                        araVC.appcaseno = self.appcaseno;
+                        araVC.carsType = 0;
+                        [self.navigationController pushViewController:araVC animated:YES];
+                    }
+                    
+                }];
             }
             
         }

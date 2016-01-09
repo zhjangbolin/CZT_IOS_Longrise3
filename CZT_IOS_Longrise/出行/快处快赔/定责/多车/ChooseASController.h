@@ -17,6 +17,9 @@
 //历史案件 事故情形判断显示
 @property (strong, nonatomic) NSMutableArray *historyDescribArray;
 
+//判断单车还是双车的跳转 0 单车  1 双车
+@property (assign, nonatomic) int carsType;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *backScrollView;
 //案件号
 @property (copy, nonatomic) NSString *appcaseno;

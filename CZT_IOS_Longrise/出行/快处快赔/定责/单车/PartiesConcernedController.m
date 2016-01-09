@@ -103,6 +103,12 @@
     NSDictionary *userinfo = [[Globle getInstance].loginInfoDic objectForKey:@"userinfo"];
     self.phoneNumber.text = userinfo[@"mobilephone"];
     
+    if (self.reciveCarNumber) {
+        self.crNumber.text = [self.reciveCarNumber substringFromIndex:1];
+        NSString *str = [self.reciveCarNumber substringToIndex:1];
+        carSelectIndex = [self judeCarCities:str CarCiteiesDataArray:self.carCitiesData];
+    }
+    
     CGFloat top = 8;
     CGFloat left = 5;
     CGFloat bottom = 8;
@@ -123,6 +129,9 @@
     carSelectCities.delegate = self;
     
     [carSelectCities addArray:self.carCitiesData forKey:@"cities"];
+    if (self.reciveCarNumber) {
+        [carSelectCities setSelectIndex:carSelectIndex];
+    }
     carSelectCities.backgroundColor = [UIColor whiteColor];
     [carSelectCities setIcon:[UIImage imageNamed:@"select_input"]];
     [carSelectCities setDropWidth:50];
@@ -209,7 +218,21 @@
     [alert show];
     
 }
-
+#pragma mark - 判断车主车牌号的下标
+- (int)judeCarCities:(NSString *)carName CarCiteiesDataArray:(NSArray *)array
+{
+    int number = 0;
+    for (int i = 0; i < array.count ; i++)
+    {
+        if ([carName isEqualToString:array[i][@"cities"]])
+        {
+            number = i;
+        }
+    }
+    
+    return number;
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
