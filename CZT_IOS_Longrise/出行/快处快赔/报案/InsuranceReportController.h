@@ -17,4 +17,6 @@
 @property (assign, nonatomic) int historyType;
 //历史案件报案接收的数据
 @property (strong, nonatomic)NSMutableDictionary *historyCaseDict;
+
+
 @end
