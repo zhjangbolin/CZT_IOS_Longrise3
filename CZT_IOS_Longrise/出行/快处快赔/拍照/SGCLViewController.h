@@ -23,9 +23,10 @@
 @property(nonatomic,assign) int currentMark;
 //事故类型，1:单车，2:多车
 @property(nonatomic,assign) int type;
+
+
+
 //报案号
-
-
 @property(nonatomic,copy) NSString *appcaseno;
 @property (weak, nonatomic) IBOutlet UIButton *takePhoneBtn;
 @property (weak, nonatomic) IBOutlet UIButton *identifiedResbtn;
