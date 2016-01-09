@@ -793,8 +793,7 @@ size_t icomet_callback(char *ptr, size_t size, size_t nmemb, void *userdata)
     NSDate *date = [NSDate date];
     fmt.dateFormat = @"mm/ss";
     timeAfter = [fmt stringFromDate:date];
-    NSString *context = [self getVoiceTime];
-    if (context.intValue == 0) {
+    if (timeCount == 0) {
         [UIView animateWithDuration:0.5 animations:^{
             _recordTimeLabel.alpha = 1.0;
         } completion:^(BOOL finished) {
@@ -806,7 +805,7 @@ size_t icomet_callback(char *ptr, size_t size, size_t nmemb, void *userdata)
         }];
         return;
     }
-    
+    NSString *context = [self getVoiceTime];
     fmt.dateFormat = @"YYYY-MM-DD HH:MM:SS";
     NSString *sendTime = [fmt stringFromDate:date];
     
@@ -1112,20 +1111,11 @@ size_t icomet_callback(char *ptr, size_t size, size_t nmemb, void *userdata)
 #pragma mark - MP3RecorderDelegate
 
 -(void)beginConvert{
-    sendVoiceData = nil;
+
 }
 
 -(void)endConvertWithData:(NSData *)voiceData{
     sendVoiceData = [NSMutableData dataWithData:voiceData];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if([fileManager removeItemAtPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"mp3.caf"] error:nil])
-    {
-        NSLog(@"删除以前的mp3文件");
-    }
-    if ([fileManager removeItemAtPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"tmp.caf"] error:nil]) {
-        NSLog(@"删除以前的tmp文件");
-    }
-    MP3 = nil;
 }
 
 -(void)failRecord{
