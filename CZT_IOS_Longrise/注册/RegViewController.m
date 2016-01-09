@@ -90,7 +90,7 @@
     {
         if(!isAgree)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请先同意《车主通》协议。" delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles: nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请先同意《便捷交通》协议。" delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles: nil];
             [alert show];
             return;
         }

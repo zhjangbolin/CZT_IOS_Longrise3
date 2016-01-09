@@ -183,23 +183,23 @@
             cell.caseHandleState.backgroundColor = [UIColor colorWithRed:255/255.0 green:192/255.0 blue:15/255.0 alpha:1.0];
         }else if (model.state == 3){
             cell.caseState.text = @"待理赔";
-            [cell.caseHandleState setTitle:@"处理" forState:UIControlStateNormal];
+            [cell.caseHandleState setTitle:@"待理赔" forState:UIControlStateNormal];
             cell.caseHandleState.backgroundColor = [UIColor colorWithRed:255/255.0 green:192/255.0 blue:15/255.0 alpha:1.0];
         }else if (model.state == 4){
             cell.caseState.text = @"待评价";
-            [cell.caseHandleState setTitle:@"处理" forState:UIControlStateNormal];
+            [cell.caseHandleState setTitle:@"评价" forState:UIControlStateNormal];
             cell.caseHandleState.backgroundColor = [UIColor colorWithRed:255/255.0 green:192/255.0 blue:15/255.0 alpha:1.0];
         }else if (model.state == 5){
             cell.caseState.text = @"完成";
-            [cell.caseHandleState setTitle:@"已处理" forState:UIControlStateNormal];
+            [cell.caseHandleState setTitle:@"完成" forState:UIControlStateNormal];
             cell.caseHandleState.backgroundColor = [UIColor colorWithRed:107/255.0 green:220/255.0 blue:91/255.0 alpha:1.0];
         }else if (model.state == 6){
             cell.caseState.text = @"撤销案件";
-            [cell.caseHandleState setTitle:@"已处理" forState:UIControlStateNormal];
+            [cell.caseHandleState setTitle:@"已撤销" forState:UIControlStateNormal];
             cell.caseHandleState.backgroundColor = [UIColor colorWithRed:107/255.0 green:220/255.0 blue:91/255.0 alpha:1.0];
         }else{
             cell.caseState.text = @"完成";
-            [cell.caseHandleState setTitle:@"已处理" forState:UIControlStateNormal];
+            [cell.caseHandleState setTitle:@"完成" forState:UIControlStateNormal];
             cell.caseHandleState.backgroundColor = [UIColor colorWithRed:107/255.0 green:220/255.0 blue:91/255.0 alpha:1.0];
         }
         NSArray *array = [model.casehaptime componentsSeparatedByString:@"."];
@@ -265,6 +265,7 @@
         [self.view addSubview:alertView];
         
         NSMutableArray *casecarlistArray = [NSMutableArray array];
+        NSMutableArray *historyDescribArray = [NSMutableArray array];
         NSMutableDictionary *bean = [NSMutableDictionary dictionary];
         //    [bean setObject:@"110101201512180009" forKey:@"casenumber"];
         [bean setObject:casenumber forKey:@"casenumber"];
@@ -284,6 +285,8 @@
                         [casecarlistArray addObject:dic];
                     }
                     [casecarlistArray addObject:casecarno];
+                    [historyDescribArray addObject:dataDic[@"accidenttype"]];
+                    [historyDescribArray addObject:dataDic[@"accidentdes"]];
                     
                 }else{
                     NSLog(@"%@",bigDic[@"redes"]);
@@ -310,6 +313,8 @@
             SGL.type = 2;
             SGL.moreHistoryToResponsArray = [NSMutableArray array];
             SGL.moreHistoryToResponsArray = casecarlistArray;
+            SGL.historyDescribArray = [NSMutableArray array];
+            SGL.historyDescribArray = historyDescribArray;
         }
         
         
