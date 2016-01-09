@@ -265,6 +265,7 @@
         [self.view addSubview:alertView];
         
         NSMutableArray *casecarlistArray = [NSMutableArray array];
+        NSMutableArray *historyDescribArray = [NSMutableArray array];
         NSMutableDictionary *bean = [NSMutableDictionary dictionary];
         //    [bean setObject:@"110101201512180009" forKey:@"casenumber"];
         [bean setObject:casenumber forKey:@"casenumber"];
@@ -284,6 +285,8 @@
                         [casecarlistArray addObject:dic];
                     }
                     [casecarlistArray addObject:casecarno];
+                    [historyDescribArray addObject:dataDic[@"accidenttype"]];
+                    [historyDescribArray addObject:dataDic[@"accidentdes"]];
                     
                 }else{
                     NSLog(@"%@",bigDic[@"redes"]);
@@ -309,7 +312,9 @@
             
             SGL.type = 2;
             SGL.moreHistoryToResponsArray = [NSMutableArray array];
-            SGL.moreHistoryToResponsArray = casecarlistArray;
+            [SGL.moreHistoryToResponsArray addObjectsFromArray:casecarlistArray];
+            SGL.historyDescribArray = [NSMutableArray array];
+            [SGL.historyDescribArray addObjectsFromArray:historyDescribArray];
         }
         
         

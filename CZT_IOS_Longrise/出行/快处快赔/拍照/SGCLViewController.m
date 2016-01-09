@@ -204,6 +204,7 @@
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ChooseAS" bundle:nil];
                 ChooseASController *casController = [storyboard instantiateViewControllerWithIdentifier:@"ChooseASID"];
                 casController.appcaseno = self.appcaseno;
+                casController.historyDescribArray = self.historyDescribArray;
                 casController.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
                 [self.navigationController pushViewController:casController animated:YES];
             }
