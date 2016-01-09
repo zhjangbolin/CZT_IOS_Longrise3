@@ -132,7 +132,7 @@
                //             NSLog(@"appcartype%@",[Util objectToJson:result]);
              //   NSLog(@"%@",codeAry);
                 if (nil != codeAry) {
-                    NSLog(@"%@",codeAry);
+               //     NSLog(@"%@",codeAry);
                     for (int i = 0; i < codeAry.count; i++) {
                         
                         NSDictionary *dic = codeAry[i];
@@ -181,7 +181,7 @@
     NSMutableDictionary *bean = [NSMutableDictionary dictionary];
     [bean setValue:userflag forKey:@"userflag"];
     [bean setValue:token forKey:@"token"];
-    NSLog(@"-------------%@",token);
+   // NSLog(@"-------------%@",token);
     [bean setValue:@"1100" forKey:@"areaid"];
     NSString *url = [NSString stringWithFormat:@"%@%@/",[Globle getInstance].wxBaseServiceURL,baseapp];
     
@@ -191,17 +191,27 @@
 //            NSLog(@"appsearchincompanylist%@",[Util objectToJson:result]);
             SetInsModel *model = [[SetInsModel alloc]initWithString:[Util objectToJson:result] error:nil];
             
-            for (int i = 0; i < model.data.count; i++) {
-                
-                SetInsDataModel *dataModel = model.data[i];
-                
-                NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-                NSMutableDictionary *dicCode = [NSMutableDictionary dictionary];
-                [dic setValue:dataModel.incomname forKey:@"ins"];
-                [dicCode setValue:dataModel.incomcode forKey:dataModel.incomname];
-                [insData addObject:dic];
-                [insCode addObject:dicCode];
+            @try {
+                for (int i = 0; i < model.data.count; i++) {
+                    
+                    SetInsDataModel *dataModel = model.data[i];
+                    
+                    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+                    NSMutableDictionary *dicCode = [NSMutableDictionary dictionary];
+                    [dic setValue:dataModel.incomname forKey:@"ins"];
+                    [dicCode setValue:dataModel.incomcode forKey:dataModel.incomname];
+                    [insData addObject:dic];
+                    [insCode addObject:dicCode];
+                }
             }
+            @catch (NSException *exception) {
+                
+            }
+            @finally {
+                
+            }
+            
+            
             
         }
         

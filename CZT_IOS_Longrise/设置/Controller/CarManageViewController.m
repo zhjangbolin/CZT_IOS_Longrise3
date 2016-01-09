@@ -98,7 +98,7 @@
 -(void)loadCarData{
     
     NSDictionary *bigDic = [Globle getInstance].loginInfoDic;
-    NSLog(@"bigdic%@",bigDic);
+  //  NSLog(@"bigdic%@",bigDic);
     NSDictionary *userdic = [bigDic objectForKey:@"userinfo"];
     NSString *token = [bigDic objectForKey:@"token"];
     NSString *userflag = [userdic objectForKey:@"userflag"];
@@ -108,25 +108,34 @@
     [carBean setValue:[NSNumber numberWithInteger:carPage] forKey:@"pagenum"];
     [carBean setValue:@"5" forKey:@"pagesize"];
     
-    NSLog(@"CarManagerBean%@",carBean);
+   // NSLog(@"CarManagerBean%@",carBean);
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"正在加载";
     
-    NSString *url = [NSString stringWithFormat:@"%@%@/",[Globle getInstance].wxBaseServiceURL,businessapp];
+    NSString *url = [NSString stringWithFormat:@"%@%@/",[Globle getInstance].wxBaseServiceURL,baseapp];
     NSLog(@"url%@",url);
     [[Globle getInstance].service requestWithServiceIP:url ServiceName:@"appsearchcarlist" params:carBean httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
         
         [hud hide:YES afterDelay:0];
 //        NSLog(@"result%@",result);
         if (nil != result) {
-            NSDictionary *bigDic = result;
-            NSLog(@"%@",bigDic);
-            NSString *json = [Util objectToJson:result];
-            NSLog(@"CarManage车辆数据%@",json);
-            wxModel= [[WXModel alloc]initWithString:json error:nil];
-            NSLog(@"CarManage车辆模型个数%ld",wxModel.data.count);
-            [carDataArray addObjectsFromArray:wxModel.data];
-            [table reloadData];
+          //  NSDictionary *bigDic = result;
+         //   NSLog(@"%@",bigDic);
+            @try {
+                NSString *json = [Util objectToJson:result];
+                //    NSLog(@"CarManage车辆数据%@",json);
+                wxModel= [[WXModel alloc]initWithString:json error:nil];
+                //    NSLog(@"CarManage车辆模型个数%ld",wxModel.data.count);
+                [carDataArray addObjectsFromArray:wxModel.data];
+                [table reloadData];
+            }
+            @catch (NSException *exception) {
+                NSLog(@"%@",exception);
+            }
+            @finally {
+                
+            }
+            
         }
     } ];
 }
@@ -180,6 +189,7 @@
     if (carDataArray.count > indexPath.section) {
         CarModel *model = carDataArray[indexPath.section];
         cell.CellCarNo = model.carno;
+        cell.carType.text = model.cartype;
         [cell setUIWithInfo:model];
     }
     return cell;
