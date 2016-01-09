@@ -718,7 +718,8 @@
     {
         NSString *cityName = result.addressDetail.city;
         NSLog(@"城市名称：%@",cityName);
-        if([@"北京市" isEqualToString:cityName])
+        //if([@"北京市" isEqualToString:cityName])
+        if([@"上海市" isEqualToString:cityName])
         {
             BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
             item.coordinate = result.location;
@@ -733,17 +734,22 @@
         }
         else
         {
-            //保存地址
-            [UserDefaultsUtil saveNSUserDefaultsForObject:@"北京市朝阳区" forKey:@"imageaddress"];
-            [Globle getInstance].imageaddress = @"北京市朝阳区";
+            //北京：保存地址
+            //[UserDefaultsUtil saveNSUserDefaultsForObject:@"北京市朝阳区" forKey:@"imageaddress"];
+            //[Globle getInstance].imageaddress = @"北京市朝阳区";
+            //[Globle getInstance].imagelat = 39.832670;
+            //[Globle getInstance].imagelon = 116.46037;
             
             
-            [Globle getInstance].imagelat = 39.832670;
-            [Globle getInstance].imagelon = 116.46037;
+            //上海
+            [UserDefaultsUtil saveNSUserDefaultsForObject:@"上海市黄浦区" forKey:@"imageaddress"];
+            [Globle getInstance].imageaddress = @"上海市黄浦区";
+            [Globle getInstance].imagelat = 31.23;
+            [Globle getInstance].imagelon = 121.48;
             
             //保存经纬度
-            [UserDefaultsUtil saveNSUserDefaultsForFloat:39.832670 forKey:@"lat"];
-            [UserDefaultsUtil saveNSUserDefaultsForFloat:116.46037 forKey:@"lon"];
+            [UserDefaultsUtil saveNSUserDefaultsForFloat:[Globle getInstance].imagelat forKey:@"lat"];
+            [UserDefaultsUtil saveNSUserDefaultsForFloat:[Globle getInstance].imagelon forKey:@"lon"];
 
         }
         
