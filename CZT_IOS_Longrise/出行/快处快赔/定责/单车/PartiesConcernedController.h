@@ -16,6 +16,8 @@
     UISelectListView *usSelectCompany;
 }
 
+//查询车牌号
+@property (copy, nonatomic)  NSString *reciveCarNumber;
 
 @property (strong, nonatomic) IBOutlet UIView *backView;
 

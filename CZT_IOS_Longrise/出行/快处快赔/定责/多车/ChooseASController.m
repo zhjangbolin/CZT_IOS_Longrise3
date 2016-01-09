@@ -115,7 +115,6 @@
 
             
             NSLog(@"result = %@",result[@"data"]);
-            NSLog(@"data = %@",result[@"data"][0][@"carno"]);
             [fvalertView dismiss];
             if([result[@"data"]isEqual:@""])
             {
@@ -140,6 +139,7 @@
                 araVC.appcaseno = self.appcaseno;
                 araVC.describeData = self.describeData;
                 araVC.describeString = destextView.text;
+                araVC.carsType = self.carsType;
                 araVC.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
                 [self.navigationController pushViewController:araVC animated:YES];
                 

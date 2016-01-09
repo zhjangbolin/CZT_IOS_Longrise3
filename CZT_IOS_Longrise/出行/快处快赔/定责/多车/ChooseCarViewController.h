@@ -24,4 +24,7 @@
 @property (strong, nonatomic) NSArray *describeData;
 //事故详情描述
 @property (copy, nonatomic) NSString *describeString;
+
+//判断单车还是双车的跳转 0 单车  1 双车
+@property (assign, nonatomic) int carsType;
 @end
