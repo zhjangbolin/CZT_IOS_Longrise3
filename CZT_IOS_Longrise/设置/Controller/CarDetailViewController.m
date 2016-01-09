@@ -13,7 +13,6 @@
 #import "CarDetailCell.h"
 #import "CZT_IOS_Longrise.pch"
 #import "CarDetailInfoModel.h"
-#import "CarDetailInfoModel.h"
 
 @interface CarDetailViewController ()
 <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
@@ -53,9 +52,9 @@
 
 }
 
-//-(void)viewWillAppear:(BOOL)animated{
-//    [self loadCarDetailData];
-//}
+-(void)viewWillAppear:(BOOL)animated{
+    [self loadCarDetailData];
+}
 
 -(void)addCar{
     AddCarViewController *vc = [AddCarViewController new];
@@ -82,11 +81,14 @@
         
         if (nil != result) {
             
-            NSLog(@"车辆详情 %@",[Util objectToJson:result]);
+//            NSLog(@"车辆详情 %@",[Util objectToJson:result]);
             
             model = [[CarDetailInfoModel alloc]initWithString:[Util objectToJson:result] error:nil];
-            NSLog(@"%@",model);
+            NSLog(@"详情 -> %@",model);
            
+//            NSMutableArray *ary = [NSMutableArray arrayWithObjects:model.carno, model., nil];
+            
+            
             
             [table reloadData];
             
@@ -146,6 +148,18 @@
         imageV.image = [UIImage imageNamed:@"img07"];
         [cell.contentView addSubview:imageV];
     }
+    else if (indexPath.row == 1){
+    
+        cell.rightLab.text = model.carno;
+    }
+    else if (indexPath.row == 5){
+        
+        cell.rightLab.text = model.identificationnum;
+    }
+    else if (indexPath.row == 6){
+        cell.rightLab.text = model.enginenumber;
+    }
+    
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;;
