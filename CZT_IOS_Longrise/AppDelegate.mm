@@ -45,7 +45,6 @@
     
     //判断是非是第一次启动APP
     NSString *isSecond = (NSString *)[UserDefaultsUtil getDataForKey:@"isSecond"];
-    isSecond = nil;
     if(isSecond == nil || [@"" isEqualToString:isSecond])
     {
         //设置指示器的颜色
