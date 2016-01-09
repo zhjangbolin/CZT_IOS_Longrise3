@@ -189,6 +189,7 @@
     //历史案件进来 显示已选择的数据
     [self judgeDescribShow];
     
+    
     [self.sureButton.layer setCornerRadius:4];
     
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]init];
