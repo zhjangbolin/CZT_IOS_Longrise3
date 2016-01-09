@@ -105,8 +105,8 @@
     if (message.type == VoiceTypeMe) {
         normal = [UIImage imageNamed:@"picon06.png"];
         normal = [normal stretchableImageWithLeftCapWidth:normal.size.width * 0.5 topCapHeight:normal.size.height * 0.7];
-        NSLog(@"%lf",normal.size.width);
-        NSLog(@"%lf",normal.size.height);
+       // NSLog(@"%lf",normal.size.width);
+       // NSLog(@"%lf",normal.size.height);
         _indicator.center = CGPointMake(_messageFrame.contentF.origin.x - 10, _messageFrame.contentF.origin.y + _messageFrame.contentF.size.height/2);
         [_indicator startAnimating];
         _imgView.frame = CGRectMake(_messageFrame.contentF.origin.x + 8, _messageFrame.contentF.origin.y + _messageFrame.contentF.size.height/3.5, _messageFrame.contentF.size.height/3, _messageFrame.contentF.size.height/3);

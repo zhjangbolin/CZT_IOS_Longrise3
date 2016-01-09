@@ -312,9 +312,9 @@
             
             SGL.type = 2;
             SGL.moreHistoryToResponsArray = [NSMutableArray array];
-            [SGL.moreHistoryToResponsArray addObjectsFromArray:casecarlistArray];
+            SGL.moreHistoryToResponsArray = casecarlistArray;
             SGL.historyDescribArray = [NSMutableArray array];
-            [SGL.historyDescribArray addObjectsFromArray:historyDescribArray];
+            SGL.historyDescribArray = historyDescribArray;
         }
         
         
