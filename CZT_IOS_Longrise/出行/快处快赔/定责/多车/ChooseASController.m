@@ -67,30 +67,31 @@
 
 - (IBAction)sureNextButton:(id)sender {
     
+    if (self.moreHistoryToResponsArray.count)
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
+        FillInformationController *fillController = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
+        fillController.hidesBottomBarWhenPushed = YES;
+        fillController.appcaseno = self.appcaseno;
+        fillController.describeData = self.describeData;
+        fillController.describeString = [self.historyDescribArray lastObject];
+        fillController.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
+        [self.navigationController pushViewController:fillController animated:YES];
+    }
+    else
+    {
+
         if (self.showView1.tag == 0 && self.showView2.tag == 0 && self.showView3.tag == 0 && self.showView4.tag == 0 && self.showView5.tag == 0 && self.showView6.tag == 0 && self.showView7.tag == 0 && self.showView8.tag == 0 && self.showView9.tag == 0 ) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"请选择事故类型" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alert show];
         }
         else
         {
-            if (self.moreHistoryToResponsArray.count)
-            {
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
-                FillInformationController *fillController = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
-                fillController.hidesBottomBarWhenPushed = YES;
-                fillController.appcaseno = self.appcaseno;
-                fillController.describeData = self.describeData;
-                fillController.describeString = [self.historyDescribArray lastObject];
-                fillController.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
-                [self.navigationController pushViewController:fillController animated:YES];
-            }
-            else
-            {
-            
-                [self startLoadData];
-          
-            }
+            [self startLoadData];
         }
+        
+    }
+    
 
     
     self.sureButton.userInteractionEnabled =  NO;
