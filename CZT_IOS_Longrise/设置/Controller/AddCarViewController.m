@@ -267,7 +267,7 @@
 //                    [alert show];
                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"车辆添加成功!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
                     [alert show];
-                }else if ([bigDic[@"restate"]isEqualToString:@"-9"]){
+                }else if ([bigDic[@"restate"]isEqualToString:@"-9"]||([bigDic[@"restate"]isEqualToString:@"-26"])){
                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"车辆添加失败" message:@"请输入正确的车牌号!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
                     [alert show];
                 }else if ([bigDic[@"restate"]isEqualToString:@"-16"]){
