@@ -17,10 +17,14 @@
 #import "InfimationModel.h"
 #import "ResponsViewController.h"
 #import "FVCustomAlertView.h"
+#import "SetViewController.h"
+
+
 @interface ChooseASController ()<UITextViewDelegate,UIAlertViewDelegate>
 {
     UITextView *destextView;
     FVCustomAlertView *fvalertView;
+    UIAlertView *alertCarNumber; //查询车牌号码
 }
 
 @property (strong, nonatomic) NSArray *dataSource;
@@ -117,35 +121,45 @@
             
             NSLog(@"result = %@",result[@"data"]);
             [fvalertView dismiss];
-            if([result[@"data"]isEqual:@""])
+            if ([result[@"restate"]isEqualToString:@"-4"])
             {
-                
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
-                FillInformationController *fillController = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
-                fillController.hidesBottomBarWhenPushed = YES;
-                fillController.appcaseno = self.appcaseno;
-                fillController.describeData = self.describeData;
-                fillController.describeString = destextView.text;
-                fillController.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
-                [self.navigationController pushViewController:fillController animated:YES];
+//                alertCarNumber = [[UIAlertView alloc]initWithTitle:nil message:@"验证失效，是否退出重新登录！" delegate:self cancelButtonTitle:@"继续" otherButtonTitles:@"确定", nil];
+                alertCarNumber = [[UIAlertView alloc]initWithTitle:nil message:result[@"redes"] delegate:self cancelButtonTitle:@"继续" otherButtonTitles:@"确定", nil];
+                [alertCarNumber show];
             }
             else
             {
-                
-                
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ChooseCar" bundle:nil];
-                ChooseCarViewController *araVC = [storyboard instantiateViewControllerWithIdentifier:@"ChooseCarStoryboard"];
-                araVC.hidesBottomBarWhenPushed = YES;
-                araVC.CarDict = result[@"data"];
-                araVC.appcaseno = self.appcaseno;
-                araVC.describeData = self.describeData;
-                araVC.describeString = destextView.text;
-                araVC.carsType = self.carsType;
-                araVC.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
-                [self.navigationController pushViewController:araVC animated:YES];
-                
-                
+                if([result[@"data"]isEqual:@""])
+                {
+                    
+                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
+                    FillInformationController *fillController = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
+                    fillController.hidesBottomBarWhenPushed = YES;
+                    fillController.appcaseno = self.appcaseno;
+                    fillController.describeData = self.describeData;
+                    fillController.describeString = destextView.text;
+                    fillController.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
+                    [self.navigationController pushViewController:fillController animated:YES];
+                }
+                else
+                {
+                    
+                    
+                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ChooseCar" bundle:nil];
+                    ChooseCarViewController *araVC = [storyboard instantiateViewControllerWithIdentifier:@"ChooseCarStoryboard"];
+                    araVC.hidesBottomBarWhenPushed = YES;
+                    araVC.CarDict = result[@"data"];
+                    araVC.appcaseno = self.appcaseno;
+                    araVC.describeData = self.describeData;
+                    araVC.describeString = destextView.text;
+                    araVC.carsType = self.carsType;
+                    araVC.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
+                    [self.navigationController pushViewController:araVC animated:YES];
+                    
+                    
+                }
             }
+            
             
         }];
 
@@ -333,6 +347,26 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     self.sureButton.userInteractionEnabled = YES;
+//    if (alertView == alertCarNumber)
+//    {
+//        if (buttonIndex == 0)
+//        {
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FillInfomation" bundle:nil];
+//            FillInformationController *fillController = [storyboard instantiateViewControllerWithIdentifier:@"fillinfomationID"];
+//            fillController.hidesBottomBarWhenPushed = YES;
+//            fillController.appcaseno = self.appcaseno;
+//            fillController.describeData = self.describeData;
+//            fillController.describeString = destextView.text;
+//            fillController.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
+//            [self.navigationController pushViewController:fillController animated:YES];
+//        }
+//        else
+//        {
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+//        }
+//        
+//    }
+
 }
 
 #pragma mark - 历史案件进来判断显示的状态
