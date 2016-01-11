@@ -178,7 +178,7 @@
                 {
                     //成功
                     issucess = true;
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请耐心等待消息的发送！" delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请耐心等待消息的发送！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
                     [alert show];      
                 }
                 else
