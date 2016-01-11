@@ -32,7 +32,7 @@
 
 #import <BaiduMapAPI_Map/BMKMapView.h>//只引入所需的单个头文件
 
-@interface HomeViewController : BaseViewController<LoginControllerClose,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,UISelectListViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface HomeViewController : BaseViewController<LoginControllerClose,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,UISelectListViewDelegate,UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
     //定位服务类
     BMKLocationService *_locService;
@@ -46,6 +46,7 @@
     //本地菜单信息
     //NSDictionary *localMenuInfo;
     NSArray *menuFirstArray;
+    UIAlertView *versionAlertView;
 }
 @property (strong, nonatomic) UITableView *hometabView;
 @end

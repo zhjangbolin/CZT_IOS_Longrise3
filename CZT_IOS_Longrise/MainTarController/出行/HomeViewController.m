@@ -454,7 +454,8 @@
         [alert show];
     }
     
-    
+    //检查版本
+    [self checkVersion];
 }
 
 
@@ -773,6 +774,67 @@
 -(void)selectListView:(UISelectListView *)selectListView index:(NSUInteger)index content:(NSDictionary *)dic
 {
     
+}
+
+#pragma mark - 检测版本更新
+-(void)checkVersion
+{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setValue:@"Convenient_Traffic" forKey:@"arg1"];
+    
+    [[Globle getInstance].service requestWithServiceIP:UpdateURL ServiceName:@"lbcp_getAppVersion" params:params httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
+        
+        if (nil != result)
+        {
+            NSString *jsonStr = [Util objectToJson:result];
+            NSLog(@"版本检测%@",jsonStr);
+            verModel = [[AppVerModel alloc]initWithString:jsonStr error:nil];
+            //            verModel.appversion;
+            //            verModel.upgrade
+            //            verModel.remarks
+            remark = verModel.remarks;
+            
+            localVersion = VersionCode;
+            NSLog(@"当前版本号%@",verModel.appversion);
+            int localVersionNUm = (localVersion == nil ? -1 : [localVersion intValue]);
+            
+            //获取服务器版本
+            serverVersion = verModel.appversion;
+            int serverVersionNum = (serverVersion == nil ? -1 : [serverVersion intValue]);
+            //判断是非升级
+            if(localVersionNUm < serverVersionNum)
+            {
+                NSString *upgrade = verModel.upgrade;
+                if([@"1" isEqualToString:upgrade])    //   强制升级
+                {
+                    self.versionAlertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"有新的版本，请及时更新。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                }
+                else     //  自选升级
+                {
+                    self.versionAlertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"有新的版本，请及时更新。" delegate:self cancelButtonTitle: nil otherButtonTitles:@"确定",@"取消",nil];
+                }
+                [self.versionAlertView show];
+                
+            }
+        }
+        
+    }];
+    
+}
+
+#pragma mark - UIAlertView delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(alertView == self.alertView)
+    {
+        if(buttonIndex == 0)
+        {
+            
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:remark]];
+            
+        }
+    }
 }
 
 @end
