@@ -13,6 +13,7 @@
 #import "CarDetailCell.h"
 #import "CZT_IOS_Longrise.pch"
 #import "CarDetailInfoModel.h"
+#import "FVCustomAlertView.h"
 
 @interface CarDetailViewController ()
 <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
@@ -22,6 +23,7 @@
     CarDetailInfoModel *model;
     NSMutableArray *dataAry;
     UIAlertView *deleteAlertView;
+    FVCustomAlertView *FVAlertView;
 }
 @end
 
@@ -64,6 +66,10 @@
 #pragma mark - 加载车辆详情数据
 -(void)loadCarDetailData{
     
+    FVAlertView = [[FVCustomAlertView alloc] init];
+    [FVAlertView showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:false Duration:-1];
+    [self.view addSubview:FVAlertView];
+    
     NSMutableDictionary *bean = [NSMutableDictionary dictionary];
     
     NSDictionary *bigDic = [Globle getInstance].loginInfoDic;
@@ -93,6 +99,7 @@
             [table reloadData];
             
         }
+        [FVAlertView dismiss];
         
     }];
     
@@ -204,6 +211,9 @@
             NSLog(@"取消删除！");
         }else{
             
+            FVAlertView = [[FVCustomAlertView alloc] init];
+            [FVAlertView showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:false Duration:-1];
+            [self.view addSubview:FVAlertView];
             //删除车辆信息
             NSMutableDictionary *bean = [NSMutableDictionary dictionary];
             
@@ -233,7 +243,7 @@
                 }else{
                     NSLog(@"没有数据返回");
                 }
-                
+                [FVAlertView dismiss];
             }];
         }
         

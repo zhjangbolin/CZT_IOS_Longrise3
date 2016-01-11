@@ -109,6 +109,10 @@
 #pragma mark - 加载车辆类型列表
 -(void)loadCarType{
     
+    alertView = [[FVCustomAlertView alloc] init];
+    [alertView showAlertWithonView:self.view Width:100 height:100 contentView:nil cancelOnTouch:false Duration:-1];
+    [self.view addSubview:alertView];
+    
     NSDictionary *bigDic = [Globle getInstance].loginInfoDic;
     NSDictionary *userdic = [bigDic objectForKey:@"userinfo"];
     NSString *token = [bigDic objectForKey:@"token"];
@@ -132,7 +136,7 @@
                //             NSLog(@"appcartype%@",[Util objectToJson:result]);
              //   NSLog(@"%@",codeAry);
                 if (nil != codeAry) {
-               //     NSLog(@"%@",codeAry);
+                    NSLog(@"%@",codeAry);
                     for (int i = 0; i < codeAry.count; i++) {
                         
                         NSDictionary *dic = codeAry[i];
@@ -147,7 +151,7 @@
                 }
                 
             }
-        
+        [alertView dismiss];
     }];
 }
 
