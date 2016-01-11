@@ -15,6 +15,7 @@
 #import "HomeTableViewCell.h"
 #import "UserDefaultsUtil.h"
 #import "FVCustomAlertView.h"
+#import "AppVerModel.h"
 
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
 
@@ -46,7 +47,12 @@
     //本地菜单信息
     //NSDictionary *localMenuInfo;
     NSArray *menuFirstArray;
-    UIAlertView *versionAlertView;
+    AppVerModel *verModel;
+    
+    NSString *localVersion;
+    NSString *serverVersion;
+    NSString *remark;
 }
 @property (strong, nonatomic) UITableView *hometabView;
+@property(strong,nonatomic)UIAlertView *versionAlertView;
 @end

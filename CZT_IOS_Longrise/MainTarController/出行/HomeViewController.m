@@ -825,7 +825,7 @@
 #pragma mark - UIAlertView delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(alertView == self.alertView)
+    if(alertView == self.versionAlertView)
     {
         if(buttonIndex == 0)
         {
