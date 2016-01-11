@@ -86,11 +86,10 @@
     [[Globle getInstance].service requestWithServiceIP:url  ServiceName:@"appcarviewdetil" params:bean httpMethod:@"POST"resultIsDictionary:YES completeBlock:^(id result) {
         
         if (nil != result) {
-            
 //            NSLog(@"车辆详情 %@",[Util objectToJson:result]);
             
             model = [[CarDetailInfoModel alloc]initWithString:[Util objectToJson:result] error:nil];
-            NSLog(@"详情 -> %@",model);
+//            NSLog(@"详情 -> %@",model);
            
 //            NSMutableArray *ary = [NSMutableArray arrayWithObjects:model.carno, model., nil];
             
@@ -233,6 +232,10 @@
                     NSDictionary *returnDic = result;
                     if ([returnDic[@"restate"]isEqualToString:@"1"]) {
                         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"删除成功！" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                        [alert show];
+                        
+                    }else if ([returnDic[@"restate"]isEqualToString:@"-4"]){
+                        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"登陆失效，请退出重新登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
                         [alert show];
                         
                     }else{
