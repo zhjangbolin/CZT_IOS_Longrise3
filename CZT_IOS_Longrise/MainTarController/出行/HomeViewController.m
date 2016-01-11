@@ -782,7 +782,8 @@
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setValue:@"Convenient_Traffic" forKey:@"arg1"];
     
-    [[Globle getInstance].service requestWithServiceIP:UpdateURL ServiceName:@"lbcp_getAppVersion" params:params httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
+    NSString *tempStr = kckpdecanrest;
+    [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].serviceURL ServiceName:[tempStr stringByAppendingString:@"/lbcp_getAppVersion"] params:params httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
         
         if (nil != result)
         {
