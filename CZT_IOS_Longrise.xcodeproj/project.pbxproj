@@ -183,6 +183,7 @@
 		58DC348C1C156B2E00644E3C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DC348B1C156B2E00644E3C /* SystemConfiguration.framework */; };
 		58DC348E1C156B4900644E3C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DC348D1C156B4900644E3C /* Security.framework */; };
 		58E6BEDA1C0C1AE100D072AF /* PublicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E6BED91C0C1AE100D072AF /* PublicViewController.m */; };
+		58F7D9AE1C4345FB00D33839 /* AppVerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F7D9AD1C4345FB00D33839 /* AppVerModel.m */; };
 		58FC7F121C1D4B1B00E31CB7 /* FVCustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FC7F111C1D4B1B00E31CB7 /* FVCustomAlertView.m */; };
 		58FEF26E1C113A5B00B32D25 /* UISelectListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FEF26D1C113A5B00B32D25 /* UISelectListView.m */; };
 		6F0C14CB1C3CEA5400FEA2BC /* JudgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0C14C61C3CEA5400FEA2BC /* JudgeViewController.m */; };
@@ -608,6 +609,8 @@
 		58E6BECF1C0BDA7900D072AF /* CZT_IOS_Longrise.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CZT_IOS_Longrise.pch; sourceTree = "<group>"; };
 		58E6BED81C0C1AE100D072AF /* PublicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicViewController.h; sourceTree = "<group>"; };
 		58E6BED91C0C1AE100D072AF /* PublicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicViewController.m; sourceTree = "<group>"; };
+		58F7D9AC1C43453100D33839 /* AppVerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppVerModel.h; sourceTree = "<group>"; };
+		58F7D9AD1C4345FB00D33839 /* AppVerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppVerModel.m; sourceTree = "<group>"; };
 		58FC7F101C1D4B1B00E31CB7 /* FVCustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVCustomAlertView.h; sourceTree = "<group>"; };
 		58FC7F111C1D4B1B00E31CB7 /* FVCustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVCustomAlertView.m; sourceTree = "<group>"; };
 		58FEF26C1C113A5B00B32D25 /* UISelectListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISelectListView.h; sourceTree = "<group>"; };
@@ -1214,6 +1217,8 @@
 				5819AF8D1C191F3B00BAE34F /* HomeTableViewCell.h */,
 				5819AF8E1C191F3B00BAE34F /* HomeTableViewCell.m */,
 				5819AF921C193C6800BAE34F /* HomeTableViewCell.xib */,
+				58F7D9AC1C43453100D33839 /* AppVerModel.h */,
+				58F7D9AD1C4345FB00D33839 /* AppVerModel.m */,
 			);
 			name = "出行";
 			path = "MainTarController/出行";
@@ -2052,6 +2057,7 @@
 				6F4825531C29571300BCE7F6 /* DetailModel.m in Sources */,
 				6F48255D1C29571300BCE7F6 /* JSONModelError.m in Sources */,
 				4C8825921C22D37C0081C932 /* ChooseCarViewController.m in Sources */,
+				58F7D9AE1C4345FB00D33839 /* AppVerModel.m in Sources */,
 				6F48255C1C29571300BCE7F6 /* JSONModelClassProperty.m in Sources */,
 				4C7371491C3FAFE1009ADF5F /* VerifyINfimationController.m in Sources */,
 				4CC9402B1C21468200878430 /* ChooseCarViewCell.m in Sources */,
