@@ -13,10 +13,14 @@
 #import "AppDelegate.h"
 #import "ChooseCarViewController.h"
 #import "FVCustomAlertView.h"
+#import "SetViewController.h"
 
 extern NSNumber *responsType;
-@interface SGCLViewController ()
 
+@interface SGCLViewController ()
+{
+    UIAlertView *alertCarNumber; //查询车牌号码
+}
 @end
 
 @implementation SGCLViewController
@@ -230,24 +234,33 @@ extern NSNumber *responsType;
                     
                     NSLog(@"result = %@",result[@"data"]);
                     [fvalertView dismiss];
-                    
-                    if([result[@"data"]isEqual:@""])
+                    if ([result[@"restate"]isEqualToString:@"-4"])
                     {
-                        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Parties" bundle:nil];
-                        PartiesConcernedController *parties = [storyboard instantiateViewControllerWithIdentifier:@"PartiesID"];
-                        parties.hidesBottomBarWhenPushed = YES;
-                        parties.appcaseno = self.appcaseno;
-                        [self.navigationController pushViewController:parties animated:YES];
+//                        alertCarNumber = [[UIAlertView alloc]initWithTitle:nil message:@"验证失效，是否退出重新登录！" delegate:self cancelButtonTitle:@"继续" otherButtonTitles:@"确定", nil];
+                        alertCarNumber = [[UIAlertView alloc]initWithTitle:nil message:result[@"redes"] delegate:self cancelButtonTitle:@"继续" otherButtonTitles:@"确定", nil];
+                        [alertCarNumber show];
                     }
                     else
                     {
-                        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ChooseCar" bundle:nil];
-                        ChooseCarViewController *araVC = [storyboard instantiateViewControllerWithIdentifier:@"ChooseCarStoryboard"];
-                        araVC.hidesBottomBarWhenPushed = YES;
-                        araVC.CarDict = result[@"data"];
-                        araVC.appcaseno = self.appcaseno;
-                        araVC.carsType = 0;
-                        [self.navigationController pushViewController:araVC animated:YES];
+                        if([result[@"data"]isEqual:@""])
+                        {
+                            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Parties" bundle:nil];
+                            PartiesConcernedController *parties = [storyboard instantiateViewControllerWithIdentifier:@"PartiesID"];
+                            parties.hidesBottomBarWhenPushed = YES;
+                            parties.appcaseno = self.appcaseno;
+                            [self.navigationController pushViewController:parties animated:YES];
+                        }
+                        else
+                        {
+                            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ChooseCar" bundle:nil];
+                            ChooseCarViewController *araVC = [storyboard instantiateViewControllerWithIdentifier:@"ChooseCarStoryboard"];
+                            araVC.hidesBottomBarWhenPushed = YES;
+                            araVC.CarDict = result[@"data"];
+                            araVC.appcaseno = self.appcaseno;
+                            araVC.carsType = 0;
+                            [self.navigationController pushViewController:araVC animated:YES];
+                        }
+
                     }
                     
                 }];
@@ -298,6 +311,22 @@ extern NSNumber *responsType;
             [self.navigationController pushViewController:wxtsController animated:YES];
         }
     }
+//    else if (alertView == alertCarNumber)
+//    {
+//        if (buttonIndex == 0)
+//        {
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Parties" bundle:nil];
+//            PartiesConcernedController *parties = [storyboard instantiateViewControllerWithIdentifier:@"PartiesID"];
+//            parties.hidesBottomBarWhenPushed = YES;
+//            parties.appcaseno = self.appcaseno;
+//            [self.navigationController pushViewController:parties animated:YES];
+//        }
+//        else
+//        {
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+//        }
+//        
+//    }
 }
 
 #pragma mark 设置某一步是否选中
@@ -341,6 +370,8 @@ extern NSNumber *responsType;
         }
     }
 }
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

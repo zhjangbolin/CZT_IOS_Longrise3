@@ -18,7 +18,6 @@
 #import "LoginViewController.h"
 #import "UserDefaultsUtil.h"
 
-
 @interface SetViewController ()
 <UIAlertViewDelegate,LoginControllerClose>
 {
