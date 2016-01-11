@@ -119,23 +119,22 @@
         [hud hide:YES afterDelay:0];
 //        NSLog(@"result%@",result);
         if (nil != result) {
-          //  NSDictionary *bigDic = result;
-         //   NSLog(@"%@",bigDic);
-            @try {
-                NSString *json = [Util objectToJson:result];
-                //    NSLog(@"CarManage车辆数据%@",json);
-                wxModel= [[WXModel alloc]initWithString:json error:nil];
-                //    NSLog(@"CarManage车辆模型个数%ld",wxModel.data.count);
-                [carDataArray addObjectsFromArray:wxModel.data];
-                [table reloadData];
+            NSDictionary *bigDic = result;
+            NSLog(@"%@",bigDic);
+            if (nil != bigDic) {
+                if ([bigDic[@"restate"]isEqualToString:@"1"]) {
+                    
+                    NSString *json = [Util objectToJson:result];
+                    //    NSLog(@"CarManage车辆数据%@",json);
+                    wxModel= [[WXModel alloc]initWithString:json error:nil];
+                    //    NSLog(@"CarManage车辆模型个数%ld",wxModel.data.count);
+                    [carDataArray addObjectsFromArray:wxModel.data];
+                    [table reloadData];
+                }else if ([bigDic[@"restate"]isEqualToString:@"-4"]){
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"登陆失效，请退出重新登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                    [alert show];
+                }
             }
-            @catch (NSException *exception) {
-                NSLog(@"%@",exception);
-            }
-            @finally {
-                
-            }
-            
         }
     } ];
 }
