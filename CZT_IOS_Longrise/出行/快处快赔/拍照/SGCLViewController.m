@@ -212,6 +212,7 @@ extern NSNumber *responsType;
                 ChooseASController *casController = [storyboard instantiateViewControllerWithIdentifier:@"ChooseASID"];
                 casController.appcaseno = self.appcaseno;
                 casController.carsType = 1;
+                casController.historyDescribArray = [NSMutableArray array];
                 casController.historyDescribArray = self.historyDescribArray;
                 casController.moreHistoryToResponsArray = self.moreHistoryToResponsArray;
                 [self.navigationController pushViewController:casController animated:YES];
