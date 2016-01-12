@@ -58,12 +58,12 @@
 #pragma mark - 点击事件
 - (IBAction)sure:(id)sender {
 //    SureResponsController *sureVC = [[SureResponsController alloc]init];
-//    if (signatureView.lblSignature.superview == signatureView) {
-//        NSLog(@"-------------------------------------------22222222222222");
-//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"请签名!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//        [alert show];
-//        return;
-//    }
+    if (signatureView.lblSignature.superview == signatureView) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"请签名!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
     
     UIImage *image = [[UIImage alloc]init];
     image = [[signatureView getSignatureImage]resizableImageWithCapInsets:UIEdgeInsetsMake(1, 1, 1, 1) resizingMode:UIImageResizingModeStretch];
