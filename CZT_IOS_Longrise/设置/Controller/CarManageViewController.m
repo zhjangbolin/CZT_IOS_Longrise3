@@ -187,6 +187,7 @@
 //    [cell.checkHealth addTarget:self action:@selector(jumpToHealth) forControlEvents:UIControlEventTouchUpInside];
     if (carDataArray.count > indexPath.section) {
         CarModel *model = carDataArray[indexPath.section];
+        NSLog(@"%@",model.cartype);
         cell.CellCarNo = model.carno;
         cell.carType.text = model.cartype;
         [cell setUIWithInfo:model];
