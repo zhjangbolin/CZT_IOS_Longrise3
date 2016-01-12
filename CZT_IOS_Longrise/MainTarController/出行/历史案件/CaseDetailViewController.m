@@ -39,11 +39,11 @@
     [super viewDidLoad];
     [self configUI];
     [self addGesture];
-    if (_caseState == 7) {
-        [self requestPhotoData];
-    }else{
+//    if (_caseState == 7) {
+//        [self requestPhotoData];
+//    }else{
         [self requestData];
-    }
+//    }
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -101,41 +101,41 @@
     [self.view addSubview:alertView];
 }
 
-#pragma mark - 
-#pragma mark - 照片待审核状态数据请求
--(void)requestPhotoData{
-    _dataList = [NSDictionary dictionary];
-    NSMutableDictionary *bean = [NSMutableDictionary dictionary];
-    [bean setObject:_appcaseno forKey:@"appcaseno"];
-    [bean setObject:_appphone forKey:@"appphone"];
-    [bean setObject:[Globle getInstance].loadDataName forKey:@"username"];
-    [bean setObject:[Globle getInstance].loadDataPass forKey:@"password"];
-    
-    [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].serviceURL ServiceName:[NSString stringWithFormat:@"%@/searchImageDetailInfo",kckpzcslrest] params:bean httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
-        NSDictionary *bigDic = result;
-        if (nil != bigDic) {
-            if ([bigDic[@"restate"]isEqualToString:@"0"]) {
-                if (![bigDic[@"data"]isEqual:@""]) {
-                    _dataList = bigDic[@"data"];
-                    NSLog(@"%@",bigDic[@"data"]);
-                }else{
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"暂无查询到数据!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-                    [alert show];
-                }
-                
-            }else{
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"加载失败，请确认网络是否开启！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-                [alert show];
-            }
-            
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"加载失败，请确认网络是否开启！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [alert show];
-        }
-        [alertView dismiss];
-    }];
-    
-}
+//#pragma mark - 
+//#pragma mark - 照片待审核状态数据请求
+//-(void)requestPhotoData{
+//    _dataList = [NSDictionary dictionary];
+//    NSMutableDictionary *bean = [NSMutableDictionary dictionary];
+//    [bean setObject:_appcaseno forKey:@"appcaseno"];
+//    [bean setObject:_appphone forKey:@"appphone"];
+//    [bean setObject:[Globle getInstance].loadDataName forKey:@"username"];
+//    [bean setObject:[Globle getInstance].loadDataPass forKey:@"password"];
+//    
+//    [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].serviceURL ServiceName:[NSString stringWithFormat:@"%@/searchImageDetailInfo",kckpzcslrest] params:bean httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
+//        NSDictionary *bigDic = result;
+//        if (nil != bigDic) {
+//            if ([bigDic[@"restate"]isEqualToString:@"0"]) {
+//                if (![bigDic[@"data"]isEqual:@""]) {
+//                    _dataList = bigDic[@"data"];
+//                    NSLog(@"%@",bigDic[@"data"]);
+//                }else{
+//                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"暂无查询到数据!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//                    [alert show];
+//                }
+//                
+//            }else{
+//                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"加载失败，请确认网络是否开启！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//                [alert show];
+//            }
+//            
+//        }else{
+//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"加载失败，请确认网络是否开启！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//            [alert show];
+//        }
+//        [alertView dismiss];
+//    }];
+//    
+//}
 
 #pragma mark -
 #pragma mark - 其它状态数据请求

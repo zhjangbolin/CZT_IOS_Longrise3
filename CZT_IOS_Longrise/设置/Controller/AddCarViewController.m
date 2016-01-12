@@ -12,6 +12,7 @@
 #import "UISelectListView.h"
 #import "SetInsModel.h"
 #import "FVCustomAlertView.h"
+#import "SJAvatarBrowser.h"
 
 @interface AddCarViewController ()
 <UIAlertViewDelegate,UISelectListViewDelegate>
@@ -359,6 +360,19 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 
+}
+
+#pragma mark - 问号点击事件
+- (IBAction)btnClicked:(id)sender {
+    
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"car_enginenub"]];
+    [SJAvatarBrowser showImage:imageView];
+    
+}
+
+- (IBAction)VINBtnCilcked:(id)sender {
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"car_indexnumb"]];
+    [SJAvatarBrowser showImage:imageView];
 }
 
 /*
