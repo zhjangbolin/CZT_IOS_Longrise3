@@ -145,7 +145,7 @@
                         
                         NSMutableDictionary *codeDic = [[NSMutableDictionary alloc]init];
                         [codeDic setValue:codeValue forKey:@"cartype"];
-                        [carTypeData addObject:codeDic ];
+                        [carTypeData addObject:codeDic];
                         
                     }
                     [carTypeSelect addArray:carTypeData forKey:@"cartype"];
@@ -253,7 +253,7 @@
         }
         
       //  NSString *str = @"WDDFH3DB0AJ541602";
-     
+        
         NSMutableDictionary *bean = [NSMutableDictionary dictionary];
         [bean setValue:userflag forKey:@"userflag"];
         [bean setValue:carNo forKey:@"carno"];
