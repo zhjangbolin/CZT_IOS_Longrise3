@@ -22,8 +22,13 @@
 @interface FillInformationController ()<UISelectListViewDelegate,UIAlertViewDelegate>
 {
     UILabel *titlelabel;
-    NSString *cities; //选中后的车牌省市
-    NSString *companies; //选中后的公司名
+    NSString *usCities; //本方选中后的车牌省市
+    NSString *otherCities; //对方选中后的车牌省市
+    NSString *thirdCities; //第三方选中后的车牌省市
+    
+    NSString *usCompanies; //本方选中后的公司名
+    NSString *otherCompanies; //对方选中后的公司名
+    NSString *thirdCompanies; //第三方选中后的公司名
     
     int historyCompanyCodeIndex; //投保公司编码下标
     int usCarCitiesSelectIndex; //本方的车牌省市下标
@@ -298,30 +303,30 @@
 -(void)selectListView:(UISelectListView *)selectListView index:(NSUInteger)index content:(NSDictionary *)dic
 {
     if (selectListView == carSelectCities) {
-        cities = dic[@"cities"];
+        usCities = dic[@"cities"];
     }
     else if (selectListView == usSelectCompany)
     {
-        companies = dic[@"inscomname"];
+        usCompanies = dic[@"inscomname"];
         self.usCompanyCode = dic[@"inscomcode"];
         
     }
     else if (selectListView == otherCarSelectCities)
     {
-        cities = dic[@"cities"];
+        otherCities = dic[@"cities"];
     }
     else if (selectListView == otherSelectCompany)
     {
-        companies = dic[@"inscomname"];
+        otherCompanies = dic[@"inscomname"];
         self.otherCompanyCode = dic[@"inscomcode"];
     }
     else if (selectListView == thirdCarSelectCities)
     {
-        cities = dic[@"cities"];
+        thirdCities = dic[@"cities"];
     }
     else if (selectListView == thirdSelectCompany)
     {
-        companies = dic[@"inscomname"];
+        thirdCompanies = dic[@"inscomname"];
         self.thirdCompanyCode = dic[@"inscomcode"];
     }
     
@@ -458,8 +463,8 @@
     
     if (self.reciveCarNumber) {
         self.carNumber.text = [self.reciveCarNumber substringFromIndex:1];
-        NSString *str = [self.reciveCarNumber substringToIndex:1];
-        usCarCitiesSelectIndex = [self judeCarCities:str CarCiteiesDataArray:self.carCitiesData];
+        usCities = [self.reciveCarNumber substringToIndex:1];
+        usCarCitiesSelectIndex = [self judeCarCities:usCities CarCiteiesDataArray:self.carCitiesData];
     }
     
     if (self.moreHistoryToResponsArray != nil)
@@ -592,7 +597,7 @@
     
     if (self.dataSource.count == 3) {
         
-        if (!self.name.text.length || !self.carNumber.text.length || !cities || !companies || !self.phoneNumber.text.length || !self.driverNumber.text.length || !self.otherPartyName.text.length || !self.otherCarNumber.text.length || !self.otherPartyPhoneNumber.text.length || !self.otherPartyDriverNumber.text.length || !self.thirdPartyName.text.length || !self.thirdCarNumber.text.length || !self.thirdPartyPhoneNumber.text.length || !self.thirdPartyDriverNumber.text.length)
+        if (!self.name.text.length || !self.carNumber.text.length || !usCities || !usCompanies || !self.phoneNumber.text.length || !self.driverNumber.text.length || !self.otherPartyName.text.length || !otherCities || !otherCompanies || !self.otherCarNumber.text.length || !self.otherPartyPhoneNumber.text.length || !self.otherPartyDriverNumber.text.length || !self.thirdPartyName.text.length || !thirdCities || !thirdCompanies || !self.thirdCarNumber.text.length || !self.thirdPartyPhoneNumber.text.length || !self.thirdPartyDriverNumber.text.length)
         {
             [self dataCountTwoJudgment];
             [self dataCountThirdJudgment];
@@ -627,7 +632,7 @@
     }
     else
     {
-        if (!self.name.text.length || !self.carNumber.text.length || !cities || !companies || !self.phoneNumber.text.length || !self.driverNumber.text.length || !self.otherPartyName.text.length || !self.otherCarNumber.text.length || !self.otherPartyPhoneNumber.text.length || !self.otherPartyDriverNumber.text.length )
+        if (!self.name.text.length || !self.carNumber.text.length || !usCities || !usCompanies || !self.phoneNumber.text.length || !self.driverNumber.text.length || !self.otherPartyName.text.length || !otherCities || !otherCompanies || !self.otherCarNumber.text.length || !self.otherPartyPhoneNumber.text.length || !self.otherPartyDriverNumber.text.length )
         {
             [self dataCountTwoJudgment];
             
@@ -691,8 +696,8 @@
     }
     else
     {
-        VC.usCarNumber = [NSString stringWithFormat:@"%@%@",cities,self.carNumber.text];
-        VC.usCompanyName = companies;
+        VC.usCarNumber = [NSString stringWithFormat:@"%@%@",usCities,self.carNumber.text];
+        VC.usCompanyName = usCompanies;
     }
     
     VC.usCompanyCode = self.usCompanyCode;
@@ -709,8 +714,8 @@
     }
     else
     {
-        VC.otherCarNumber = [NSString stringWithFormat:@"%@%@",cities,self.otherCarNumber.text];
-        VC.otherCompName = companies;
+        VC.otherCarNumber = [NSString stringWithFormat:@"%@%@",otherCities,self.otherCarNumber.text];
+        VC.otherCompName = otherCompanies;
     }
     
     VC.otherCompanyCode = self.otherCompanyCode;
@@ -727,8 +732,8 @@
     }
     else
     {
-        VC.thirdCarNumber = [NSString stringWithFormat:@"%@%@",cities,self.thirdCarNumber.text];
-        VC.thirdCompName = companies;
+        VC.thirdCarNumber = [NSString stringWithFormat:@"%@%@",thirdCities,self.thirdCarNumber.text];
+        VC.thirdCompName = thirdCompanies;
     }
     VC.thirdCompanyCode = self.thirdCompanyCode;
     VC.thirdPhoneNum = self.thirdPartyPhoneNumber.text;
@@ -743,10 +748,13 @@
     if (!self.name.text.length) {
         [self infomationNoticeShowAlertViewMessage:@"车主姓名不能为空！"];
     }
+    else if (!usCities && !self.reciveCarNumber) {
+        [self infomationNoticeShowAlertViewMessage:@"车主车辆车牌号省市不能为空！"];
+    }
     else if (!self.carNumber.text.length) {
         [self infomationNoticeShowAlertViewMessage:@"车主车辆车牌号不能为空！"];
     }
-    else if (!companies) {
+    else if (!usCompanies) {
         [self infomationNoticeShowAlertViewMessage:@"车主车辆投保公司不能为空！"];
     }
     else if (!self.phoneNumber.text.length) {
@@ -761,10 +769,13 @@
     else if (!self.otherPartyName.text.length) {
         [self infomationNoticeShowAlertViewMessage:@"对方车主姓名不能为空！"];
     }
+    else if (!otherCities) {
+        [self infomationNoticeShowAlertViewMessage:@"对方车辆车牌号省市不能为空！"];
+    }
     else if (!self.otherCarNumber.text.length) {
         [self infomationNoticeShowAlertViewMessage:@"对方车主车辆车牌号不能为空！"];
     }
-    else if (!companies) {
+    else if (!otherCompanies) {
         [self infomationNoticeShowAlertViewMessage:@"对方车主车辆投保公司不能为空！"];
     }
     else if (!self.otherPartyPhoneNumber.text.length) {
@@ -782,10 +793,13 @@
     if (!self.thirdPartyName.text.length) {
         [self infomationNoticeShowAlertViewMessage:@"第三方车主姓名不能为空！"];
     }
+    else if (!thirdCities) {
+        [self infomationNoticeShowAlertViewMessage:@"第三方车辆车牌号省市不能为空！"];
+    }
     else if (!self.thirdCarNumber.text.length) {
         [self infomationNoticeShowAlertViewMessage:@"第三方车主车辆车牌号不能为空！"];
     }
-    else if (!companies) {
+    else if (!thirdCompanies) {
         [self infomationNoticeShowAlertViewMessage:@"第三方车主电话号码不能为空！"];
     }
     else if (!self.thirdPartyPhoneNumber.text.length) {
@@ -797,13 +811,7 @@
     
 }
 
-- (void)infomationNoticeShowAlertViewMessage:(NSString *)message
-{
-    
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-    [alert show];
-    
-}
+
 #pragma mark - 判断电话号码是否是11位
 - (void)judgmentPhoneNumberCount
 {
@@ -837,6 +845,14 @@
     }
     
     
+    
+}
+
+- (void)infomationNoticeShowAlertViewMessage:(NSString *)message
+{
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+    [alert show];
     
 }
 
