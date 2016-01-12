@@ -57,7 +57,7 @@
 #pragma mark -
 #pragma mark - 数据请求
 -(void)requestData{
-   // NSLog(@"----------%@",_dataListDic);
+    //NSLog(@"----------%@",_dataListDic);
     _dataList = [NSMutableArray array];
     if (nil != _dataListDic) {
         NSArray *accidentimagelist = _dataListDic[@"accidentimagelist"];
@@ -87,7 +87,7 @@
     NSDictionary *dic = _dataList[indexPath.row];
     [cell.carPhotoImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"imageurl"]]placeholderImage:[UIImage imageNamed:@"loadingPhoto"]];
     if ([dic[@"imagetypename"]isEqual:@""]) {
-        cell.photoLocationLabel.text = @"其它";
+        cell.photoLocationLabel.text = @"其它现场照片";
     }else{
         cell.photoLocationLabel.text = dic[@"imagetypename"];
     }
