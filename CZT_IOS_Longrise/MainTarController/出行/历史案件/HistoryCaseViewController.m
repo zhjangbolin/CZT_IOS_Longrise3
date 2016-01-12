@@ -107,9 +107,9 @@
                 if (![dic[@"data"]isEqual:@""]) {
                     for (NSDictionary * dic in array) {
                         HistoryModel *htModel = [[HistoryModel alloc]initWithDictionary:dic];
-//                        if (htModel.state != 7) {
+                        if (htModel.state != 7) {
                             [_dataList addObject:htModel];
-//                        }
+                        }
                     }
                     [_htTableView reloadData];
                 }else{
@@ -196,10 +196,10 @@
             cell.caseState.text = @"撤销案件";
             [cell.caseHandleState setTitle:@"已撤销" forState:UIControlStateNormal];
             cell.caseHandleState.backgroundColor = [UIColor colorWithRed:107/255.0 green:220/255.0 blue:91/255.0 alpha:1.0];
-        }else if (model.state == 7){
-            cell.caseState.text = @"照片待审核";
-            [cell.caseHandleState setTitle:@"处理" forState:UIControlStateNormal];
-            cell.caseHandleState.backgroundColor = [UIColor colorWithRed:255/255.0 green:192/255.0 blue:15/255.0 alpha:1.0];
+//        }else if (model.state == 7){
+//            cell.caseState.text = @"照片待审核";
+//            [cell.caseHandleState setTitle:@"处理" forState:UIControlStateNormal];
+//            cell.caseHandleState.backgroundColor = [UIColor colorWithRed:255/255.0 green:192/255.0 blue:15/255.0 alpha:1.0];
         }else if (model.state == 8){
             cell.caseState.text = @"转现场处理";
             [cell.caseHandleState setTitle:@"完成" forState:UIControlStateNormal];
@@ -223,7 +223,7 @@
     if (_dataList.count > indexPath.row) {
         HistoryModel *model = _dataList[indexPath.row];
         CaseDetailViewController *CDVC = [[CaseDetailViewController alloc]init];
-        CDVC.caseState = model.state;
+//        CDVC.caseState = model.state;
         CDVC.casetype = model.casetype;
         CDVC.casehaptime = model.casehaptime;
         CDVC.accidentplace = model.accidentplace;
@@ -428,18 +428,18 @@
     }else if (caseState == 6){
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"案件已撤消！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
-    }else if (caseState == 7){
-        SGCLViewController *SGL = [[SGCLViewController alloc]init];
-        SGL.currentMark = 1;
-        SGL.appcaseno = appcaseno;
-        if (casetype == 0) {
-            SGL.type = 1;
-            
-        }else{
-            SGL.type = 2;
-        }
-        SGL.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:SGL animated:YES];
+//    }else if (caseState == 7){
+//        SGCLViewController *SGL = [[SGCLViewController alloc]init];
+//        SGL.currentMark = 1;
+//        SGL.appcaseno = appcaseno;
+//        if (casetype == 0) {
+//            SGL.type = 1;
+//            
+//        }else{
+//            SGL.type = 2;
+//        }
+//        SGL.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:SGL animated:YES];
         
     }else if (caseState == 8){
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"案件已转现场处理！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
