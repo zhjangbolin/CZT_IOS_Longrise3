@@ -218,7 +218,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     CarDetailViewController *vc = [CarDetailViewController new];
-    if (carDataArray.count > indexPath.row) {
+    if (carDataArray.count > indexPath.section) {
         CarModel *model = carDataArray[indexPath.section];
         if (nil != model.Id) {
             vc.Id = model.Id;
