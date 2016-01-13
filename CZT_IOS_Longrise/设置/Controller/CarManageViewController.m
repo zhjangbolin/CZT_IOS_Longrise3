@@ -21,6 +21,7 @@
     UITableView *table;
     NSMutableArray *carDataArray;
     NSInteger carPage;
+    NSInteger carCount;
     NSMutableDictionary *carBean;
     WXModel *wxModel;
 }
@@ -72,8 +73,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    carDataArray = [NSMutableArray array];
-    [self loadCarData];
+    
+    [self refreshCarData];
 }
 
 
@@ -96,7 +97,7 @@
 
 #pragma mark - 查询车辆列表
 -(void)loadCarData{
-    
+   // carDataArray = [NSMutableArray array];
     NSDictionary *bigDic = [Globle getInstance].loginInfoDic;
   //  NSLog(@"bigdic%@",bigDic);
     NSDictionary *userdic = [bigDic objectForKey:@"userinfo"];
@@ -113,19 +114,22 @@
     hud.labelText = @"正在加载";
     
     NSString *url = [NSString stringWithFormat:@"%@%@/",[Globle getInstance].wxBaseServiceURL,baseapp];
-    NSLog(@"url%@",url);
+   // NSLog(@"url%@",url);
     [[Globle getInstance].service requestWithServiceIP:url ServiceName:@"appsearchcarlist" params:carBean httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
         
         [hud hide:YES afterDelay:0];
 //        NSLog(@"result%@",result);
         if (nil != result) {
             NSDictionary *bigDic = result;
-            NSLog(@"%@",bigDic);
+            
+            carCount = [bigDic[@"count"] integerValue];
+//            NSLog(@"count -> %@",bigDic[@"count"]);
+            
             if (nil != bigDic) {
-                if ([bigDic[@"restate"]isEqualToString:@"1"]) {
+                if ([bigDic[@"restate"] isEqualToString:@"1"]) {
                     
                     NSString *json = [Util objectToJson:result];
-                    //    NSLog(@"CarManage车辆数据%@",json);
+//                    NSLog(@"CarManage车辆数据%@",json);
                     wxModel= [[WXModel alloc]initWithString:json error:nil];
                     //    NSLog(@"CarManage车辆模型个数%ld",wxModel.data.count);
                     [carDataArray addObjectsFromArray:wxModel.data];
@@ -143,7 +147,6 @@
 -(void)refreshCarData{
     
     [carDataArray removeAllObjects];
-    [table reloadData];
     carPage = 1;
     [carBean setValue:[NSNumber numberWithInteger:carPage] forKey:@"pagenum"];
     [self loadCarData];
@@ -153,7 +156,8 @@
 -(void)loadMoreCarData{
     
     carPage ++;
-    if (carPage>4) {
+    NSInteger totalPage = carCount/5 + 1;
+    if (carPage > totalPage) {
         table.mj_footer.hidden = YES;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
@@ -213,13 +217,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     CarDetailViewController *vc = [CarDetailViewController new];
-    
-    CarModel *model = carDataArray[indexPath.section];
-    if (nil != model.Id) {
-        vc.Id = model.Id;
+    if (carDataArray.count > indexPath.row) {
+        CarModel *model = carDataArray[indexPath.section];
+        if (nil != model.Id) {
+            vc.Id = model.Id;
+            vc.carType = model.cartype;
+        }
+        
+        [self.navigationController pushViewController:vc animated:YES];
     }
-    
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark -

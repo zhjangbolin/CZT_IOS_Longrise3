@@ -87,7 +87,6 @@
         
         if (nil != result) {
 //            NSLog(@"车辆详情 %@",[Util objectToJson:result]);
-            
             model = [[CarDetailInfoModel alloc]initWithString:[Util objectToJson:result] error:nil];
 //            NSLog(@"详情 -> %@",model);
            
@@ -157,6 +156,10 @@
     else if (indexPath.row == 1){
     
         cell.rightLab.text = model.carno;
+    }
+    else if (indexPath.row == 3){
+        
+        cell.rightLab.text = model.cartype;
     }
     else if (indexPath.row == 5){
         
