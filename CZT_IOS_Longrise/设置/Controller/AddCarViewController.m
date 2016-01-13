@@ -253,6 +253,16 @@
             }
         }
         
+        NSString *appCarType;
+        if ([carType isEqualToString:@"小型汽车"]) {
+            appCarType = @"1";
+        }else if ([carType isEqualToString:@"客车"]){
+            appCarType = @"2";
+        }else if ([carType isEqualToString:@"货车"]){
+            appCarType = @"3";
+        }else if([carType isEqualToString:@"公交车"]){
+            appCarType = @"9";
+        }
       //  NSString *str = @"WDDFH3DB0AJ541602";
         
         NSMutableDictionary *bean = [NSMutableDictionary dictionary];
@@ -261,7 +271,7 @@
        // [bean setValue:_vinCode.text forKey:@"identificationnum"];
         [bean setValue:_vinCode.text forKey:@"identificationnum"];
         [bean setValue:_engineNum.text forKey:@"enginenumber"];
-        [bean setValue:carType forKey:@"cartype"];
+        [bean setValue:appCarType forKey:@"cartype"];
         [bean setValue:insName forKey:@"incomname"];
         [bean setValue:insCodeString forKey:@"incomcode"];
         [bean setValue:token forKey:@"token"];
