@@ -188,9 +188,12 @@
 		58FC7F121C1D4B1B00E31CB7 /* FVCustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FC7F111C1D4B1B00E31CB7 /* FVCustomAlertView.m */; };
 		58FEF26E1C113A5B00B32D25 /* UISelectListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FEF26D1C113A5B00B32D25 /* UISelectListView.m */; };
 		6F0C14CB1C3CEA5400FEA2BC /* JudgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0C14C61C3CEA5400FEA2BC /* JudgeViewController.m */; };
-		6F0C14CC1C3CEA5400FEA2BC /* JudgeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F0C14C71C3CEA5400FEA2BC /* JudgeViewController.xib */; };
 		6F0C14CD1C3CEA5400FEA2BC /* WaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0C14C91C3CEA5400FEA2BC /* WaitPayViewController.m */; };
 		6F0C14CE1C3CEA5400FEA2BC /* WaitPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F0C14CA1C3CEA5400FEA2BC /* WaitPayViewController.xib */; };
+		6F36CFD71C47855B0047A30B /* CustomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F36CFD61C47855B0047A30B /* CustomPickerView.m */; };
+		6F36CFDB1C4785ED0047A30B /* CustomPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F36CFDA1C4785ED0047A30B /* CustomPickerView.xib */; };
+		6F3C3D5F1C487E83003BC82F /* JudgeViewSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F3C3D5E1C487E83003BC82F /* JudgeViewSB.storyboard */; };
+		6F3C3D611C48BCCF003BC82F /* JudgeViewXIB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F3C3D601C48BCCF003BC82F /* JudgeViewXIB.xib */; };
 		6F3E6CC41C326088004FD9CC /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3E6CC21C326088004FD9CC /* ForgotPasswordViewController.m */; };
 		6F3E6CC51C326088004FD9CC /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F3E6CC31C326088004FD9CC /* ForgotPasswordViewController.xib */; };
 		6F4825131C2953EA00BCE7F6 /* TakePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4825111C2953EA00BCE7F6 /* TakePhotoViewController.m */; };
@@ -620,10 +623,14 @@
 		58FEF26D1C113A5B00B32D25 /* UISelectListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISelectListView.m; sourceTree = "<group>"; };
 		6F0C14C51C3CEA5400FEA2BC /* JudgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JudgeViewController.h; sourceTree = "<group>"; };
 		6F0C14C61C3CEA5400FEA2BC /* JudgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JudgeViewController.m; sourceTree = "<group>"; };
-		6F0C14C71C3CEA5400FEA2BC /* JudgeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JudgeViewController.xib; sourceTree = "<group>"; };
 		6F0C14C81C3CEA5400FEA2BC /* WaitPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitPayViewController.h; sourceTree = "<group>"; };
 		6F0C14C91C3CEA5400FEA2BC /* WaitPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitPayViewController.m; sourceTree = "<group>"; };
 		6F0C14CA1C3CEA5400FEA2BC /* WaitPayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitPayViewController.xib; sourceTree = "<group>"; };
+		6F36CFD51C47855B0047A30B /* CustomPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickerView.h; sourceTree = "<group>"; };
+		6F36CFD61C47855B0047A30B /* CustomPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerView.m; sourceTree = "<group>"; };
+		6F36CFDA1C4785ED0047A30B /* CustomPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPickerView.xib; sourceTree = "<group>"; };
+		6F3C3D5E1C487E83003BC82F /* JudgeViewSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JudgeViewSB.storyboard; sourceTree = "<group>"; };
+		6F3C3D601C48BCCF003BC82F /* JudgeViewXIB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JudgeViewXIB.xib; sourceTree = "<group>"; };
 		6F3E6CC11C326088004FD9CC /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		6F3E6CC21C326088004FD9CC /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		6F3E6CC31C326088004FD9CC /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
@@ -1390,12 +1397,14 @@
 		58DC346F1C1545CB00644E3C /* 历史案件 */ = {
 			isa = PBXGroup;
 			children = (
+				6F36CFD41C4784D00047A30B /* CustomView */,
 				6F4825A71C296C0300BCE7F6 /* HistoryCaseViewController.h */,
 				6F4825A81C296C0300BCE7F6 /* HistoryCaseViewController.m */,
 				6F4825A91C296C0300BCE7F6 /* HistoryCaseViewController.xib */,
 				6F0C14C51C3CEA5400FEA2BC /* JudgeViewController.h */,
 				6F0C14C61C3CEA5400FEA2BC /* JudgeViewController.m */,
-				6F0C14C71C3CEA5400FEA2BC /* JudgeViewController.xib */,
+				6F3C3D601C48BCCF003BC82F /* JudgeViewXIB.xib */,
+				6F3C3D5E1C487E83003BC82F /* JudgeViewSB.storyboard */,
 				6F0C14C81C3CEA5400FEA2BC /* WaitPayViewController.h */,
 				6F0C14C91C3CEA5400FEA2BC /* WaitPayViewController.m */,
 				6F0C14CA1C3CEA5400FEA2BC /* WaitPayViewController.xib */,
@@ -1520,6 +1529,16 @@
 				B05BC011BC21E753840F6EB4 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6F36CFD41C4784D00047A30B /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				6F36CFD51C47855B0047A30B /* CustomPickerView.h */,
+				6F36CFD61C47855B0047A30B /* CustomPickerView.m */,
+				6F36CFDA1C4785ED0047A30B /* CustomPickerView.xib */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		6F3E6CC01C325FFA004FD9CC /* 忘记密码 */ = {
@@ -1845,7 +1864,6 @@
 				4C8825911C22D37C0081C932 /* ChooseCar.storyboard in Resources */,
 				5807B4361C07DA7500E7A701 /* Main.storyboard in Resources */,
 				4CC9402C1C21468200878430 /* ChooseCarViewCell.xib in Resources */,
-				6F0C14CC1C3CEA5400FEA2BC /* JudgeViewController.xib in Resources */,
 				5807B43B1C07DA7500E7A701 /* LaunchScreen.xib in Resources */,
 				85305F6C1C2A992C00964D5E /* SectionTwoHeaderView.xib in Resources */,
 				58046F4C1C2040AC00F59365 /* ResponsCell.xib in Resources */,
@@ -1866,6 +1884,8 @@
 				6F4825A21C296BD300BCE7F6 /* HistoryTableViewCell.xib in Resources */,
 				85305F651C2A85AE00964D5E /* UISelectCell.xib in Resources */,
 				58046F3D1C2040AC00F59365 /* ControversialView.xib in Resources */,
+				6F36CFDB1C4785ED0047A30B /* CustomPickerView.xib in Resources */,
+				6F3C3D611C48BCCF003BC82F /* JudgeViewXIB.xib in Resources */,
 				58046EFC1C203FBE00F59365 /* SectionOneCell.xib in Resources */,
 				58046E981C203FA200F59365 /* ComplainViewController.xib in Resources */,
 				6F4825A01C296BD300BCE7F6 /* FastOperateViewController.xib in Resources */,
@@ -1896,6 +1916,7 @@
 				6F0C14CE1C3CEA5400FEA2BC /* WaitPayViewController.xib in Resources */,
 				4C73715F1C3FB0C7009ADF5F /* MoreCarViewController.xib in Resources */,
 				58046EFE1C203FBE00F59365 /* SectionTwoViewCell.xib in Resources */,
+				6F3C3D5F1C487E83003BC82F /* JudgeViewSB.storyboard in Resources */,
 				6F4825981C296BD300BCE7F6 /* AccidentPhotoTableViewCell.xib in Resources */,
 				58046F3F1C2040AC00F59365 /* DutyViewController.xib in Resources */,
 				6FFD0CFC1C3121AF00A78CF1 /* InfoSectionTwoCell.xib in Resources */,
@@ -2134,6 +2155,7 @@
 				6F48255F1C29571300BCE7F6 /* JSONAPI.m in Sources */,
 				58046F6B1C20420B00F59365 /* Message.m in Sources */,
 				58046E9F1C203FA200F59365 /* QYDetailViewController.m in Sources */,
+				6F36CFD71C47855B0047A30B /* CustomPickerView.m in Sources */,
 				58039FD91C09AFD20093079E /* PhoneViewController.m in Sources */,
 				58039FE81C09B18C0093079E /* TakePhoneFactory.m in Sources */,
 				6F4825611C29571300BCE7F6 /* JSONModel+networking.m in Sources */,
