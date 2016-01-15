@@ -343,7 +343,13 @@
     //车辆的省市
     [self loadUIInfomationsCompanyData:array];
     
-    
+    if (self.reciveCarNumber) {
+        self.carNumber.text = [self.reciveCarNumber substringFromIndex:1];
+        usCities = [self.reciveCarNumber substringToIndex:1];
+        usCarCitiesSelectIndex = [self judeCarCities:usCities CarCiteiesDataArray:self.carCitiesData];
+        usCompanies = self.usCompanyName;
+        usCompanySelectIndex = [self judeCompanyName:self.usCompanyCode CompanyDataArray:array];
+    }
     
     CGFloat top = 8;
     CGFloat left = 5;
@@ -462,13 +468,7 @@
 - (void)loadUIInfomationsCompanyData:(NSArray *)array
 {
     
-    if (self.reciveCarNumber) {
-        self.carNumber.text = [self.reciveCarNumber substringFromIndex:1];
-        usCities = [self.reciveCarNumber substringToIndex:1];
-        usCarCitiesSelectIndex = [self judeCarCities:usCities CarCiteiesDataArray:self.carCitiesData];
-        usCompanies = self.usCompanyName;
-        usCompanySelectIndex = [self judeCompanyName:self.usCompanyCode CompanyDataArray:array];
-    }
+    
     
     if (self.moreHistoryToResponsArray != nil)
     {
