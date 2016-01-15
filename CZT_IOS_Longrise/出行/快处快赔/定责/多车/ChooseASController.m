@@ -117,7 +117,6 @@
 
         
         [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].wxBaseServiceURL ServiceName:[NSString stringWithFormat:@"%@/appsearchcarlist",baseapp] params:bean httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result) {
-
             
             NSLog(@"result = %@",result[@"data"]);
             [fvalertView dismiss];
