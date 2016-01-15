@@ -86,6 +86,12 @@
         {
             [self.phoneNum resignFirstResponder];
         }
+        if (!self.imgCodeText.text.length)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"图片验证码不能为空" delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles: nil];
+            [alert show];
+            return;
+        }
         //判断手机号是否为空并且为11位
         if(nil == phoneNumStr || [@"" isEqualToString:phoneNumStr] || ![Util isPureInt:phoneNumStr]|| phoneNumStr.length != 11)
         {
@@ -222,6 +228,7 @@
         {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:str delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles: nil];
             [alert show];
+            self.getCodeBtn.userInteractionEnabled = YES;
         }
     }];
 }
