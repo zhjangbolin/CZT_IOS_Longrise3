@@ -7,6 +7,8 @@
 //
 
 #import "RegViewController.h"
+#import "AppDelegate.h"
+#import "ImgCodeView.h"
 
 @interface RegViewController ()
 
@@ -30,6 +32,8 @@
     [Util setTextFieldLeftPadding:self.userName forWidth:left];
     self.phoneNum.delegate = self;
     [Util setTextFieldLeftPadding:self.phoneNum forWidth:left];
+    self.imgCodeText.delegate = self;
+    [Util setTextFieldLeftPadding:self.imgCodeText forWidth:left];
     self.verificationCode.delegate = self;
     [Util setTextFieldLeftPadding:self.verificationCode forWidth:left];
     self.passWordText.delegate = self;
@@ -37,10 +41,22 @@
     self.againPasswordText.delegate = self;
     [Util setTextFieldLeftPadding:self.againPasswordText forWidth:left];
     
+    ImgCodeView *imgCodeView = [[ImgCodeView alloc]initWithFrame:CGRectMake(0, 0, self.backImgCodeView.frame.size.width,self.backImgCodeView.frame.size.height)];
+    imgCodeView.delegate = self;
+    [self.backImgCodeView addSubview:imgCodeView];
+    
     [self.getCodeBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.agreementBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.okBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     
+    [AppDelegate storyBoradAutoLay:self.view];
+}
+
+//获取图片验证码
+- (void)requestImgCodeViewID:(NSString *)imgId
+{
+    imgCodeViewId = imgId;
+    NSLog(@"imgCodeViewId = %@",imgCodeViewId);
 }
 
 //页面消失，进入后台不显示该页面，关闭定时器
@@ -158,6 +174,8 @@
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:phoneNumStr forKey:@"mobilenumber"];
+    [params setObject:self.imgCodeText.text forKey:@"imgcode"];
+    [params setObject:imgCodeViewId forKey:@"imgid"];
     
     NSString *temp = appbase;
     [[Globle getInstance].service requestWithServiceIP:[Globle getInstance].wxBaseServiceURL ServiceName:[temp stringByAppendingString:@"/appgetvalidcode"] params:params httpMethod:@"POST" resultIsDictionary:YES completeBlock:^(id result)
